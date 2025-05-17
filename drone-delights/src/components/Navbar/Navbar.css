@@ -1,0 +1,96 @@
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    font-family: "Knewave", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.full-logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.drone-delights-logo{
+    width: 51px;
+    height: 46px;
+}
+
+.navbar-title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 184px;
+    height: 45px;
+    font-size: 45px;
+}
+
+.drone{
+    color: #227C9D;
+}
+
+.delights{
+    color: #FE6D73;
+}
+
+.navbar-btns-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-btn{
+    font: inherit;
+    font-size: 22px;
+    padding: 10px 20px;
+    color: #FE6D73;
+    border: none;
+}
+
+.login-btn{
+    background-color: transparent;
+}
+
+.register-btn{
+    border-radius: 50px;
+    background-color: #FFCB77;
+}
+
+.basket-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    color: #227C9D;
+}
+
+.basket-icon{
+    color: #227C9D;
+    font-size: 34px;
+}
+
+.basket-counter-container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -6px;
+    right: -6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    background-color: #FE6D73 ;
+    color: white;
+}
