@@ -1,4 +1,12 @@
-.image-container {
+h2{
+    font-family: "Hachi Maru Pop", cursive;
+}
+
+.hero-section{
+    overflow: hidden;
+}
+
+.hero-top-section {
     position: relative;
     height: 518px;
 }
@@ -42,23 +50,29 @@
     color: #FE6D73;
 }
 
-.intro-text-and-btn-container {
+.hero-bottom-section{
+    display: flex;
+    align-items: center;
+    gap: 150px;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.intro-text-btn-container {
     display: flex;
     flex-direction: column;
-    width: 391px;
     margin-left: 100px;
     gap: 20px;
 }
 
 .intro-text-container {
-    width: 100%;
+    width: 391px;
     height: 224px;
     text-align: left;
-    font-family: "Hachi Maru Pop", cursive;
-    font-size: 16px;
 }
 
 .see-menu-btn {
+    text-align: center;
     font-size: 22px;
     padding: 10px 20px;
     color: #FE6D73;
@@ -66,5 +80,18 @@
     background-color: #FFD899;
     border-radius: 50px;
     font-family: knewave, system-ui;
+    text-decoration: none;
+}
+
+.food-card-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.food-card-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
 

@@ -1,11 +1,13 @@
 import "./Hero.css";
 import waveyBackground from "../../assets/images/wavey-background-home.svg";
 import droneCarryBurger from "../../assets/images/drone-delights-logo.png";
+import { Link } from "react-router-dom";
+import FoodCard from "../FoodCard/FoodCard";
 
 function Hero() {
   return (
     <section className="hero-section">
-      <div className="image-container">
+      <div className="hero-top-section">
         <img
           src={droneCarryBurger}
           alt="Drone Carrying Burger"
@@ -26,16 +28,27 @@ function Hero() {
           className="wavey-background"
         />
       </div>
-      <div className="intro-text-and-btn-container">
-        <div className="intro-text-container">
-          <h2 className="intro-text">
-            Get your favourite food as fast as possible with our food drones.
-            <br />
-            <br />
-            Keeping it fresh all the way to your belly!
-          </h2>
+      <div className="hero-bottom-section">
+        <div className="intro-text-btn-container">
+          <div className="intro-text-container">
+            <h2 className="intro-text">
+              Get your favourite food as fast as possible with our food drones.
+              <br />
+              <br />
+              Keeping it fresh all the way to your belly!
+            </h2>
+          </div>
+          <Link to="/menu" className="see-menu-btn">See Menu</Link>
         </div>
-        <button className="see-menu-btn">See Menu</button>
+        <div className="food-card-text-container">
+          <h2>Most ordered:</h2>
+          <div className="food-card-container">
+            <FoodCard />
+            <FoodCard />
+            <FoodCard />
+            <FoodCard />
+          </div>
+        </div>
       </div>
     </section>
   );

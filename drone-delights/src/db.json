@@ -1,0 +1,12 @@
+{
+  "menuItems": [
+    {
+      "id": 1,
+      "name": "Delicous Burger",
+      "category": "food",
+      "price": 9.99,
+      "description": "Classic cheeseburger with cheddar and pickles.",
+      "isFavourite": false
+    }
+  ]
+}
