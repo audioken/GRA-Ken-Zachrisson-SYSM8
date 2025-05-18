@@ -4,6 +4,9 @@ Blue:
 Red:
 #FE6D73
 
+Stroke Red:
+#7F3639
+
 Green:
 #17C3B2
 
@@ -13,6 +16,6 @@ Lightyellow:
 Gray:
 #7F7F7F
 
-Lightgray:
+Stroke Gray:
 #CCCCCC
 

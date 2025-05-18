@@ -6,13 +6,27 @@
   width: 847px;
   height: 75px;
   gap: 46px;
-  background-color: red;
+  margin-top: 42px;
 }
 
-.category-btn{
-    font-family: "Hachi Maru Pop", cursive;
-    font-size: 32px;
-    height: 75px;
-    border: none;
-    background-color: transparent;
+.category-btn {
+  font-family: "Hachi Maru Pop", cursive;
+  font-size: 32px;
+  height: 75px;
+  width: 250px;
+  padding: 0 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.selected{
+  font-family: "Knewave", system-ui;
+  width: 250px;
+  transform: scale(1.25);
+}
+
+.fav-selected{
+  color:#FE6D73;
 }
