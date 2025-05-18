@@ -2,7 +2,7 @@ import "./Hero.css";
 import waveyBackground from "../../assets/images/wavey-background-home.svg";
 import droneCarryBurger from "../../assets/images/drone-delights-logo.png";
 import { Link } from "react-router-dom";
-import FoodCard from "../FoodCard/FoodCard";
+import MostOrderdList from "../MostOrderedList/MostOrderedList";
 
 function Hero() {
   return (
@@ -40,15 +40,7 @@ function Hero() {
           </div>
           <Link to="/menu" className="see-menu-btn">See Menu</Link>
         </div>
-        <div className="food-card-text-container">
-          <h2>Most ordered:</h2>
-          <div className="food-card-container">
-            <FoodCard />
-            <FoodCard />
-            <FoodCard />
-            <FoodCard />
-          </div>
-        </div>
+        <MostOrderdList />
       </div>
     </section>
   );

@@ -1,0 +1,15 @@
+.most-ordered-title{
+    font-family: "Hachi Maru Pop", cursive;
+}
+
+.most-ordered-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-cards-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

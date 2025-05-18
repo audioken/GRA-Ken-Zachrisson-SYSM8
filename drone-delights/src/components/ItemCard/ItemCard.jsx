@@ -1,11 +1,10 @@
-import "./FoodCard.css";
-import foodImg from "../../assets/images/food/burger.jpg";
+import "./ItemCard.css";
 
-function FoodCard({ image, name, price, description }) {
+function ItemCard({ name, image, price, description }) {
   return (
-    <div className="food-card">
+    <div className="item-card">
       <div className="img-container">
-        <img src={foodImg} alt={name} className="food-img" />
+        <img src={image} alt={name} className="item-img" />
         <div className="items-count-container">
           <div className="trash-minus-container">
             <button className="trash-btn counter-btn">
@@ -28,21 +27,19 @@ function FoodCard({ image, name, price, description }) {
           <i class="fa-solid fa-plus counter-icon plus-icon"></i>
         </button>
       </div>
-      <div className="food-info-full">
-        <div className="food-top-info">
-          <h3 className="food-name">Delicious Burger</h3>
+      <div className="item-info-full">
+        <div className="item-top-info">
+          <h3 className="item-name">{name}</h3>
           <button className="add-to-favourites-btn">
             <i class="fa-regular fa-heart fav-icon"></i>
           </button>
         </div>
-        <div className="food-middle-bottom-container">
-          <div className="food-middle-info">
-            <span className="price">$9.99</span>
+        <div className="item-middle-bottom-container">
+          <div className="item-middle-info">
+            <span className="price">${price}</span>
           </div>
-          <div className="food-bottom-info">
-            <p className="food-description truncated-text">
-              A mouth-watering burger with fresh ingredients and a secret sauce.
-            </p>
+          <div className="item-bottom-info">
+            <p className="item-description truncated-text">{description}</p>
             <button className="expand-icon-container">
               <i class="fa-solid fa-chevron-down expand-icon"></i>
             </button>
@@ -53,4 +50,4 @@ function FoodCard({ image, name, price, description }) {
   );
 }
 
-export default FoodCard;
+export default ItemCard;
