@@ -1,0 +1,18 @@
+.category-filter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 847px;
+  height: 75px;
+  gap: 46px;
+  background-color: red;
+}
+
+.category-btn{
+    font-family: "Hachi Maru Pop", cursive;
+    font-size: 32px;
+    height: 75px;
+    border: none;
+    background-color: transparent;
+}
