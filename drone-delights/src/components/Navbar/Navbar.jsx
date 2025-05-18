@@ -1,27 +1,38 @@
 import "./Navbar.css";
 import logo from "../../assets/images/drone-delights-logo.png";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div className="navbar-container">
+    <nav className="navbar-container" aria-label="Main Navigation">
       <div className="full-logo-container">
-        <img src={logo} alt="Logo" className="drone-delights-logo" />
-        <h1 className="navbar-title">
-          <span className="drone">Drone</span>
-          <span className="delights">Delights</span>
-        </h1>
+        <Link to="/" className="logo-link">
+          <img
+            src={logo}
+            alt="Drone Delights Logo"
+            className="drone-delights-logo"
+          />
+          <h1 className="navbar-title">
+            <span className="drone">Drone</span>
+            <span className="delights">Delights</span>
+          </h1>
+        </Link>
       </div>
       <div className="navbar-btns-container">
-        <button className="login-btn navbar-btn">Log in</button>
-        <button className="register-btn navbar-btn">Register</button>
-        <button className="basket-btn">
+        <Link to="/login" className="login-btn navbar-btn">
+          Log in
+        </Link>
+        <Link to="/register" className="register-btn navbar-btn">
+          Register
+        </Link>
+        <Link to="/basket" className="basket-btn">
           <div className="basket-counter-container">
             <span className="basket-counter">0</span>
           </div>
           <i class="fa-solid fa-cart-shopping basket-icon"></i>
-        </button>
+        </Link>
       </div>
-    </div>
+    </nav>
   );
 }
 

@@ -1,8 +1,11 @@
+import "./HomePage.css";
+import Hero from "../../components/Hero/Hero";
+
 function HomePage() {
   return (
-    <>
-      {/* <h1>Home</h1> */}
-    </>
+    <div className="home-page-container">
+      <Hero />
+    </div>
   );
 }
 

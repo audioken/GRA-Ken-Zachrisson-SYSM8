@@ -1,0 +1,70 @@
+.image-container {
+    position: relative;
+    height: 518px;
+}
+
+.wavey-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.drone-carry-burger {
+    position: absolute;
+    top: 180px;
+    left: 200px;
+    width: 20%;
+    z-index: 1;
+    rotate: -10deg;
+}
+
+.slogan-container {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    text-align: right;
+    font-family: "Knewave", system-ui;
+    z-index: 1;
+}
+
+.slogan-part-one{
+    font-size: 50px;
+    color: #227C9D;
+}
+
+.slogan-part-two{
+    font-size: 64px;
+    color: #FE6D73;
+}
+
+.intro-text-and-btn-container {
+    display: flex;
+    flex-direction: column;
+    width: 391px;
+    margin-left: 100px;
+    gap: 20px;
+}
+
+.intro-text-container {
+    width: 100%;
+    height: 224px;
+    text-align: left;
+    font-family: "Hachi Maru Pop", cursive;
+    font-size: 16px;
+}
+
+.see-menu-btn {
+    font-size: 22px;
+    padding: 10px 20px;
+    color: #FE6D73;
+    border: none;
+    background-color: #FFD899;
+    border-radius: 50px;
+    font-family: knewave, system-ui;
+}
+
