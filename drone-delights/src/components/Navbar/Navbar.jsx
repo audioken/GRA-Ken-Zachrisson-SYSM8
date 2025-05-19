@@ -1,8 +1,12 @@
 import "./Navbar.css";
 import logo from "../../assets/images/drone-delights-logo.png";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
+import { useContext } from "react";
 
 function Navbar() {
+  const { cartQuantity } = useContext(CartContext);
+
   return (
     <nav className="navbar-container" aria-label="Main Navigation">
       <div className="full-logo-container">
@@ -25,9 +29,9 @@ function Navbar() {
         <Link to="/register" className="register-btn navbar-btn">
           Register
         </Link>
-        <Link to="/basket" className="basket-btn">
-          <div className="basket-counter-container">
-            <span className="basket-counter">0</span>
+        <Link to="/cart" className="basket-btn">
+          <div className={`basket-counter-container ${cartQuantity === 0 ? "hide" : ""}`}>
+            <span className="basket-counter">{cartQuantity}</span>
           </div>
           <i class="fa-solid fa-cart-shopping basket-icon"></i>
         </Link>

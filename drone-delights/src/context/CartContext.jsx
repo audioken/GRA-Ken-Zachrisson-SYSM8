@@ -4,6 +4,7 @@ export const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
+  const cartQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   // Lägg till eller uppdatera vara i cart
   function addToCart(item, quantity = 1) {
@@ -32,7 +33,7 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, updateQuantity, removeFromCart }}
+      value={{ cartItems, addToCart, updateQuantity, removeFromCart, cartQuantity }}
     >
       {children}
     </CartContext.Provider>

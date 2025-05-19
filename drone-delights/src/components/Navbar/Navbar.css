@@ -104,3 +104,7 @@
     background-color: #FE6D73 ;
     color: white;
 }
+
+.hide{
+    display: none;
+  }

@@ -40,11 +40,6 @@
   cursor: pointer;
 }
 
-/* Fixa med kod sen vad vilken knapp som syns */
-.minus-btn {
-  /* display: none; */
-}
-
 .hide{
   display: none;
 }
