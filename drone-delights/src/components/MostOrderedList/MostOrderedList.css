@@ -8,7 +8,7 @@
     gap: 10px;
 }
 
-.item-cards-container {
+.most-ordered-item-cards-container {
     display: flex;
     flex-direction: row;
     gap: 20px;

@@ -14,7 +14,7 @@ function MostOrderdList() {
   return (
     <div className="most-ordered-container">
       <h2 className="most-ordered-title">Most Ordered</h2>
-      <div className="item-cards-container">
+      <div className="most-ordered-item-cards-container">
         {mostOrderedItems.map((item) => (
           <ItemCard
             key={item.id}
