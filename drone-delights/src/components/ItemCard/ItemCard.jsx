@@ -1,5 +1,5 @@
 import "./ItemCard.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 
 function ItemCard({ id, name, image, price, description }) {
@@ -7,6 +7,8 @@ function ItemCard({ id, name, image, price, description }) {
     useContext(CartContext);
   const cartItem = cartItems.find((item) => item.id === id);
   const quantity = cartItem ? cartItem.quantity : 0;
+
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className="item-card">
@@ -60,20 +62,20 @@ function ItemCard({ id, name, image, price, description }) {
       <div className="item-info-full">
         <div className="item-top-info">
           {/* NAME */}
-          <h3 className="item-name">{name}</h3>
+          <h3 className={`item-name ${!isExpanded ? "truncated-text" : ""}`}>{name}</h3>
           {/* FAVORITE BUTTON */}
           <button className="add-to-favourites-btn">
             <i class="fa-regular fa-heart fav-icon"></i>
           </button>
         </div>
-        <div className="item-middle-bottom-container">
+        <div className="item-middle-bottom-container" onClick={() => setIsExpanded(!isExpanded)}>
           <div className="item-middle-info">
             {/* PRICE */}
             <span className="price">${price}</span>
           </div>
           <div className="item-bottom-info">
             {/* DESCRIPTION */}
-            <p className="item-description truncated-text">{description}</p>
+            <p className={`item-description ${!isExpanded ? "truncated-text" : ""}`}>{description}</p>
             <button className="expand-icon-container">
               <i class="fa-solid fa-chevron-down expand-icon"></i>
             </button>

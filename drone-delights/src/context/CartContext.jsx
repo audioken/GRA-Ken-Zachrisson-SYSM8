@@ -1,9 +1,20 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    // Hämta cartItems från localStorage vid första renderingen
+    const storedCart = localStorage.getItem("cartItems");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  // Spara cartItems i localStorage när de ändras
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  // Beräkna total kvantitet av varor i cart
   const cartQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   // Lägg till eller uppdatera vara i cart
@@ -33,7 +44,13 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, updateQuantity, removeFromCart, cartQuantity }}
+      value={{
+        cartItems,
+        addToCart,
+        updateQuantity,
+        removeFromCart,
+        cartQuantity,
+      }}
     >
       {children}
     </CartContext.Provider>

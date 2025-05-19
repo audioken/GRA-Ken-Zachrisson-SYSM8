@@ -1,9 +1,10 @@
 .item-card {
   position: relative;
   width: 220px;
-  height: 250px;
+  min-height: 250px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
+  overflow: visible;
 }
 
 .item-img {
@@ -13,7 +14,6 @@
   border-radius: 25px 25px 0 0;
 }
 
-/* Fixa med kod sen vad vilken knapp som syns */
 .full-quantity-container {
   display: flex;
   align-items: center;
@@ -84,6 +84,7 @@
 }
 
 .item-info-full {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -91,8 +92,7 @@
   padding: 5px 5px 15px 20px;
   border-radius: 25px;
   width: 220px;
-  position: absolute;
-  top: 150px;
+  margin-top: -22px;
 }
 
 .item-top-info {
@@ -102,9 +102,11 @@
 }
 
 .item-name {
+  width: 160px;
   font-family: "Knewave", system-ui;
   font-size: 20px;
   color: #227c9d;
+  user-select: none;
 }
 
 .add-to-favourites-btn {
@@ -126,6 +128,7 @@
 .item-middle-bottom-container {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .item-middle-info {
@@ -136,6 +139,7 @@
   font-family: "Knewave", system-ui;
   font-size: 16px;
   color: #17c3b2;
+  user-select: none;
 }
 
 .item-bottom-info {
@@ -149,6 +153,7 @@
   font-family: "Roboto", system-ui;
   font-size: 12px;
   color: #7f7f7f;
+  user-select: none;
   cursor: pointer;
 }
 
