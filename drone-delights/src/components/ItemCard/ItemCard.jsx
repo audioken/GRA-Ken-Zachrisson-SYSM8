@@ -1,8 +1,12 @@
 import "./ItemCard.css";
-import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
-function ItemCard({ name, image, price, description }) {
-  const [quantity, setQuantity] = useState(0);
+function ItemCard({ id, name, image, price, description }) {
+  const { cartItems, addToCart, updateQuantity, removeFromCart } =
+    useContext(CartContext);
+  const cartItem = cartItems.find((item) => item.id === id);
+  const quantity = cartItem ? cartItem.quantity : 0;
 
   return (
     <div className="item-card">
@@ -17,14 +21,14 @@ function ItemCard({ name, image, price, description }) {
             {/* TRASH BUTTON */}
             <button
               className={`trash-btn quantity-btn ${quantity > 1 ? "hide" : ""}`}
-              onClick={() => setQuantity(0)}
+              onClick={() => removeFromCart(id)}
             >
               <i class="fa-solid fa-trash quantity-icon trash-icon"></i>
             </button>
             {/* MINUS BUTTON */}
             <button
               className={`minus-btn quantity-btn ${quantity < 2 ? "hide" : ""}`}
-              onClick={() => setQuantity(quantity - 1)}
+              onClick={() => updateQuantity(id, quantity - 1)}
             >
               <i class="fa-solid fa-minus quantity-icon minus-icon"></i>
             </button>
@@ -36,7 +40,7 @@ function ItemCard({ name, image, price, description }) {
             {/* PLUS BUTTON */}
             <button
               className="plus-btn quantity-btn"
-              onClick={() => setQuantity(quantity + 1)}
+              onClick={() => updateQuantity(id, quantity + 1)}
             >
               <i class="fa-solid fa-plus quantity-icon plus-icon"></i>
             </button>
@@ -47,7 +51,7 @@ function ItemCard({ name, image, price, description }) {
           className={`plus-btn-alone quantity-btn ${
             quantity > 0 ? "hide" : ""
           }`}
-          onClick={() => setQuantity(quantity + 1)}
+          onClick={() => addToCart({ id, name, image, price, description }, 1)}
         >
           <i class="fa-solid fa-plus quantity-icon plus-icon"></i>
         </button>

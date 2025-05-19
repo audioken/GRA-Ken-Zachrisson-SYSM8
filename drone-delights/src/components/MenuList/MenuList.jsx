@@ -43,6 +43,7 @@ function MenuList() {
         {filteredItems.map((item) => (
           <ItemCard
             key={item.id}
+            id={item.id}
             image={item.img}
             name={item.name}
             price={item.price}
