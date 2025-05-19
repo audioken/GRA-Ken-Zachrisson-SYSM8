@@ -8,6 +8,7 @@ import {
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage/HomePage";
 import MenuPage from "./pages/MenuPage/MenuPage";
+import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/login" element={<h1>Login</h1>} />
           <Route path="/register" element={<h1>Register</h1>} />
           <Route path="/menu" element={<MenuPage/>} />
-          <Route path="/basket" element={<h1>Basket</h1>} />
+          <Route path="/cart" element={<CartPage/>} />
           <Route path="/checkout" element={<h1>Checkout</h1>} />
           <Route path="/user-profile" element={<h1>User-Profile</h1>} />
         </Routes>
