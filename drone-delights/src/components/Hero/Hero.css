@@ -54,7 +54,7 @@ h2 {
 
 .hero-bottom-section {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 150px;
   flex-direction: row;
   margin-bottom: 10px;

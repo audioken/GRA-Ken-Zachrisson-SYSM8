@@ -5,11 +5,31 @@
 .most-ordered-container {
     display: flex;
     flex-direction: column;
+    width: 600px;
     gap: 10px;
+}
+
+.most-ordered-item-cards-container-scroll {
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px 20px;
+    gap: 40px;
+    width: 600px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #17c3b2 transparent;
+    cursor: ew-resize;
 }
 
 .most-ordered-item-cards-container {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 40px;
+}
+
+.most-ordered-item-cards-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
 }
