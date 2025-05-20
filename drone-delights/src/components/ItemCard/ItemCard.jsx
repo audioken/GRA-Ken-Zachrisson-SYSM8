@@ -25,14 +25,14 @@ function ItemCard({ id, name, image, price, description }) {
               className={`trash-btn quantity-btn ${quantity > 1 ? "hide" : ""}`}
               onClick={() => removeFromCart(id)}
             >
-              <i class="fa-solid fa-trash quantity-icon trash-icon"></i>
+              <i className="fa-solid fa-trash quantity-icon trash-icon"></i>
             </button>
             {/* MINUS BUTTON */}
             <button
               className={`minus-btn quantity-btn ${quantity < 2 ? "hide" : ""}`}
               onClick={() => updateQuantity(id, quantity - 1)}
             >
-              <i class="fa-solid fa-minus quantity-icon minus-icon"></i>
+              <i className="fa-solid fa-minus quantity-icon minus-icon"></i>
             </button>
           </div>
           <div className="quantity-container">
@@ -44,7 +44,7 @@ function ItemCard({ id, name, image, price, description }) {
               className="plus-btn quantity-btn"
               onClick={() => updateQuantity(id, quantity + 1)}
             >
-              <i class="fa-solid fa-plus quantity-icon plus-icon"></i>
+              <i className="fa-solid fa-plus quantity-icon plus-icon"></i>
             </button>
           </div>
         </div>
@@ -55,7 +55,7 @@ function ItemCard({ id, name, image, price, description }) {
           }`}
           onClick={() => addToCart({ id, name, image, price, description }, 1)}
         >
-          <i class="fa-solid fa-plus quantity-icon plus-icon"></i>
+          <i className="fa-solid fa-plus quantity-icon plus-icon"></i>
         </button>
       </div>
       {/* INFO */}
@@ -67,7 +67,7 @@ function ItemCard({ id, name, image, price, description }) {
           </h3>
           {/* FAVORITE BUTTON */}
           <button className="add-to-favourites-btn">
-            <i class="fa-regular fa-heart fav-icon"></i>
+            <i className="fa-regular fa-heart fav-icon"></i>
           </button>
         </div>
         <div
@@ -88,7 +88,7 @@ function ItemCard({ id, name, image, price, description }) {
               {description}
             </p>
             <button className="expand-icon-container">
-              <i class="fa-solid fa-chevron-down expand-icon"></i>
+              <i className="fa-solid fa-chevron-down expand-icon"></i>
             </button>
           </div>
         </div>

@@ -7,8 +7,10 @@ function CartPage() {
   return (
     <div className="cart-page-container">
       <PageHeader pageTitleBlue="Your" pageTitleRed="Cart!" />
-      <CartList />
-      <CartSummary />
+      <div className="cart-page-body">
+        <CartList />
+        <CartSummary />
+      </div>
     </div>
   );
 }

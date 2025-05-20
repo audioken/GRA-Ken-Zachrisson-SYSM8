@@ -4,3 +4,15 @@
   align-items: center;
   justify-content: center;
 }
+
+.checkout-page-body {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-page-btns {
+  width: 100%;
+  margin-top: 30px;
+}

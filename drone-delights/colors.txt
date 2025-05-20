@@ -19,3 +19,5 @@ Gray:
 Stroke Gray:
 #CCCCCC
 
+"Hachi Maru Pop", cursive;
+"Knewave", system-ui;

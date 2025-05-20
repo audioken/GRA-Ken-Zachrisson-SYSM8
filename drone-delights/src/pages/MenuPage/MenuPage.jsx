@@ -9,8 +9,10 @@ function MenuPage() {
     <CategoryProvider>
       <div className="menu-page-container">
         <PageHeader pageTitleBlue="Our" pageTitleRed="Menu!" />
-        <CategoryFilter />
-        <MenuList />
+        <div className="menu-page-body">
+          <CategoryFilter />
+          <MenuList />
+        </div>
       </div>
     </CategoryProvider>
   );

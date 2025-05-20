@@ -34,7 +34,7 @@ function Header() {
           >
             <span className="basket-counter">{cartQuantity}</span>
           </div>
-          <i class="fa-solid fa-cart-shopping basket-icon"></i>
+          <i className="fa-solid fa-cart-shopping basket-icon"></i>
         </Link>
       </div>
     </nav>
