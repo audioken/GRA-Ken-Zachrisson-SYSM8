@@ -1,4 +1,4 @@
-.navbar-container{
+.header-container{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,7 +35,7 @@
     height: 46px;
 }
 
-.navbar-title{
+.header-title{
     display: flex;
     align-items: center;
     gap: 10px;
@@ -52,14 +52,14 @@
     color: #FE6D73;
 }
 
-.navbar-btns-container{
+.header-btns-container{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
 
-.navbar-btn{
+.header-btn{
     font: inherit;
     font-size: 22px;
     padding: 10px 20px;

@@ -6,7 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
-import Navbar from "./components/Navbar/Navbar";
+import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
 import MenuPage from "./pages/MenuPage/MenuPage";
 import CartPage from "./pages/CartPage/CartPage";
@@ -16,7 +16,7 @@ function App() {
     <CartProvider>
       <Router>
         <div className="app-container">
-          <Navbar />
+          <Header />
           <Routes>
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<HomePage />} />

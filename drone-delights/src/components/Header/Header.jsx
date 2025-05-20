@@ -1,14 +1,14 @@
-import "./Navbar.css";
+import "./Header.css";
 import logo from "../../assets/images/drone-delights-logo.png";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { useContext } from "react";
 
-function Navbar() {
+function Header() {
   const { cartQuantity } = useContext(CartContext);
 
   return (
-    <nav className="navbar-container" aria-label="Main Navigation">
+    <nav className="header-container" aria-label="Main Navigation">
       <div className="full-logo-container">
         <Link to="/" className="logo-link">
           <img
@@ -16,21 +16,25 @@ function Navbar() {
             alt="Drone Delights Logo"
             className="drone-delights-logo"
           />
-          <h1 className="navbar-title">
+          <h1 className="header-title">
             <span className="drone">Drone</span>
             <span className="delights">Delights</span>
           </h1>
         </Link>
       </div>
-      <div className="navbar-btns-container">
-        <Link to="/login" className="login-btn navbar-btn">
+      <div className="header-btns-container">
+        <Link to="/login" className="login-btn header-btn">
           Log in
         </Link>
-        <Link to="/register" className="register-btn navbar-btn">
+        <Link to="/register" className="register-btn header-btn">
           Register
         </Link>
         <Link to="/cart" className="basket-btn">
-          <div className={`basket-counter-container ${cartQuantity === 0 ? "hide" : ""}`}>
+          <div
+            className={`basket-counter-container ${
+              cartQuantity === 0 ? "hide" : ""
+            }`}
+          >
             <span className="basket-counter">{cartQuantity}</span>
           </div>
           <i class="fa-solid fa-cart-shopping basket-icon"></i>
@@ -40,4 +44,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Header;
