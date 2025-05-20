@@ -59,23 +59,34 @@ function ItemCard({ id, name, image, price, description }) {
         </button>
       </div>
       {/* INFO */}
-      <div className="item-info-full">
+      <div className={`item-info-full ${isExpanded ? "bounce-expand" : ""}`}>
         <div className="item-top-info">
           {/* NAME */}
-          <h3 className={`item-name ${!isExpanded ? "truncated-text" : ""}`}>{name}</h3>
+          <h3 className={`item-name ${!isExpanded ? "truncated-text" : ""}`}>
+            {name}
+          </h3>
           {/* FAVORITE BUTTON */}
           <button className="add-to-favourites-btn">
             <i class="fa-regular fa-heart fav-icon"></i>
           </button>
         </div>
-        <div className="item-middle-bottom-container" onClick={() => setIsExpanded(!isExpanded)}>
+        <div
+          className="item-middle-bottom-container"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
           <div className="item-middle-info">
             {/* PRICE */}
             <span className="price">${price}</span>
           </div>
           <div className="item-bottom-info">
             {/* DESCRIPTION */}
-            <p className={`item-description ${!isExpanded ? "truncated-text" : ""}`}>{description}</p>
+            <p
+              className={`item-description ${
+                !isExpanded ? "truncated-text" : ""
+              }`}
+            >
+              {description}
+            </p>
             <button className="expand-icon-container">
               <i class="fa-solid fa-chevron-down expand-icon"></i>
             </button>

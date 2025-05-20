@@ -152,17 +152,17 @@
 
 .item-description {
   font-family: "Roboto", system-ui;
-  font-size: 12px;
+  font-size: 16px;
   color: #7f7f7f;
   user-select: none;
   cursor: pointer;
+  width: 160px;
 }
 
 .truncated-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 160px;
 }
 
 .expand-icon-container {
@@ -182,3 +182,24 @@
 .expand-icon {
   color: #227c9d;
 }
+
+.bounce-expand {
+  animation: bounce-expand 0.2s ease;
+}
+
+@keyframes bounce-expand {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
