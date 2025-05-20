@@ -3,6 +3,7 @@ import logo from "../../assets/images/drone-delights-logo.png";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { useContext } from "react";
+import ButtonLink from "../ButtonLink/ButtonLink";
 
 function Header() {
   const { cartQuantity } = useContext(CartContext);
@@ -23,12 +24,8 @@ function Header() {
         </Link>
       </div>
       <div className="header-btns-container">
-        <Link to="/login" className="login-btn header-btn">
-          Log in
-        </Link>
-        <Link to="/register" className="register-btn header-btn">
-          Register
-        </Link>
+        <ButtonLink path={"/login"} style={"lite"} text={"Log in"} />
+        <ButtonLink path={"/register"} style={"full"} text={"Register"} />
         <Link to="/cart" className="basket-btn">
           <div
             className={`basket-counter-container ${

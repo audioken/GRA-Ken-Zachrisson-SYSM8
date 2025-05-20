@@ -59,24 +59,6 @@
     gap: 20px;
 }
 
-.header-btn{
-    font: inherit;
-    font-size: 22px;
-    padding: 10px 20px;
-    color: #FE6D73;
-    border: none;
-    text-decoration: none;
-}
-
-.login-btn{
-    background-color: transparent;
-}
-
-.register-btn{
-    border-radius: 50px;
-    background-color: #FFD899;
-}
-
 .basket-btn{
     display: flex;
     justify-content: center;

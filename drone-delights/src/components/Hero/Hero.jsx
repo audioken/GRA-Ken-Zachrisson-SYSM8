@@ -3,6 +3,7 @@ import waveyBackground from "../../assets/images/wavey-background-home.svg";
 import droneCarryBurger from "../../assets/images/drone-delights-logo.png";
 import { Link } from "react-router-dom";
 import MostOrderdList from "../MostOrderedList/MostOrderedList";
+import ButtonLink from "../ButtonLink/ButtonLink";
 
 function Hero() {
   return (
@@ -38,7 +39,7 @@ function Hero() {
               Keeping it fresh all the way to your belly!
             </h2>
           </div>
-          <Link to="/menu" className="see-menu-btn">See Menu</Link>
+          <ButtonLink path={"/menu"} style={"full"} text={"See Menu"} />
         </div>
         <MostOrderdList />
       </div>

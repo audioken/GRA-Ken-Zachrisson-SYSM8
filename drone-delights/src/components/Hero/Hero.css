@@ -73,18 +73,6 @@ h2 {
   text-align: left;
 }
 
-.see-menu-btn {
-  text-align: center;
-  font-size: 22px;
-  padding: 10px 20px;
-  color: #fe6d73;
-  border: none;
-  background-color: #ffd899;
-  border-radius: 50px;
-  font-family: "Knewave", system-ui;
-  text-decoration: none;
-}
-
 .food-card-text-container {
   display: flex;
   flex-direction: column;
