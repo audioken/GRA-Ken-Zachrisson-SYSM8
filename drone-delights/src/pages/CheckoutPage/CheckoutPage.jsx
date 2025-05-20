@@ -2,6 +2,7 @@ import "./CheckoutPage.css";
 import PageHeader from "../../components/PageHeader/PageHeader";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
 import DeliveryInfo from "../../components/DeliveryInfo/DeliveryInfo";
+import Payment from "../../components/Payment/Payment";
 import ButtonLink from "../../components/ButtonLink/ButtonLink";
 
 function CheckoutPage() {
@@ -11,6 +12,7 @@ function CheckoutPage() {
       <div className="checkout-page-body">
         <TotalPrice />
         <DeliveryInfo />
+        <Payment />
         <div className="checkout-page-btns">
           <ButtonLink path={"/cart"} style={"return"} text={"Return to Cart"} />
         </div>

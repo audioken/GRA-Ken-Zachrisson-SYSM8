@@ -1,8 +1,8 @@
-import "./DeliveryInfo.css";
+import "./Payment.css";
 import { DeliveryContext } from "../../context/DeliveryContext";
 import { useContext } from "react";
 
-function DeliveryInfo() {
+function Payment() {
   const { deliveryInfo, setDeliveryInfo } = useContext(DeliveryContext);
 
   const handleSubmit = (event) => {
@@ -14,60 +14,63 @@ function DeliveryInfo() {
   };
 
   return (
-    <div className="delivery-info-container">
-      <h2 className="delivery-info-title">Delivery Information</h2>
-      <form className="delivery-info-form" onSubmit={handleSubmit}>
+    <div className="payment-info-container">
+      <h2 className="payment-info-title">Payment</h2>
+      <form className="payment-info-form" onSubmit={handleSubmit}>
         <div className="name-and-phone-container">
           <div className="form-group">
-            <label htmlFor="name">Full Name</label>
+            <label htmlFor="name">Name On Card</label>
             <input
               type="text"
-              id="name"
+              id="nameOnCard"
               name="name"
               required
-              defaultValue={deliveryInfo.name || ""}
+              //   defaultValue={deliveryInfo.name || ""}
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="phone">Phone</label>
             <input
               type="tel"
               id="phone"
               name="phone"
               required
-              defaultValue={deliveryInfo.phone || ""}
+            //   defaultValue={deliveryInfo.phone || ""}
             />
-          </div>
+          </div> */}
         </div>
         <div className="form-group">
-          <label htmlFor="address">Address</label>
+          <label htmlFor="card">Card Number</label>
           <input
             type="text"
-            id="address"
-            name="address"
+            id="card"
+            name="card"
+            placeholder="xxxx-xxxx-xxxx-xxxx"
             required
-            defaultValue={deliveryInfo.address || ""}
+            // defaultValue={deliveryInfo.address || ""}
           />
         </div>
         <div className="postal-code-and-city-container">
           <div className="form-group">
-            <label htmlFor="postal-code">Zip Code</label>
+            <label htmlFor="expiry">Expiry Date</label>
             <input
               type="text"
-              id="postal-code"
-              name="postal-code"
+              id="expiry"
+              name="expiry"
+              placeholder="MM/YY"
               required
-              defaultValue={deliveryInfo["postal-code"] || ""}
+              //   defaultValue={deliveryInfo["postal-code"] || ""}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="city">City</label>
+            <label htmlFor="cvc">CVC Number</label>
             <input
               type="text"
-              id="city"
-              name="city"
+              id="cvc"
+              name="cvc"
+              placeholder="xxx"
               required
-              defaultValue={deliveryInfo.city || ""}
+              //   defaultValue={deliveryInfo.city || ""}
             />
           </div>
           <button className="submit-btn" type="submit">
@@ -79,4 +82,4 @@ function DeliveryInfo() {
   );
 }
 
-export default DeliveryInfo;
+export default Payment;
