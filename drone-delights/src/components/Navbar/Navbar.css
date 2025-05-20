@@ -2,11 +2,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
     height: 80px;
     font-family: "Knewave", system-ui;
     background-color: #FEF9EF;
     padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Se till att den ligger över annat innehåll */
 }
 
 .logo-link{
