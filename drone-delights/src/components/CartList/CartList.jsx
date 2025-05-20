@@ -1,27 +1,23 @@
 import "./CartList.css";
-import CartItemCard from "../CartItemCard/CartItemCard";
 import { CartContext } from "../../context/CartContext";
 import { useContext } from "react";
+import CartItemCard from "../CartItemCard/CartItemCard";
+import CartEmpty from "../CartEmpty/CartEmpty";
 
 function CartList() {
   const { cartItems } = useContext(CartContext);
 
+  if (cartItems.length === 0) {
+    return (
+      <CartEmpty />
+    );
+  }
+
   return (
     <div className="cart-list-container">
-      {cartItems.length > 0 ? (
-        cartItems.map((item) => (
-          <CartItemCard
-            key={item.id}
-            id={item.id}
-            image={item.image}
-            name={item.name}
-            price={item.price}
-            description={item.description}
-          />
-        ))
-      ) : (
-        <p className="empty-cart-message">Your cart is empty.</p>
-      )}
+      {cartItems.map((item) => (
+        <CartItemCard key={item.id} {...item} />
+      ))}
     </div>
   );
 }

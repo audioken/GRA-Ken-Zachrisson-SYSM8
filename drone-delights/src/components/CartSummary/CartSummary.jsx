@@ -1,16 +1,19 @@
 import "./CartSummary.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+import TotalPrice from "../TotalPrice/TotalPrice";
 
 function CartSummmary() {
+  const { cartItems } = useContext(CartContext);
+
+  if (cartItems.length === 0) {
+    return null;
+  }
+
   return (
     <div className="cart-summary-container">
-      <div className="cart-summary-total-container">
-        <h2 className="cart-summary-total-title">
-          <span className="cart-summary-total-text">Total</span>
-          <span className="cart-summary-inc-text">(inc. VAT and fees)</span>
-        </h2>
-        <p className="cart-summary-price">${86.98}</p>
-      </div>
+      <TotalPrice />
       <div className="cart-summary-btn-container">
         <Link
           to="/menu"

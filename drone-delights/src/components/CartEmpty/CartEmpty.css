@@ -1,0 +1,45 @@
+.cart-empty-container{
+    width: 378px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 50px;
+}
+
+.cart-empty-text-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Knewave", system-ui;
+    font-size: 40px;
+    color: #227C9D;
+}
+
+.no-food{
+    text-decoration: solid underline;
+}
+
+.belly{
+    font-size: 50px;
+    color: #FE6D73;
+}
+
+.smiley{
+    color: #404040;
+}
+
+.cart-empty-see-menu-btn {
+    text-align: center;
+    font-size: 22px;
+    padding: 10px 20px;
+    color: #fe6d73;
+    border: none;
+    background-color: #ffd899;
+    border-radius: 50px;
+    font-family: "Knewave", system-ui;
+    text-decoration: none;
+    width: 100%;
+  }

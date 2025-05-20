@@ -17,6 +17,12 @@ export function CartProvider({ children }) {
   // Beräkna total kvantitet av varor i cart
   const cartQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  // Beräkna totalpris av varor i cart och avrunda till två decimaler
+  const totalPrice = cartItems
+    .reduce((sum, item) => sum + item.price * item.quantity, 0)
+    .toFixed(2);
+    
+
   // Lägg till eller uppdatera vara i cart
   function addToCart(item, quantity = 1) {
     setCartItems((prev) => {
@@ -50,6 +56,7 @@ export function CartProvider({ children }) {
         updateQuantity,
         removeFromCart,
         cartQuantity,
+        totalPrice,
       }}
     >
       {children}

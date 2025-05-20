@@ -1,36 +1,10 @@
-.cart-summary-total-container{
+.cart-summary-container{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 775px;
-    height: 92px;
-    padding: 40px;
     margin-top: 30px;
-    background-color: white;
-    border-radius: 25px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.cart-summary-total-title{
-    display: flex;
-    gap: 10px;
-    align-items: baseline;
-    font-family: "Knewave", system-ui;
-    color: #404040;
-}
-
-.cart-summary-total-text{
-    font-size: 32px;
-}
-
-.cart-summary-inc-text{
-    font-size: 20px;
-}
-
-.cart-summary-price{
-    font-family: "Knewave", system-ui;
-    font-size: 32px;
-    color: #17C3B2
+    width: 775px;
 }
 
 .cart-summary-btn-container{
