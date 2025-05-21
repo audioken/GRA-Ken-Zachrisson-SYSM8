@@ -4,6 +4,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import Masonry from "react-masonry-css";
 import { useContext } from "react";
 import { CategoryContext } from "../../context/CategoryContext";
+import { CartContext } from "../../context/CartContext";
 
 function MenuList() {
   const { data, loading, error } = useFetch("http://localhost:3001/items");
@@ -40,7 +41,7 @@ function MenuList() {
         className="item-cards-container"
         columnClassName="item-cards-column"
       >
-        {filteredItems.map((item) => (
+        {/* {filteredItems.map((item) => (
           <ItemCard
             key={item.id}
             id={item.id}
@@ -49,6 +50,9 @@ function MenuList() {
             price={item.price}
             description={item.description}
           />
+        ))} */}
+        {filteredItems.map((item) => (
+          <ItemCard key={item.id} {...item} />
         ))}
       </Masonry>
     </div>

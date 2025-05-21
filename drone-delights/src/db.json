@@ -2,7 +2,7 @@
   "items": [
     {
       "id": 1,
-      "img": "/images/food/burger.jpg",
+      "image": "/images/food/burger.jpg",
       "name": "Delicous Burger",
       "category": "food",
       "price": 9.99,
@@ -13,7 +13,7 @@
     },
     {
       "id": 2,
-      "img": "/images/food/baguette.jpg",
+      "image": "/images/food/baguette.jpg",
       "name": "Tasty Baguette",
       "category": "food",
       "price": 6.99,
@@ -24,7 +24,7 @@
     },
     {
       "id": 3,
-      "img": "/images/food/pancakes.jpg",
+      "image": "/images/food/pancakes.jpg",
       "name": "Pancakes",
       "category": "desserts",
       "price": 8.99,
@@ -35,7 +35,7 @@
     },
     {
       "id": 4,
-      "img": "/images/food/mocha-cake.jpg",
+      "image": "/images/food/mocha-cake.jpg",
       "name": "Mocha Cake",
       "category": "desserts",
       "price": 7.99,
@@ -46,7 +46,7 @@
     },
     {
       "id": 5,
-      "img": "/images/drinks/coca-cola.jpg",
+      "image": "/images/drinks/coca-cola.jpg",
       "name": "Coca-Cola",
       "category": "drinks",
       "price": 2.99,
@@ -57,7 +57,7 @@
     },
     {
       "id": 6,
-      "img": "/images/drinks/fanta.jpg",
+      "image": "/images/drinks/fanta.jpg",
       "name": "Fanta",
       "category": "drinks",
       "price": 2.99,
@@ -68,7 +68,7 @@
     },
     {
       "id": 7,
-      "img": "/images/drinks/sprite.jpg",
+      "image": "/images/drinks/sprite.jpg",
       "name": "Sprite",
       "category": "drinks",
       "price": 2.99,
@@ -79,7 +79,7 @@
     },
     {
       "id": 8,
-      "img": "/images/drinks/ramlosa-citrus.jpg",
+      "image": "/images/drinks/ramlosa-citrus.jpg",
       "name": "Ramlösa Citrus",
       "category": "drinks",
       "price": 1.99,
@@ -90,7 +90,7 @@
     },
     {
       "id": 9,
-      "img": "/images/drinks/ramlosa-granat.jpg",
+      "image": "/images/drinks/ramlosa-granat.jpg",
       "name": "Ramlösa Pomegranate",
       "category": "drinks",
       "price": 1.99,

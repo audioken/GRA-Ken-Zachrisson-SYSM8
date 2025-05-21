@@ -3,8 +3,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 function CartItemCard({ id, name, image, price, description }) {
-  const { cartItems, updateQuantity, removeFromCart } =
-    useContext(CartContext);
+  const { cartItems, updateQuantity, removeFromCart } = useContext(CartContext);
   const cartItem = cartItems.find((item) => item.id === id);
   const quantity = cartItem ? cartItem.quantity : 1;
 
@@ -75,5 +74,3 @@ function CartItemCard({ id, name, image, price, description }) {
 }
 
 export default CartItemCard;
-
-
