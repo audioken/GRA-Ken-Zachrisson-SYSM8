@@ -32,7 +32,7 @@ function MenuList() {
     if (count === 3) return { default: 3, 700: 2 };
     if (count === 2) return { default: 2 };
     return { default: 1 };
-  }
+  };
 
   return (
     <div className="menu-list-container">
@@ -41,16 +41,6 @@ function MenuList() {
         className="item-cards-container"
         columnClassName="item-cards-column"
       >
-        {/* {filteredItems.map((item) => (
-          <ItemCard
-            key={item.id}
-            id={item.id}
-            image={item.img}
-            name={item.name}
-            price={item.price}
-            description={item.description}
-          />
-        ))} */}
         {filteredItems.map((item) => (
           <ItemCard key={item.id} {...item} />
         ))}

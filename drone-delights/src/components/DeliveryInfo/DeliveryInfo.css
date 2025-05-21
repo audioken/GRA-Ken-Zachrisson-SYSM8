@@ -8,6 +8,13 @@
   font-family: "Hachi Maru Pop", cursive;
 }
 
+.delivery-info-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
 .delivery-info-title {
   font-size: 24px;
 }
@@ -52,7 +59,7 @@ input{
     width: 200px;
 }
 
-.submit-btn{
+.submit-btn-delivery{
   height: 70px;
   width: 70px;
   border-radius: 50%;

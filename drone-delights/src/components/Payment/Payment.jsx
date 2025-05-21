@@ -1,9 +1,12 @@
 import "./Payment.css";
+import swish from "../../assets/images/swish.svg";
+import mastercard from "../../assets/images/mastercard.svg";
 import { DeliveryContext } from "../../context/DeliveryContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
-function Payment() {
+function Payment({ className = "" }) {
   const { deliveryInfo, setDeliveryInfo } = useContext(DeliveryContext);
+  const [selected, setSelected] = useState("mastercard");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,9 +17,38 @@ function Payment() {
   };
 
   return (
-    <div className="payment-info-container">
-      <h2 className="payment-info-title">Payment</h2>
-      <form className="payment-info-form" onSubmit={handleSubmit}>
+    <div className={`payment-info-container ${className}`}>
+      <div className="payment-info-header">
+        <h2 className="payment-info-title">Payment</h2>
+        <div className="payment-options-container">
+          <button
+            className={`swish-btn payment-btn ${
+              selected === "swish" ? "selected-btn" : ""
+            }`}
+            onClick={() => setSelected("swish")}
+          >
+            <img src={swish} alt="Swish" className="swish-icon" />
+          </button>
+          <button
+            className={`mastercard-btn payment-btn ${
+              selected === "mastercard" ? "selected-btn" : ""
+            }`}
+            onClick={() => setSelected("mastercard")}
+          >
+            <img
+              src={mastercard}
+              alt="Mastercard"
+              className="mastercard-icon"
+            />
+          </button>
+        </div>
+      </div>
+      <form
+        className={`payment-info-form-mastercard ${
+          selected === "swish" ? "none" : ""
+        }`}
+        onSubmit={handleSubmit}
+      >
         <div className="name-and-phone-container">
           <div className="form-group">
             <label htmlFor="name">Name On Card</label>
@@ -25,19 +57,9 @@ function Payment() {
               id="nameOnCard"
               name="name"
               required
-              //   defaultValue={deliveryInfo.name || ""}
+              defaultValue={deliveryInfo.name || ""}
             />
           </div>
-          {/* <div className="form-group">
-            <label htmlFor="phone">Phone</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-            //   defaultValue={deliveryInfo.phone || ""}
-            />
-          </div> */}
         </div>
         <div className="form-group">
           <label htmlFor="card">Card Number</label>
@@ -47,34 +69,47 @@ function Payment() {
             name="card"
             placeholder="xxxx-xxxx-xxxx-xxxx"
             required
-            // defaultValue={deliveryInfo.address || ""}
           />
         </div>
         <div className="postal-code-and-city-container">
           <div className="form-group">
-            <label htmlFor="expiry">Expiry Date</label>
+            <label htmlFor="expiry">Expiry</label>
             <input
               type="text"
               id="expiry"
               name="expiry"
               placeholder="MM/YY"
               required
-              //   defaultValue={deliveryInfo["postal-code"] || ""}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="cvc">CVC Number</label>
+            <label htmlFor="cvc">CVC</label>
+            <input type="text" id="cvc" name="cvc" placeholder="xxx" required />
+          </div>
+          <button className="place-order-btn" type="submit">
+            Place Order
+          </button>
+        </div>
+      </form>
+      <form
+        className={`payment-info-form-swish ${
+          selected === "mastercard" ? "none" : ""
+        }`}
+        onSubmit={handleSubmit}
+      >
+        <div className="swish-phone-container">
+          <div className="form-group">
+            <label htmlFor="phone">Phone Number</label>
             <input
               type="text"
-              id="cvc"
-              name="cvc"
-              placeholder="xxx"
+              id="phoneSwish"
+              name="phone"
               required
-              //   defaultValue={deliveryInfo.city || ""}
+              defaultValue={deliveryInfo.phone || ""}
             />
           </div>
-          <button className="submit-btn" type="submit">
-            <i className="fa-solid fa-arrow-right submit-arrow"></i>
+          <button className="place-order-btn" type="submit">
+            Place Order
           </button>
         </div>
       </form>

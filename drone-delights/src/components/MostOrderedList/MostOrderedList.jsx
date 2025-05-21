@@ -17,19 +17,12 @@ function MostOrderdList() {
       <h2 className="most-ordered-title">Most Ordered</h2>
       <div className="most-ordered-item-cards-container-scroll">
         <Masonry
-          breakpointCols={{ default: 4}}
+          breakpointCols={{ default: 4 }}
           className="most-ordered-item-cards-container"
           columnClassName="most-ordered-item-cards-column"
         >
           {mostOrderedItems.map((item) => (
-            <ItemCard
-              key={item.id}
-              id={item.id}
-              image={item.img}
-              name={item.name}
-              price={item.price}
-              description={item.description}
-            />
+            <ItemCard key={item.id} {...item} />
           ))}
         </Masonry>
       </div>
