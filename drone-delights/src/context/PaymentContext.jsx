@@ -6,7 +6,7 @@ export function PaymentProvider({ children }) {
   const [paymentInfo, setPaymentInfo] = useState(() => {
     const storedPaymentInfo = localStorage.getItem('paymentInfo');
     console.log('Stored payment info:', storedPaymentInfo);
-    return storedPaymentInfo ? JSON.parse(storedPaymentInfo) : [];
+    return storedPaymentInfo ? JSON.parse(storedPaymentInfo) : {};
   });
 
   useEffect(() => {

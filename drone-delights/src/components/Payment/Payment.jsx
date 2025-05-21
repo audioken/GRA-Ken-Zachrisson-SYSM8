@@ -4,18 +4,22 @@ import mastercard from "../../assets/images/mastercard.svg";
 import { DeliveryContext } from "../../context/DeliveryContext";
 import { PaymentContext } from "../../context/PaymentContext";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Payment({ className = "" }) {
   const { deliveryInfo } = useContext(DeliveryContext);
   const { setPaymentInfo } = useContext(PaymentContext);
   const [selected, setSelected] = useState("mastercard");
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (method) => (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
+    data.method = method;
     setPaymentInfo(data);
     console.log("Payment Information:", data);
+    navigate("/order-confirmation");
   }
 
   return (
@@ -49,7 +53,7 @@ function Payment({ className = "" }) {
         className={`payment-info-form-mastercard ${
           selected === "swish" ? "none" : ""
         }`}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit("Mastercard")}
       >
         <div className="name-and-phone-container">
           <div className="form-group">
@@ -97,7 +101,7 @@ function Payment({ className = "" }) {
         className={`payment-info-form-swish ${
           selected === "mastercard" ? "none" : ""
         }`}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit("Swish")}
       >
         <div className="swish-phone-container">
           <div className="form-group">
