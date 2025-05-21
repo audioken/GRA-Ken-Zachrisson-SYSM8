@@ -28,7 +28,16 @@ h2 {
   left: 200px;
   width: 20%;
   z-index: 1;
-  rotate: -10deg;
+  animation: droneHover 3s ease-in-out infinite;
+}
+
+@keyframes droneHover {
+  0%, 100% {
+    transform: translateY(0) rotate(-10deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-10deg);
+  }
 }
 
 .slogan-container {
