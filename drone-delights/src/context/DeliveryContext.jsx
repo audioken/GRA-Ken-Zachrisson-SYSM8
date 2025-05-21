@@ -5,6 +5,7 @@ export const DeliveryContext = createContext();
 export function DeliveryProvider({ children }) {
   const [deliveryInfo, setDeliveryInfo] = useState(() => {
     const storedDeliveryInfo = localStorage.getItem("deliveryInfo");
+    console.log("Stored delivery info:", storedDeliveryInfo);
     return storedDeliveryInfo ? JSON.parse(storedDeliveryInfo) : [];
   });
 

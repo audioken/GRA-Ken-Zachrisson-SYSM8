@@ -2,19 +2,21 @@ import "./Payment.css";
 import swish from "../../assets/images/swish.svg";
 import mastercard from "../../assets/images/mastercard.svg";
 import { DeliveryContext } from "../../context/DeliveryContext";
+import { PaymentContext } from "../../context/PaymentContext";
 import { useContext, useState } from "react";
 
 function Payment({ className = "" }) {
-  const { deliveryInfo, setDeliveryInfo } = useContext(DeliveryContext);
+  const { deliveryInfo } = useContext(DeliveryContext);
+  const { setPaymentInfo } = useContext(PaymentContext);
   const [selected, setSelected] = useState("mastercard");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
-    setDeliveryInfo(data);
-    console.log("Delivery Information:", data);
-  };
+    setPaymentInfo(data);
+    console.log("Payment Information:", data);
+  }
 
   return (
     <div className={`payment-info-container ${className}`}>
