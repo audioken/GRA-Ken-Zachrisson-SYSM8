@@ -19,5 +19,9 @@ Gray:
 Stroke Gray:
 #CCCCCC
 
+Black:
+color: #404040;
+
 "Hachi Maru Pop", cursive;
 "Knewave", system-ui;
+"Roboto", system-ui;
