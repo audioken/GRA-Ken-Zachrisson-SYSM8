@@ -43,12 +43,14 @@ function LoginForm() {
     try {
       // Skicka POST-förfrågan till servern med formulärdata
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/users`,
+        `${process.env.REACT_APP_API_URL}/users/login`,
         form
       );
 
       // Spara det token vi får tillbaka i AuthContext
       login(response.data.accessToken);
+      console.log("Inloggning lyckades!", response.data);
+      console.log("Token:", response.data.accessToken);
 
       navigate("/menu");
     } catch (error) {

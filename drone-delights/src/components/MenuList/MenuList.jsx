@@ -29,7 +29,6 @@ function MenuList() {
 
   const getBreakpointCols = () => {
     const count = filteredItems.length;
-    console.log(count);
     if (count >= 4) return { default: 4, 1100: 3, 700: 2 };
     if (count === 3) return { default: 3, 700: 2 };
     if (count === 2) return { default: 2 };

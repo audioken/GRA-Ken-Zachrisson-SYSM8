@@ -51,22 +51,21 @@ const registerUser = asyncHandler(async (req, res) => {
 //@route POST /api/users/login
 //@access Public
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body; // Hämta data från req.body
+  const { username, password } = req.body; // Hämta data från req.body
 
   // Kontrollera så att alla fält är ifyllda
-  if (!email || !password) {
+  if (!username || !password) {
     res.status(400);
     throw new Error("Please add all fields"); // Om något fält saknas, skicka ett felmeddelande
   }
 
-  const user = await User.findOne({ email }); // Hämta användaren från databasen med hjälp av e-postadressen
+  const user = await User.findOne({ username }); // Hämta användaren från databasen med hjälp av e-postadressen
 
   if (user && (await bcrypt.compare(password, user.password))) {
     const accessToken = jwt.sign(
       {
         user: {
           username: user.username,
-          email: user.email,
           id: user.id,
         },
       },
