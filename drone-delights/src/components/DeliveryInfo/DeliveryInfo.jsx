@@ -56,13 +56,13 @@ function DeliveryInfo({ className = "", onSubmit }) {
         </div>
         <div className="postal-code-and-city-container">
           <div className="form-group">
-            <label htmlFor="postal-code">Zip Code</label>
+            <label htmlFor="postalCode">Zip Code</label>
             <input
               type="text"
-              id="postal-code"
-              name="postal-code"
+              id="postalCode"
+              name="postalCode"
               required
-              defaultValue={deliveryInfo["postal-code"] || ""}
+              defaultValue={deliveryInfo.postalCode || ""}
             />
           </div>
           <div className="form-group">

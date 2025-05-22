@@ -21,7 +21,7 @@ function OrderConfirmation() {
       deliveryInfo: deliveryInfo,
       paymentInfo: paymentInfo,
     };
-    fetch("http://localhost:3001/orders", {
+    fetch(`${process.env.REACT_APP_API_URL}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,13 +55,12 @@ function OrderConfirmation() {
   const price = orderData ? orderData.totalPrice : totalPrice;
   const delivery = orderData ? orderData.deliveryInfo : deliveryInfo;
   const payment = orderData ? orderData.paymentInfo : paymentInfo;
-  const orderId = orderData ? orderData.id : null;
+  const orderId = orderData ? orderData._id : null;
 
   return (
     <div className="order-confirmation-container">
       <div className="order-number-container">
         <div className="order-header">
-          {/* <i className="fa-solid fa-house home-btn"></i> */}
           <div className="order-number-row">
             <span className="order-number-text">Order Number:</span>
             <span className="order-number-id">{orderId}</span>
@@ -82,7 +81,7 @@ function OrderConfirmation() {
               <div className="order-image-container">
                 <img src={item.image} alt="" className="order-image" />{" "}
               </div>
-              <div className="order-item-details-container" key={item._id}>
+              <div className="order-item-details-container">
                 <div className="order-item-title">{item.name}</div>
                 <div className="ordet-item-price-and-quantity-container">
                   <span className="order-item-price">${item.price}</span>
@@ -119,7 +118,7 @@ function OrderConfirmation() {
               <p>{delivery.name}</p>
               <p>{delivery.address}</p>
               <p>
-                {delivery["postal-code"]}, {delivery.city}
+                {delivery.postalCode}, {delivery.city}
               </p>
             </address>
           </section>

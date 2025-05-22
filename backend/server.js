@@ -21,6 +21,7 @@ app.use(express.static("public")); // Gör public-mappen tillgänglig för front
 
 app.use("/api/items", require("./routes/itemRoutes"));
 app.use("/api/users", require("./routes/userRoutes")); // Här kopplar vi ihop vår användar-rutt med huvudapplikationen
+app.use("/api/orders", require("./routes/orderRoutes")); // Här kopplar vi ihop vår order-rutt med huvudapplikationen
 
 app.use(errorHandler); // Här använder vi vår felhanteringsmiddleware för att fånga och hantera fel i applikationen
 

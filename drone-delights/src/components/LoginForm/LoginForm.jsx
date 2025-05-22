@@ -13,29 +13,6 @@ function LoginForm() {
     password: "",
   });
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await fetch("http://localhost:3001/users");
-  //     const data = await response.json();
-
-  //     const user = data.find(
-  //       (user) =>
-  //         user.username === form.username && user.password === form.password
-  //     );
-
-  //     if (user) {
-  //       console.log("Login successful", user);
-  //       navigate("/menu");
-  //     } else {
-  //       console.error("Invalid email or password");
-  //     }
-  //   } catch (error) {
-  //     console.error("Login failed:", error);
-  //   }
-  // };
-
   // Hantera formulärinlämning
   const handleSubmit = async (e) => {
     e.preventDefault(); // Förhindra standardbeteende för formulärinlämning
