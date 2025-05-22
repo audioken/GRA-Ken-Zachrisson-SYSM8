@@ -3,6 +3,14 @@ const bcrypt = require("bcrypt"); // Importerar bcrypt för att hash lösenord
 const User = require("../models/userModel"); // Importerar användarmodellen för att interagera med databasen
 const jwt = require("jsonwebtoken"); // Importerar jsonwebtoken för att skapa och verifiera JWT-token
 
+//@desc get all users
+//@route GET /api/users
+//@access Private
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({}); // Hämta alla användare från databasen
+  res.status(200).json(users); // Skicka tillbaka användarna som JSON
+});
+
 //@desc register a user
 //@route POST /api/users/register
 //@access Public
@@ -83,7 +91,8 @@ const currentUser = asyncHandler(async (req, res) => {
 
 // Exporterar funktionerna så att de kan användas i andra filer
 module.exports = {
+  getUsers,
+  currentUser,
   registerUser,
   loginUser,
-  currentUser,
 };

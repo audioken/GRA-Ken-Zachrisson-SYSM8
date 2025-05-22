@@ -19,6 +19,35 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please add a password"],
     },
+    name: {
+      type: String,
+      default: null,
+    },
+    phone: {
+      type: String,
+      default: null,
+    },
+    address: {
+      type: String,
+      default: null,
+    },
+    postalCode: {
+      type: String,
+      default: null,
+    },
+    city: {
+      type: String,
+      default: null,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    favourites: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Item",
+      default: [],
+    }],
   },
   {
     timestamps: true, // Loggar när användaren skapades eller uppdaterades

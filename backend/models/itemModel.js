@@ -26,10 +26,6 @@ const itemSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    isFavourite: {
-      type: Boolean,
-      default: false,
-    },
     isMostOrdered: {
       type: Boolean,
       default: false,

@@ -11,7 +11,6 @@ const items = [
     price: 9.99,
     description: "Classic cheeseburger with cheddar and pickles.",
     quantity: 0,
-    isFavourite: false,
     isMostOrdered: true,
   },
   {
@@ -21,7 +20,6 @@ const items = [
     price: 6.99,
     description: "Freshly baked baguette with chicken filling.",
     quantity: 0,
-    isFavourite: false,
     isMostOrdered: true,
   },
   {
@@ -31,7 +29,6 @@ const items = [
     price: 8.99,
     description: "Fluffy pancakes with salted caramel sauce and berries.",
     quantity: 0,
-    isFavourite: false,
     isMostOrdered: true,
   },
   {
@@ -41,7 +38,6 @@ const items = [
     price: 7.99,
     description: "Rich mocha cake with chocolate ganache.",
     quantity: 0,
-    isFavourite: false,
     isMostOrdered: true,
   },
   {
@@ -51,7 +47,6 @@ const items = [
     price: 2.99,
     description: "Classic Coca-Cola soft drink.",
     quantity: 0,
-    isFavourite: false,
     isMostOrdered: false,
   },
   {
@@ -61,7 +56,6 @@ const items = [
     price: 2.99,
     description: "Refreshing Fanta soft drink.",
     quantity: 0,
-    isFavourite: false,
     isMostOrdered: false,
   },
   {
@@ -71,7 +65,6 @@ const items = [
     price: 2.99,
     description: "Crisp Sprite soft drink.",
     quantity: 0,
-    isFavourite: false,
     isMostOrdered: false,
   },
   {
@@ -81,7 +74,6 @@ const items = [
     price: 1.99,
     description: "Sparkling mineral water with citrus flavor.",
     quantity: 0,
-    isFavourite: false,
     isMostOrdered: false,
   },
   {
@@ -91,7 +83,6 @@ const items = [
     price: 1.99,
     description: "Sparkling mineral water with pomegranate flavor.",
     quantity: 0,
-    isFavourite: false,
     isMostOrdered: false,
   },
 ];

@@ -13,16 +13,12 @@ function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const newUser = {
-        ...form,
-        address: null,
-        "postal-code": null,
-        city: null,
-        phone: null,
-        isAdmin: false,
-      };
+      const newUser = { ...form };
 
-      await axios.post("http://localhost:3001/users", newUser);
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/users/register`,
+        newUser
+      );
 
       console.log("Registrering lyckades!", newUser);
 
@@ -30,7 +26,6 @@ function RegisterForm() {
     } catch (error) {
       console.error("Registrering misslyckades:", error);
     }
-    
   };
 
   const navigate = useNavigate();
