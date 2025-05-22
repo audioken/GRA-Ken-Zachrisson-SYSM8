@@ -10,6 +10,8 @@ import { DeliveryProvider } from "./context/DeliveryContext";
 import { PaymentProvider } from "./context/PaymentContext";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import MenuPage from "./pages/MenuPage/MenuPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
@@ -25,8 +27,8 @@ function App() {
               <Header />
               <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/login" element={<h1>Login</h1>} />
-                <Route path="/register" element={<h1>Register</h1>} />
+                <Route path="/login" element={<LoginPage/>} />
+                <Route path="/register" element={<RegisterPage/>} />
                 <Route path="/menu" element={<MenuPage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />

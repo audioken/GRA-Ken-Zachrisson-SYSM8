@@ -9,7 +9,10 @@ function OrderConfirmation() {
   const { deliveryInfo } = useContext(DeliveryContext);
   const { paymentInfo } = useContext(PaymentContext);
 
-  const [orderData, setOrderData] = useState(null);
+  const [orderData, setOrderData] = useState(() => {
+    const saved = sessionStorage.getItem("lastOrder");
+    return saved ? JSON.parse(saved) : null;
+  });
 
   function addOrderToServer() {
     const order = {
@@ -30,6 +33,7 @@ function OrderConfirmation() {
         console.log("Order confirmed:", data);
         setOrderData(data);
         setCartItems([]);
+        sessionStorage.setItem("lastOrder", JSON.stringify(data)); // <-- Spara ordern
       })
       .catch((error) => {
         console.error("Error confirming order:", error);
@@ -55,6 +59,15 @@ function OrderConfirmation() {
 
   return (
     <div className="order-confirmation-container">
+      <div className="order-number-container">
+        <div className="order-header">
+          {/* <i className="fa-solid fa-house home-btn"></i> */}
+          <div className="order-number-row">
+            <span className="order-number-text">Order Number:</span>
+            <span className="order-number-id">{orderId}</span>
+          </div>
+        </div>
+      </div>
       <div className="confirmed-container">
         <i className="fa-solid fa-circle-check confirmed"></i>
       </div>
@@ -63,12 +76,6 @@ function OrderConfirmation() {
         <span className="on-the-way">on the way!</span>
       </h2>
       <div className="order-summary-container">
-        <div className="order-number-container">
-          <div className="order-number-row">
-            <span className="order-number-text">Order Number:</span>
-            <span className="order-number-id">{orderId}</span>
-          </div>
-        </div>
         <div className="order-items-all-cards-container">
           {items.map((item) => (
             <div className="order-item-card-container" key={item.id}>
@@ -99,7 +106,11 @@ function OrderConfirmation() {
         <div className="order-delivery-and-payment-container">
           <section className="order-payment-method-container">
             <h4 className="payment-method-title">Payment Method:</h4>
-            <p className="payment-method-text">{payment.method}<br/>{payment.phone}</p>
+            <p className="payment-method-text">
+              {payment.method}
+              <br />
+              {payment.phone}
+            </p>
           </section>
 
           <section className="order-delivery-address-container">

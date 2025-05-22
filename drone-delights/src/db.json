@@ -102,7 +102,7 @@
   ],
   "orders": [
     {
-      "id": "cf5c",
+      "id": "cbbc",
       "items": [
         {
           "id": 1,
@@ -110,54 +110,60 @@
           "image": "/images/food/burger.jpg",
           "price": 9.99,
           "description": "Classic cheeseburger with cheddar and pickles.",
-          "quantity": 3
-        }
-      ],
-      "totalPrice": "29.97",
-      "deliveryInfo": {
-        "name": "Ken Zachrisson",
-        "phone": "0777777777",
-        "address": "Nobelvägen 111B",
-        "postal-code": "21433",
-        "city": "Malmö"
-      },
-      "paymentInfo": {
-        "name": "Ken Zachrisson",
-        "phone": "07111111111",
-        "card": "",
-        "expiry": "",
-        "cvc": "",
-        "method": "Swish"
-      }
-    },
-    {
-      "id": "6e5f",
-      "items": [
-        {
-          "id": 3,
-          "name": "Pancakes",
-          "image": "/images/food/pancakes.jpg",
-          "price": 8.99,
-          "description": "Fluffy pancakes with salted caramel sauce and berries.",
           "quantity": 1
         }
       ],
-      "totalPrice": "8.99",
+      "totalPrice": "9.99",
       "deliveryInfo": {
         "name": "Ken Zachrisson",
-        "phone": "0777777777",
+        "phone": "0763080444",
         "address": "Nobelvägen 111B",
         "postal-code": "21433",
         "city": "Malmö"
       },
       "paymentInfo": {
         "name": "Ken Zachrisson",
-        "phone": "07111111111",
+        "phone": "0763080444",
         "card": "",
         "expiry": "",
         "cvc": "",
         "method": "Swish"
       }
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "ken",
+      "email": "ken@ken.com",
+      "password": "123",
+      "address": "Nobelvägen 111B",
+      "postal-code": "21433",
+      "city": "Malmö",
+      "phone": "0763080444",
+      "isAdmin": true
+    },
+    {
+      "id": "fba4",
+      "username": "pelle",
+      "email": "pelle@pelle.com",
+      "password": "123",
+      "address": null,
+      "postal-code": null,
+      "city": null,
+      "phone": null,
+      "isAdmin": false
+    },
+    {
+      "id": "2763",
+      "username": "foodjunkie666",
+      "email": "kenzachrisson@gmail.com",
+      "password": "ken123",
+      "address": null,
+      "postal-code": null,
+      "city": null,
+      "phone": null,
+      "isAdmin": false
     }
   ]
 }

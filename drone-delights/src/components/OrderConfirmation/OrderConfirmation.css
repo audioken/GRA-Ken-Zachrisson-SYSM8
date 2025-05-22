@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 50px;
-  width: 600px;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.507);
   border-radius: 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -156,12 +156,35 @@
   border-right: 1px solid #bfbfbf;
 }
 
+.order-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.home-btn{
+  font-size: 40px;
+}
+
+.order-number-container{
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+}
+
+
 .total-cost-row,
 .order-number-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.order-number-row{
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .total-cost-text,
@@ -177,6 +200,10 @@
   font-family: "Knewave", system-ui;
   font-size: 24px;
   color: #17c3b2;
+}
+
+.order-number-id{
+  color: #227C9D;
 }
 
 .order-delivery-and-payment-container {
