@@ -4,7 +4,9 @@ import useFetch from "../../hooks/useFetch";
 import Masonry from "react-masonry-css";
 
 function MostOrderdList() {
-  const { data, loading, error } = useFetch("http://localhost:3001/items");
+  const { data, loading, error } = useFetch(
+    `${process.env.REACT_APP_API_URL}/items`
+  );
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading items.</p>;
@@ -22,7 +24,7 @@ function MostOrderdList() {
           columnClassName="most-ordered-item-cards-column"
         >
           {mostOrderedItems.map((item) => (
-            <ItemCard key={item.id} {...item} />
+            <ItemCard key={item._id} {...item} />
           ))}
         </Masonry>
       </div>

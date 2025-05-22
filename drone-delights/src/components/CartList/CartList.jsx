@@ -16,7 +16,7 @@ function CartList() {
   return (
     <div className="cart-list-container">
       {cartItems.map((item) => (
-        <CartItemCard key={item.id} {...item} />
+        <CartItemCard key={item._id} {...item} />
       ))}
     </div>
   );

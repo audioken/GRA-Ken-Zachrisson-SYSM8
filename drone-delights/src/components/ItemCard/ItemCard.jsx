@@ -2,10 +2,10 @@ import "./ItemCard.css";
 import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 
-function ItemCard({ id, name, image, price, description }) {
+function ItemCard({ _id, name, image, price, description }) {
   const { cartItems, addToCart, updateQuantity, removeFromCart } =
     useContext(CartContext);
-  const cartItem = cartItems.find((item) => item.id === id);
+  const cartItem = cartItems.find((item) => item._id === _id);
   const quantity = cartItem ? cartItem.quantity : 0;
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -23,14 +23,14 @@ function ItemCard({ id, name, image, price, description }) {
             {/* TRASH BUTTON */}
             <button
               className={`trash-btn quantity-btn ${quantity > 1 ? "hide" : ""}`}
-              onClick={() => removeFromCart(id)}
+              onClick={() => removeFromCart(_id)}
             >
               <i className="fa-solid fa-trash quantity-icon trash-icon"></i>
             </button>
             {/* MINUS BUTTON */}
             <button
               className={`minus-btn quantity-btn ${quantity < 2 ? "hide" : ""}`}
-              onClick={() => updateQuantity(id, quantity - 1)}
+              onClick={() => updateQuantity(_id, quantity - 1)}
             >
               <i className="fa-solid fa-minus quantity-icon minus-icon"></i>
             </button>
@@ -42,7 +42,7 @@ function ItemCard({ id, name, image, price, description }) {
             {/* PLUS BUTTON */}
             <button
               className="plus-btn quantity-btn"
-              onClick={() => updateQuantity(id, quantity + 1)}
+              onClick={() => updateQuantity(_id, quantity + 1)}
             >
               <i className="fa-solid fa-plus quantity-icon plus-icon"></i>
             </button>
@@ -53,7 +53,7 @@ function ItemCard({ id, name, image, price, description }) {
           className={`plus-btn-alone quantity-btn ${
             quantity > 0 ? "hide" : ""
           }`}
-          onClick={() => addToCart({ id, name, image, price, description }, 1)}
+          onClick={() => addToCart({ _id, name, image, price, description }, 1)}
         >
           <i className="fa-solid fa-plus quantity-icon plus-icon"></i>
         </button>

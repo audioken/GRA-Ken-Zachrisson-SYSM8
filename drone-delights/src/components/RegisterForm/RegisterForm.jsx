@@ -1,8 +1,7 @@
 import "./RegisterForm.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ButtonLink from "../ButtonLink/ButtonLink";
 
 function RegisterForm() {
   const [form, setForm] = useState({
@@ -25,10 +24,13 @@ function RegisterForm() {
 
       await axios.post("http://localhost:3001/users", newUser);
 
-      navigate("/");
+      console.log("Registrering lyckades!", newUser);
+
+      navigate("/login");
     } catch (error) {
       console.error("Registrering misslyckades:", error);
     }
+    
   };
 
   const navigate = useNavigate();

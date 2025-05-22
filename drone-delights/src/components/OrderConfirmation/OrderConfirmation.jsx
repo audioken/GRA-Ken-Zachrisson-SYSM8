@@ -78,11 +78,11 @@ function OrderConfirmation() {
       <div className="order-summary-container">
         <div className="order-items-all-cards-container">
           {items.map((item) => (
-            <div className="order-item-card-container" key={item.id}>
+            <div className="order-item-card-container" key={item._id}>
               <div className="order-image-container">
                 <img src={item.image} alt="" className="order-image" />{" "}
               </div>
-              <div className="order-item-details-container" key={item.id}>
+              <div className="order-item-details-container" key={item._id}>
                 <div className="order-item-title">{item.name}</div>
                 <div className="ordet-item-price-and-quantity-container">
                   <span className="order-item-price">${item.price}</span>

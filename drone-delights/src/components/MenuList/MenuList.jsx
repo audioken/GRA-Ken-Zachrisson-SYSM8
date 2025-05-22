@@ -7,7 +7,9 @@ import { CategoryContext } from "../../context/CategoryContext";
 import { CartContext } from "../../context/CartContext";
 
 function MenuList() {
-  const { data, loading, error } = useFetch("http://localhost:3001/items");
+  const { data, loading, error } = useFetch(
+    `${process.env.REACT_APP_API_URL}/items`
+  );
   const { selectedCategory } = useContext(CategoryContext);
 
   if (loading) return <p>Loading...</p>;
@@ -42,7 +44,7 @@ function MenuList() {
         columnClassName="item-cards-column"
       >
         {filteredItems.map((item) => (
-          <ItemCard key={item.id} {...item} />
+          <ItemCard key={item._id} {...item} />
         ))}
       </Masonry>
     </div>

@@ -2,9 +2,9 @@ import "./CartItemCard.css";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
-function CartItemCard({ id, name, image, price, description }) {
+function CartItemCard({ _id, name, image, price, description }) {
   const { cartItems, updateQuantity, removeFromCart } = useContext(CartContext);
-  const cartItem = cartItems.find((item) => item.id === id);
+  const cartItem = cartItems.find((item) => item._id === _id);
   const quantity = cartItem ? cartItem.quantity : 1;
 
   return (
@@ -40,7 +40,7 @@ function CartItemCard({ id, name, image, price, description }) {
                 className={`cart-item-trash-btn cart-item-quantity-btn ${
                   quantity > 1 ? "hide" : ""
                 }`}
-                onClick={() => removeFromCart(id)}
+                onClick={() => removeFromCart(_id)}
               >
                 <i className="fa-solid fa-trash cart-item-quantity-icon cart-item-trash-icon"></i>
               </button>
@@ -49,7 +49,7 @@ function CartItemCard({ id, name, image, price, description }) {
                 className={`cart-item-minus-btn cart-item-quantity-btn ${
                   quantity < 2 ? "hide" : ""
                 }`}
-                onClick={() => updateQuantity(id, quantity - 1)}
+                onClick={() => updateQuantity(_id, quantity - 1)}
               >
                 <i className="fa-solid fa-minus cart-item-quantity-icon cart-item-minus-icon"></i>
               </button>
@@ -61,7 +61,7 @@ function CartItemCard({ id, name, image, price, description }) {
               {/* PLUS BUTTON */}
               <button
                 className="cart-item-plus-btn quantity-btn"
-                onClick={() => updateQuantity(id, quantity + 1)}
+                onClick={() => updateQuantity(_id, quantity + 1)}
               >
                 <i className="fa-solid fa-plus cart-item-quantity-icon cart-item-plus-icon"></i>
               </button>

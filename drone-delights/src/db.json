@@ -100,70 +100,12 @@
       "isMostOrdered": false
     }
   ],
-  "orders": [
-    {
-      "id": "cbbc",
-      "items": [
-        {
-          "id": 1,
-          "name": "Delicous Burger",
-          "image": "/images/food/burger.jpg",
-          "price": 9.99,
-          "description": "Classic cheeseburger with cheddar and pickles.",
-          "quantity": 1
-        }
-      ],
-      "totalPrice": "9.99",
-      "deliveryInfo": {
-        "name": "Ken Zachrisson",
-        "phone": "0763080444",
-        "address": "Nobelvägen 111B",
-        "postal-code": "21433",
-        "city": "Malmö"
-      },
-      "paymentInfo": {
-        "name": "Ken Zachrisson",
-        "phone": "0763080444",
-        "card": "",
-        "expiry": "",
-        "cvc": "",
-        "method": "Swish"
-      }
-    }
-  ],
+  "orders": [],
   "users": [
     {
-      "id": 1,
+      "id": "aabc",
       "username": "ken",
-      "email": "ken@ken.com",
-      "password": "123",
-      "address": "Nobelvägen 111B",
-      "postal-code": "21433",
-      "city": "Malmö",
-      "phone": "0763080444",
-      "isAdmin": true
-    },
-    {
-      "id": "fba4",
-      "username": "pelle",
-      "email": "pelle@pelle.com",
-      "password": "123",
-      "address": null,
-      "postal-code": null,
-      "city": null,
-      "phone": null,
-      "isAdmin": false
-    },
-    {
-      "id": "2763",
-      "username": "foodjunkie666",
-      "email": "kenzachrisson@gmail.com",
-      "password": "ken123",
-      "address": null,
-      "postal-code": null,
-      "city": null,
-      "phone": null,
-      "isAdmin": false
+      "password": "123"
     }
   ]
 }
