@@ -141,7 +141,8 @@
   color: #404040;
 }
 
-.order-total-cost-container {
+.order-total-cost-container,
+.order-number-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -155,20 +156,24 @@
   border-right: 1px solid #bfbfbf;
 }
 
-.total-cost-row {
+.total-cost-row,
+.order-number-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.total-cost-text {
+.total-cost-text,
+.order-number-text {
   font-family: "Knewave", system-ui;
+  font-weight: 400;
   font-size: 20px;
   color: #404040;
 }
 
-.total-cost-price {
+.total-cost-price,
+.order-number-id {
   font-family: "Knewave", system-ui;
   font-size: 24px;
   color: #17c3b2;
@@ -194,7 +199,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  
 }
 
 .payment-method-title {
@@ -214,7 +218,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: flex-end; */
   width: 100%;
 }
 

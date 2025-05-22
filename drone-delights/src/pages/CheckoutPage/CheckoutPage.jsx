@@ -4,9 +4,12 @@ import TotalPrice from "../../components/TotalPrice/TotalPrice";
 import DeliveryInfo from "../../components/DeliveryInfo/DeliveryInfo";
 import Payment from "../../components/Payment/Payment";
 import ButtonLink from "../../components/ButtonLink/ButtonLink";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function CheckoutPage() {
+  useEffect(() => {
+    sessionStorage.removeItem("orderSent");
+  }, []);
   const [currentView, setCurrentView] = useState("delivery");
 
   return (

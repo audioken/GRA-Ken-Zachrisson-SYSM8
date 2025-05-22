@@ -100,5 +100,64 @@
       "isMostOrdered": false
     }
   ],
-  "cart": {}
+  "orders": [
+    {
+      "id": "cf5c",
+      "items": [
+        {
+          "id": 1,
+          "name": "Delicous Burger",
+          "image": "/images/food/burger.jpg",
+          "price": 9.99,
+          "description": "Classic cheeseburger with cheddar and pickles.",
+          "quantity": 3
+        }
+      ],
+      "totalPrice": "29.97",
+      "deliveryInfo": {
+        "name": "Ken Zachrisson",
+        "phone": "0777777777",
+        "address": "Nobelvägen 111B",
+        "postal-code": "21433",
+        "city": "Malmö"
+      },
+      "paymentInfo": {
+        "name": "Ken Zachrisson",
+        "phone": "07111111111",
+        "card": "",
+        "expiry": "",
+        "cvc": "",
+        "method": "Swish"
+      }
+    },
+    {
+      "id": "6e5f",
+      "items": [
+        {
+          "id": 3,
+          "name": "Pancakes",
+          "image": "/images/food/pancakes.jpg",
+          "price": 8.99,
+          "description": "Fluffy pancakes with salted caramel sauce and berries.",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": "8.99",
+      "deliveryInfo": {
+        "name": "Ken Zachrisson",
+        "phone": "0777777777",
+        "address": "Nobelvägen 111B",
+        "postal-code": "21433",
+        "city": "Malmö"
+      },
+      "paymentInfo": {
+        "name": "Ken Zachrisson",
+        "phone": "07111111111",
+        "card": "",
+        "expiry": "",
+        "cvc": "",
+        "method": "Swish"
+      }
+    }
+  ]
 }

@@ -3,24 +3,51 @@ import swish from "../../assets/images/swish.svg";
 import mastercard from "../../assets/images/mastercard.svg";
 import { DeliveryContext } from "../../context/DeliveryContext";
 import { PaymentContext } from "../../context/PaymentContext";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Payment({ className = "" }) {
   const { deliveryInfo } = useContext(DeliveryContext);
-  const { setPaymentInfo } = useContext(PaymentContext);
+  const { paymentInfo, setPaymentInfo } = useContext(PaymentContext);
   const [selected, setSelected] = useState("mastercard");
+
+  // Initiera form state: om paymentInfo finns, använd det, annars deliveryInfo
+  const [formData, setFormData] = useState({
+    name: paymentInfo?.name || deliveryInfo?.name || "",
+    phone: paymentInfo?.phone || deliveryInfo?.phone || "",
+    card: paymentInfo?.card || "",
+    expiry: paymentInfo?.expiry || "",
+    cvc: paymentInfo?.cvc || "",
+  });
+
+  // Om deliveryInfo ändras och paymentInfo är tomt, uppdatera formData
+  useEffect(() => {
+    if (!paymentInfo?.name && deliveryInfo?.name) {
+      setFormData((prev) => ({ ...prev, name: deliveryInfo.name }));
+    }
+    if (!paymentInfo?.phone && deliveryInfo?.phone) {
+      setFormData((prev) => ({ ...prev, phone: deliveryInfo.phone }));
+    }
+  }, [deliveryInfo]);
+
   const navigate = useNavigate();
 
+  // Hantera ändringar i formulärfälten
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Spara paymentInfo och gå vidare
   const handleSubmit = (method) => (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
-    data.method = method;
+    const data = { ...formData, method };
     setPaymentInfo(data);
-    console.log("Payment Information:", data);
     navigate("/order-confirmation");
-  }
+  };
 
   return (
     <div className={`payment-info-container ${className}`}>
@@ -32,6 +59,7 @@ function Payment({ className = "" }) {
               selected === "swish" ? "selected-btn" : ""
             }`}
             onClick={() => setSelected("swish")}
+            type="button"
           >
             <img src={swish} alt="Swish" className="swish-icon" />
           </button>
@@ -40,6 +68,7 @@ function Payment({ className = "" }) {
               selected === "mastercard" ? "selected-btn" : ""
             }`}
             onClick={() => setSelected("mastercard")}
+            type="button"
           >
             <img
               src={mastercard}
@@ -49,6 +78,8 @@ function Payment({ className = "" }) {
           </button>
         </div>
       </div>
+
+      {/* Mastercard-formulär */}
       <form
         className={`payment-info-form-mastercard ${
           selected === "swish" ? "none" : ""
@@ -57,13 +88,14 @@ function Payment({ className = "" }) {
       >
         <div className="name-and-phone-container">
           <div className="form-group">
-            <label htmlFor="name">Name On Card</label>
+            <label htmlFor="nameOnCard">Name On Card</label>
             <input
               type="text"
               id="nameOnCard"
               name="name"
               required
-              defaultValue={deliveryInfo.name || ""}
+              value={formData.name}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -75,6 +107,8 @@ function Payment({ className = "" }) {
             name="card"
             placeholder="xxxx-xxxx-xxxx-xxxx"
             required
+            value={formData.card}
+            onChange={handleChange}
           />
         </div>
         <div className="postal-code-and-city-container">
@@ -86,17 +120,29 @@ function Payment({ className = "" }) {
               name="expiry"
               placeholder="MM/YY"
               required
+              value={formData.expiry}
+              onChange={handleChange}
             />
           </div>
           <div className="form-group">
             <label htmlFor="cvc">CVC</label>
-            <input type="text" id="cvc" name="cvc" placeholder="xxx" required />
+            <input
+              type="text"
+              id="cvc"
+              name="cvc"
+              placeholder="xxx"
+              required
+              value={formData.cvc}
+              onChange={handleChange}
+            />
           </div>
           <button className="place-order-btn" type="submit">
             Place Order
           </button>
         </div>
       </form>
+
+      {/* Swish-formulär */}
       <form
         className={`payment-info-form-swish ${
           selected === "mastercard" ? "none" : ""
@@ -105,13 +151,14 @@ function Payment({ className = "" }) {
       >
         <div className="swish-phone-container">
           <div className="form-group">
-            <label htmlFor="phone">Phone Number</label>
+            <label htmlFor="phoneSwish">Phone Number</label>
             <input
               type="text"
               id="phoneSwish"
               name="phone"
               required
-              defaultValue={deliveryInfo.phone || ""}
+              value={formData.phone}
+              onChange={handleChange}
             />
           </div>
           <button className="place-order-btn" type="submit">
