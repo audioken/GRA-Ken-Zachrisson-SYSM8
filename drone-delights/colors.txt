@@ -1,3 +1,6 @@
+White:
+#FEF9EF;
+
 Blue:
 #227C9D
 

@@ -1,38 +1,3 @@
 .dropdown-container{
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 20px;
-    cursor: pointer;
-}
-
-.dropdown-text{
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 5px;
-}
-
-.user-icon{
-    color: #227C9D;
-    font-size: 28px;
-}
-
-.hi-dropdown-text{
-    font-family: "Knewave", system-ui;
-    font-weight: 400;
-    font-size: 22px;
-    color: #227C9D;
-}
-
-.username-dropdown-text{
-    font-family: "Knewave", system-ui;
-    font-weight: 400;
-    font-size: 28px;
-    color: #FE6D73;
-}
-
-.dropdown-icon{
-    color: #227C9D;
-    font-size: 22px;
+    position: relative;
 }

@@ -1,20 +1,17 @@
 import "./Dropdown.css";
+import { useState } from "react";
+import DropdownButton from "../DropdownButton/DropdownButton";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
-function Dropdown({user}) {
-    return (
-      <div className="dropdown-container">
-          <span className="user-icon">
-            <i className="fa-solid fa-user"></i>
-          </span>
-          <div className="dropdown-text">
-            <span className="hi-dropdown-text">Hi,</span>
-            <span className="username-dropdown-text">{user?.username}!</span>
-          </div>
-          <span className="dropdown-icon">
-            <i className="fa-solid fa-caret-down"></i>
-          </span>
-      </div>
-    );
+function Dropdown({ user }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="dropdown-container">
+      <DropdownButton user={user} onClick={() => setOpen((open) => !open)} />
+      {open && <DropdownMenu />}
+    </div>
+  );
 }
 
 export default Dropdown;
