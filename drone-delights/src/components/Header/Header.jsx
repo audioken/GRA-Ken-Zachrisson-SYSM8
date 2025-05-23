@@ -3,10 +3,13 @@ import logo from "../../assets/images/drone-delights-logo.png";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { useContext } from "react";
+import { useAuth } from "../../context/AuthContext";
 import ButtonLink from "../ButtonLink/ButtonLink";
+import Dropdown from "../Dropdown/Dropdown";
 
 function Header() {
   const { cartQuantity } = useContext(CartContext);
+  const { token, user } = useAuth();
 
   return (
     <nav className="header-container" aria-label="Main Navigation">
@@ -24,8 +27,14 @@ function Header() {
         </Link>
       </div>
       <div className="header-btns-container">
-        <ButtonLink path={"/login"} style={"lite"} text={"Log in"} />
-        <ButtonLink path={"/register"} style={"full"} text={"Register"} />
+        {token ? (
+          <Dropdown user={user}/>
+        ) : (
+          <div>
+            <ButtonLink path={"/login"} style={"lite"} text={"Log in"} />
+            <ButtonLink path={"/register"} style={"full"} text={"Register"} />
+          </div>
+        )}
         <Link to="/cart" className="basket-btn">
           <div
             className={`basket-counter-container ${

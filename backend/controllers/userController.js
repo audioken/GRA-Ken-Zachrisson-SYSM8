@@ -74,6 +74,10 @@ const loginUser = asyncHandler(async (req, res) => {
     );
     res.status(200).json({
       accessToken,
+      user: {
+        username: user.username,
+        id: user.id,
+      },
     });
   } else {
     res.status(401);

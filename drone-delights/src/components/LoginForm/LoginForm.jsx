@@ -25,7 +25,7 @@ function LoginForm() {
       );
 
       // Spara det token vi får tillbaka i AuthContext
-      login(response.data.accessToken);
+      login(response.data.accessToken, response.data.user);
       console.log("Inloggning lyckades!", response.data);
       console.log("Token:", response.data.accessToken);
 
