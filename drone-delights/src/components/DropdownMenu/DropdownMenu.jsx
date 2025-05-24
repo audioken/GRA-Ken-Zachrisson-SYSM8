@@ -1,14 +1,25 @@
 import "./DropdownMenu.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-function DropdownMenu({ onLogout }) {
+function DropdownMenu() {
+
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  function handleLogout() {
+    logout();
+    navigate("/");
+  }
+
   return (
     <div className="dropdown-menu-container">
       <Link to="/user-profile" className="dropdown-menu-btn">
         <i className="fa-solid fa-cog dropdown-menu-btn-icon"></i>{" "}
         <span className="dropdown-menu-btn-text">User Settings</span>
       </Link>
-      <button className="dropdown-menu-btn" onClick={onLogout}>
+      <button className="dropdown-menu-btn" onClick={handleLogout}>
         <i className="fa-solid fa-right-from-bracket dropdown-menu-btn-icon"></i>{" "}
         <span className="dropdown-menu-btn-text">Logout</span>
       </button>

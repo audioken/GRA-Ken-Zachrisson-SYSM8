@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
 
   // Funktion för att logga ut
   const logout = () => {
+    console.log("Removed token: " + token);
     localStorage.removeItem("token"); // Tar bort token från localStorage
     localStorage.removeItem("user"); // Tar bort användarinformation från localStorage
     setToken(null); // Återställer state till null
