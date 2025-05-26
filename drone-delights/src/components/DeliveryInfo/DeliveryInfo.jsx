@@ -1,9 +1,26 @@
 import "./DeliveryInfo.css";
+import { useAuth } from "../../context/AuthContext";
 import { DeliveryContext } from "../../context/DeliveryContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 function DeliveryInfo({ className = "", onSubmit }) {
+  const { user } = useAuth();
   const { deliveryInfo, setDeliveryInfo } = useContext(DeliveryContext);
+
+
+  useEffect(() => {
+    // Om deliveryInfo är tomt och användaren är inloggad, förifyll
+    if (user && (!deliveryInfo || Object.keys(deliveryInfo).length === 0)) {
+      setDeliveryInfo({
+        name: user.name || "",
+        phone: user.phone || "",
+        address: user.address || "",
+        postalCode: user.postalCode || "",
+        city: user.city || "",
+      });
+    }
+  }, [user, deliveryInfo, setDeliveryInfo]);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();

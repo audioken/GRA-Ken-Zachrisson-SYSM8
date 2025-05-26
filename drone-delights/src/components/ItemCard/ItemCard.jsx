@@ -1,14 +1,52 @@
 import "./ItemCard.css";
 import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function ItemCard({ _id, name, image, price, description }) {
   const { cartItems, addToCart, updateQuantity, removeFromCart } =
     useContext(CartContext);
+
+  const { token, user, login } = useAuth();
+  const navigate = useNavigate();
   const cartItem = cartItems.find((item) => item._id === _id);
   const quantity = cartItem ? cartItem.quantity : 0;
 
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Kontrollera om produkten är favorit
+  // const isFavourite = user?.favourites?.includes(_id);
+  const isFavourite = user?.favourites?.includes(_id);
+
+  // Hantera klick på hjärtat
+  const handleFavouriteClick = async () => {
+    if (!token) {
+      navigate("/register");
+      return;
+    }
+    try {
+      if (isFavourite) {
+        // Ta bort favorit
+        const res = await axios.delete(
+          `${process.env.REACT_APP_API_URL}/users/favorites/${_id}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        login(token, { ...user, favourites: res.data.favourites });
+      } else {
+        // Lägg till favorit
+        const res = await axios.post(
+          `${process.env.REACT_APP_API_URL}/users/favorites/${_id}`,
+          {},
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        login(token, { ...user, favourites: res.data.favourites });
+      }
+    } catch (err) {
+      console.error("Kunde inte uppdatera favoriter", err);
+    }
+  };
 
   return (
     <div className="item-card">
@@ -66,8 +104,18 @@ function ItemCard({ _id, name, image, price, description }) {
             {name}
           </h3>
           {/* FAVORITE BUTTON */}
-          <button className="add-to-favourites-btn">
-            <i className="fa-regular fa-heart fav-icon"></i>
+          <button
+            className="add-to-favourites-btn"
+            onClick={handleFavouriteClick}
+            aria-label={
+              isFavourite ? "Remove from favorites" : "Add to favorites"
+            }
+          >
+            <i
+              className={`fa-heart fav-icon ${
+                isFavourite ? "fa-solid fav-selected" : "fa-regular"
+              }`}
+            ></i>
           </button>
         </div>
         <div

@@ -2,15 +2,24 @@ import "./MenuList.css";
 import useFetch from "../../hooks/useFetch";
 import ItemCard from "../ItemCard/ItemCard";
 import Masonry from "react-masonry-css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { CategoryContext } from "../../context/CategoryContext";
-import { CartContext } from "../../context/CartContext";
+import { useAuth } from "../../context/AuthContext";
 
 function MenuList() {
   const { data, loading, error } = useFetch(
     `${process.env.REACT_APP_API_URL}/items`
   );
   const { selectedCategory } = useContext(CategoryContext);
+  const { user, token } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedCategory === "Favorites" && !token) {
+      navigate("/register");
+    }
+  }, [selectedCategory, token, navigate]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading items.</p>;
@@ -18,7 +27,7 @@ function MenuList() {
 
   const filteredItems = data?.filter((item) => {
     if (selectedCategory === "Favorites") {
-      return item.isFavorite === true;
+      return user?.favourites?.includes(item._id);
     } else {
       return (
         item.category === selectedCategory.toLowerCase() ||

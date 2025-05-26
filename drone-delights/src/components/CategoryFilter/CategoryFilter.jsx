@@ -15,7 +15,7 @@ function CategoryFilter() {
 
   function getIconClass(category, selectedCategory) {
     return `fa-heart ${
-      selectedCategory === category ? "fa-solid fav-selected" : "fa-regular"
+      selectedCategory === category ? "fa-solid fav-filter-selected" : "fa-regular"
     }`;
   }
 

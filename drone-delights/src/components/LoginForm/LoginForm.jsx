@@ -2,10 +2,16 @@ import "./LoginForm.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext"; // Importerar AuthContext för autentisering
+import { DeliveryContext } from "../../context/DeliveryContext";
+import { PaymentContext } from "../../context/PaymentContext";
+import { useContext } from "react"; // Importerar useContext för att använda DeliveryContext
 import axios from "axios";
 
 function LoginForm() {
   const { login } = useAuth(); // Hämtar login-funktionen från AuthContext
+  const { setDeliveryInfo } = useContext(DeliveryContext); // Hämtar setDeliveryInfo från DeliveryContext
+  const { setPaymentInfo } = useContext(PaymentContext); // Hämtar setPaymentInfo från PaymentContext
+
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -26,6 +32,24 @@ function LoginForm() {
 
       // Spara det token vi får tillbaka i AuthContext
       login(response.data.accessToken, response.data.user);
+      // Spara leveransinformation i DeliveryContext
+      setDeliveryInfo({
+        name: response.data.user.name,
+        phone: response.data.user.phone,
+        address: response.data.user.address,
+        postalCode: response.data.user.postalCode,
+        city: response.data.user.city,
+      });
+
+      // Spara betalningsinformation i PaymentContext
+      setPaymentInfo({
+        name: response.data.user.name,
+        phone: response.data.user.phone,
+        card: "",
+        expiry: "",
+        cvc: "",
+      });
+
       console.log("Inloggning lyckades!", response.data);
       console.log("Token:", response.data.accessToken);
 

@@ -77,6 +77,12 @@ const loginUser = asyncHandler(async (req, res) => {
       user: {
         username: user.username,
         id: user.id,
+        name: user.name,
+        phone: user.phone,
+        address: user.address,
+        postalCode: user.postalCode,
+        city: user.city,
+        favourites: user.favourites.map((fav) => fav.toString()),
       },
     });
   } else {
@@ -92,10 +98,47 @@ const currentUser = asyncHandler(async (req, res) => {
   res.status(200).json(req.user); // Skicka tillbaka den aktuella användarens information
 });
 
+
+//@desc add favorite
+//@route POST /api/users/favorites/:itemId
+//@access Private
+const addFavorite = asyncHandler(async (req, res) => {
+  const userId = req.user.id;
+  const itemId = req.params.itemId;
+
+  const user = await User.findById(userId);
+  if (!user.favourites.includes(itemId)) {
+    user.favourites.push(itemId);
+    await user.save();
+  }
+  res.status(200).json({
+    favourites: user.favourites.map((fav) => fav.toString()),
+  });
+});
+
+
+//@desc remove favorite
+//@route DELETE /api/users/favorites/:itemId
+//@access Private
+
+const removeFavorite = asyncHandler(async (req, res) => {
+  const userId = req.user.id;
+  const itemId = req.params.itemId;
+
+  const user = await User.findById(userId);
+  user.favourites = user.favourites.filter((fav) => fav.toString() !== itemId);
+  await user.save();
+  res.status(200).json({
+    favourites: user.favourites.map((fav) => fav.toString()),
+  });
+});
+
 // Exporterar funktionerna så att de kan användas i andra filer
 module.exports = {
   getUsers,
   currentUser,
   registerUser,
   loginUser,
+  addFavorite,
+  removeFavorite,
 };

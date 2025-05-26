@@ -125,6 +125,11 @@
   color: #7f7f7f;
 }
 
+.fav-selected {
+  color: #fe6d73;
+  /* scale: 1.25; */
+}
+
 .item-middle-bottom-container {
   display: flex;
   flex-direction: column;

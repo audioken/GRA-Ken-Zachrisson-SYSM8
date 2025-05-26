@@ -2,14 +2,18 @@ import "./DropdownMenu.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useContext } from "react";
+import { DeliveryContext } from "../../context/DeliveryContext";
 
 function DropdownMenu() {
 
-  const navigate = useNavigate();
   const { logout } = useAuth();
+  const { resetDeliveryInfo } = useContext(DeliveryContext);
+  const navigate = useNavigate();
 
   function handleLogout() {
     logout();
+    resetDeliveryInfo(); // Nollställ leveransinformation vid utloggning
     navigate("/");
   }
 

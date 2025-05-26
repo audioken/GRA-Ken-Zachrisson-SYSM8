@@ -26,6 +26,7 @@
   transform: scale(1.25);
 }
 
-.fav-selected{
+.fav-filter-selected{
   color:#FE6D73;
+  scale: 1.25;
 }
