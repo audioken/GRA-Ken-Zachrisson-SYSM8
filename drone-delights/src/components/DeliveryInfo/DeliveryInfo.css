@@ -19,6 +19,12 @@
   color: #404040;
 }
 
+.save-address-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .delivery-info-form{
   display: flex;
   flex-direction: column;

@@ -5,30 +5,40 @@ import { DeliveryContext } from "../../context/DeliveryContext";
 import { PaymentContext } from "../../context/PaymentContext";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 function Payment({ className = "" }) {
   const { deliveryInfo } = useContext(DeliveryContext);
   const { paymentInfo, setPaymentInfo } = useContext(PaymentContext);
+  const { user } = useAuth();
   const [selected, setSelected] = useState("mastercard");
 
   // Initiera form state: om paymentInfo finns, använd det, annars deliveryInfo
   const [formData, setFormData] = useState({
-    name: paymentInfo?.name || deliveryInfo?.name || "",
-    phone: paymentInfo?.phone || deliveryInfo?.phone || "",
+    name: paymentInfo?.name || deliveryInfo?.name || user?.name || "",
+    phone: paymentInfo?.phone || deliveryInfo?.phone || user?.phone || "",
     card: paymentInfo?.card || "",
     expiry: paymentInfo?.expiry || "",
     cvc: paymentInfo?.cvc || "",
   });
 
   // Om deliveryInfo ändras och paymentInfo är tomt, uppdatera formData
+  // useEffect(() => {
+  //   if (!paymentInfo?.name && deliveryInfo?.name) {
+  //     setFormData((prev) => ({ ...prev, name: deliveryInfo.name }));
+  //   }
+  //   if (!paymentInfo?.phone && deliveryInfo?.phone) {
+  //     setFormData((prev) => ({ ...prev, phone: deliveryInfo.phone }));
+  //   }
+  // }, [deliveryInfo]);
+
   useEffect(() => {
-    if (!paymentInfo?.name && deliveryInfo?.name) {
-      setFormData((prev) => ({ ...prev, name: deliveryInfo.name }));
-    }
-    if (!paymentInfo?.phone && deliveryInfo?.phone) {
-      setFormData((prev) => ({ ...prev, phone: deliveryInfo.phone }));
-    }
-  }, [deliveryInfo]);
+    setFormData((prev) => ({
+      ...prev,
+      name: deliveryInfo?.name || user?.name || "",
+      phone: deliveryInfo?.phone || user?.phone || "",
+    }));
+  }, [deliveryInfo, user, paymentInfo]);
 
   const navigate = useNavigate();
 

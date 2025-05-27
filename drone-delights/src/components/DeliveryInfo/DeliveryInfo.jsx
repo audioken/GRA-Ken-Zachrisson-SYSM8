@@ -2,11 +2,11 @@ import "./DeliveryInfo.css";
 import { useAuth } from "../../context/AuthContext";
 import { DeliveryContext } from "../../context/DeliveryContext";
 import { useContext, useEffect } from "react";
+import axios from "axios";
 
 function DeliveryInfo({ className = "", onSubmit }) {
-  const { user } = useAuth();
+  const { user, token, login } = useAuth();
   const { deliveryInfo, setDeliveryInfo } = useContext(DeliveryContext);
-
 
   useEffect(() => {
     // Om deliveryInfo är tomt och användaren är inloggad, förifyll
@@ -21,12 +21,47 @@ function DeliveryInfo({ className = "", onSubmit }) {
     }
   }, [user, deliveryInfo, setDeliveryInfo]);
 
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     setDeliveryInfo(data);
+
+    const saveAddressChecked = event.target.saveAddress.checked;
+
+    // Spara till användarprofil om inloggad och checkboxen är ibockad
+    if (user && saveAddressChecked) {
+      try {
+        const res = await axios.patch(
+          `${process.env.REACT_APP_API_URL}/users/me`,
+          {
+            name: data.name,
+            phone: data.phone,
+            address: data.address,
+            postalCode: data.postalCode,
+            city: data.city,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        // Uppdatera user i AuthContext så att nya adressen finns direkt i appen
+        login(token, res.data.user);
+
+        // Synka deliveryInfo med nya user-data direkt
+        setDeliveryInfo({
+          name: res.data.user.name || "",
+          phone: res.data.user.phone || "",
+          address: res.data.user.address || "",
+          postalCode: res.data.user.postalCode || "",
+          city: res.data.user.city || "",
+          saveAddress: true,
+        });
+      } catch (err) {
+        console.error("Kunde inte spara adress till profil", err);
+      }
+    }
+
     if (onSubmit) {
       onSubmit();
     }
@@ -36,7 +71,7 @@ function DeliveryInfo({ className = "", onSubmit }) {
   return (
     <div className={`delivery-info-container ${className}`}>
       <div className="delivery-info-header">
-        <h2 className="delivery-info-title">Delivery Information</h2>
+        <h2 className="delivery-info-title">Delivery Info</h2>
       </div>
       <form className="delivery-info-form" onSubmit={handleSubmit}>
         <div className="name-and-phone-container">
@@ -47,7 +82,10 @@ function DeliveryInfo({ className = "", onSubmit }) {
               id="name"
               name="name"
               required
-              defaultValue={deliveryInfo.name || ""}
+              value={deliveryInfo.name || ""}
+              onChange={(e) =>
+                setDeliveryInfo({ ...deliveryInfo, name: e.target.value })
+              }
             />
           </div>
           <div className="form-group">
@@ -57,7 +95,10 @@ function DeliveryInfo({ className = "", onSubmit }) {
               id="phone"
               name="phone"
               required
-              defaultValue={deliveryInfo.phone || ""}
+              value={deliveryInfo.phone || ""}
+              onChange={(e) =>
+                setDeliveryInfo({ ...deliveryInfo, phone: e.target.value })
+              }
             />
           </div>
         </div>
@@ -68,7 +109,10 @@ function DeliveryInfo({ className = "", onSubmit }) {
             id="address"
             name="address"
             required
-            defaultValue={deliveryInfo.address || ""}
+            value={deliveryInfo.address || ""}
+            onChange={(e) =>
+              setDeliveryInfo({ ...deliveryInfo, address: e.target.value })
+            }
           />
         </div>
         <div className="postal-code-and-city-container">
@@ -79,7 +123,13 @@ function DeliveryInfo({ className = "", onSubmit }) {
               id="postalCode"
               name="postalCode"
               required
-              defaultValue={deliveryInfo.postalCode || ""}
+              value={deliveryInfo.postalCode || ""}
+              onChange={(e) =>
+                setDeliveryInfo({
+                  ...deliveryInfo,
+                  postalCode: e.target.value,
+                })
+              }
             />
           </div>
           <div className="form-group">
@@ -89,12 +139,30 @@ function DeliveryInfo({ className = "", onSubmit }) {
               id="city"
               name="city"
               required
-              defaultValue={deliveryInfo.city || ""}
+              value={deliveryInfo.city || ""}
+              onChange={(e) =>
+                setDeliveryInfo({ ...deliveryInfo, city: e.target.value })
+              }
             />
           </div>
           <button className="submit-btn-delivery" type="submit">
             <i className="fa-solid fa-arrow-right submit-arrow"></i>
           </button>
+        </div>
+        <div className="save-address-checkbox">
+          <input
+            type="checkbox"
+            id="saveAddress"
+            name="saveAddress"
+            checked={!!deliveryInfo.saveAddress}
+            onChange={(e) =>
+              setDeliveryInfo({
+                ...deliveryInfo,
+                saveAddress: e.target.checked,
+              })
+            }
+          />
+          <label htmlFor="saveAddress">Save address</label>
         </div>
       </form>
     </div>

@@ -47,6 +47,50 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+//@desc update a user
+//@route PATCH /api/users/:id
+//@access Private
+const updateUser = asyncHandler(async (req, res) => {
+  const userId = req.user.id; // Hämta användarens ID från URL:en
+  const { name, phone, address, postalCode, city } = req.body; // Hämta data från req.body
+
+  // Hitta användaren i databasen
+  const user = await User.findById(userId);
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found"); // Om användaren inte hittas, skicka ett felmeddelande
+  }
+
+  // Uppdatera användarens information
+  // user.name = name || user.name;
+  // user.phone = phone || user.phone;
+  // user.address = address || user.address;
+  // user.postalCode = postalCode || user.postalCode;
+  // user.city = city || user.city;
+
+  if (name !== undefined) user.name = name;
+  if (phone !== undefined) user.phone = phone;
+  if (address !== undefined) user.address = address;
+  if (postalCode !== undefined) user.postalCode = postalCode;
+  if (city !== undefined) user.city = city;
+
+  const updatedUser = await user.save(); // Spara de uppdaterade ändringarna i databasen
+
+  res.status(200).json({
+    user: {
+      id: updatedUser.id,
+      username: updatedUser.username,
+      name: updatedUser.name,
+      phone: updatedUser.phone,
+      address: updatedUser.address,
+      postalCode: updatedUser.postalCode,
+      city: updatedUser.city,
+      favourites: updatedUser.favourites.map((fav) => fav.toString()),
+    },
+  });
+});
+
 //@desc login a user
 //@route POST /api/users/login
 //@access Public
@@ -138,6 +182,7 @@ module.exports = {
   getUsers,
   currentUser,
   registerUser,
+  updateUser,
   loginUser,
   addFavorite,
   removeFavorite,
