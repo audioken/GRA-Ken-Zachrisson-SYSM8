@@ -1,3 +1,86 @@
+.error, .success {
+  font-family: "Roboto", system-ui;
+  font-weight: 400;
+  font-size: 16px;
+  /* margin-top: 10px; */
+}
+
+.error{
+  color: #FE6D73;
+}
+
+.success{
+  color: #17C3B2;
+}
+
+.form-group {
+  position: relative;
+}
+
+.input-success {
+  border: 2px solid #27ae60;
+  background: #f6fff8;
+}
+
+.input-error {
+  border: 2px solid #FE6D73;
+  background: #fff0f0;
+}
+
+.input-checkmark {
+  position: absolute;
+  right: 18px;
+  top: 52px;
+  transform: translateY(-50%);
+  color: #27ae60;
+  font-size: 1.3em;
+  pointer-events: none;
+}
+
+.clear-input {
+  position: absolute;
+  right: 18px; /* Justera så den inte krockar med checkmark */
+  top: 52px;
+  transform: translateY(-50%);
+  color: #7F7F7F;
+  font-size: 1.2em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  z-index: 2;
+  user-select: none;
+}
+
+.label-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.eye-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 12px;
+  top: 41px;
+}
+
+.password-toggle {
+  color: #7F7F7F;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.form-group input {
+  padding-right: 2.2em;
+}
+
 .register-form-container {
   width: 100%;
   border-radius: 25px;

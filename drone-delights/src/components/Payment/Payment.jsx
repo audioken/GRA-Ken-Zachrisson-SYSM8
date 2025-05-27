@@ -22,16 +22,6 @@ function Payment({ className = "" }) {
     cvc: paymentInfo?.cvc || "",
   });
 
-  // Om deliveryInfo ändras och paymentInfo är tomt, uppdatera formData
-  // useEffect(() => {
-  //   if (!paymentInfo?.name && deliveryInfo?.name) {
-  //     setFormData((prev) => ({ ...prev, name: deliveryInfo.name }));
-  //   }
-  //   if (!paymentInfo?.phone && deliveryInfo?.phone) {
-  //     setFormData((prev) => ({ ...prev, phone: deliveryInfo.phone }));
-  //   }
-  // }, [deliveryInfo]);
-
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
@@ -49,6 +39,13 @@ function Payment({ className = "" }) {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleExpiryChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ""); // Endast siffror
+    if (value.length > 4) value = value.slice(0, 4);
+    if (value.length > 2) value = value.slice(0, 2) + "/" + value.slice(2);
+    setFormData({ ...formData, expiry: value });
   };
 
   // Spara paymentInfo och gå vidare
@@ -131,7 +128,7 @@ function Payment({ className = "" }) {
               placeholder="MM/YY"
               required
               value={formData.expiry}
-              onChange={handleChange}
+              onChange={handleExpiryChange}
             />
           </div>
           <div className="form-group">

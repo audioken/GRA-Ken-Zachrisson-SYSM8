@@ -1,4 +1,5 @@
 const express = require("express");
+const User = require("../models/userModel");
 const {
   getUsers,
   currentUser,
@@ -19,5 +20,15 @@ router.post("/login", loginUser); // Här definierar vi en rutt för att logga i
 router.patch("/me", validateToken, updateUser);
 router.post("/favorites/:itemId", validateToken, addFavorite);
 router.delete("/favorites/:itemId", validateToken, removeFavorite);
+
+router.get("/check-username/:username", async (req, res) => {
+  const user = await User.findOne({ username: req.params.username });
+  res.json({ available: !user });
+});
+
+router.get("/check-email/:email", async (req, res) => {
+  const user = await User.findOne({ email: req.params.email });
+  res.json({ available: !user });
+});
 
 module.exports = router; // Här exporterar vi app-instansen så att den kan användas i andra filer, t.ex. för tester
