@@ -10,7 +10,15 @@ function UserPage() {
   const [showChangePassword, setShowChangePassword] = useState(false);
   
   const handleExpand = (panel) => {
-    setExpanded((prev) => (prev === panel ? null : panel));
+    // Om man klickar på redan öppen panel: stäng alla
+    // Annars: öppna vald panel och stäng ChangePasswordForm
+    if (expanded === panel) {
+      setExpanded(null);
+      setShowChangePassword(false);
+    } else {
+      setExpanded(panel);
+      setShowChangePassword(false);
+    }
   };
 
   return (
@@ -19,17 +27,20 @@ function UserPage() {
       <div className="user-page-body">
         {!showChangePassword ? (
           <AccountSettingsForm
-            onChangePasswordClick={() => setShowChangePassword(true)}         
+            onChangePasswordClick={() => setShowChangePassword(true)}
+            onExpand={() => handleExpand("account")}
+            isExpanded={expanded === "account"}
           />
         ) : (
           <ChangePasswordForm
             onCancel={() => setShowChangePassword(false)}
             onSuccess={() => setShowChangePassword(false)}
-            isExpanded={true}
-            onExpand={() => {}}
           />
         )}
-        <DeliveryInfoForm />
+        <DeliveryInfoForm
+          onExpand={() => handleExpand("delivery")}
+          isExpanded={expanded === "delivery"}
+        />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import axios from "axios";
 import { validateInputs } from "../../utils/validateInputs";
 import InputFieldEdit from "./InputFieldEdit";
 
-function AccountSettingsForm({ isExpanded = true, onExpand, onChangePasswordClick }) {
+function AccountSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
   const [usernameAvailable, setUsernameAvailable] = useState(null);
   const [emailAvailable, setEmailAvailable] = useState(null);
   const [usernameHovered, setUsernameHovered] = useState(false);
@@ -102,21 +102,30 @@ function AccountSettingsForm({ isExpanded = true, onExpand, onChangePasswordClic
   };
 
   useEffect(() => {
-    if (user) {
-      setForm({
-        username: user.username || "",
-        email: user.email || "",
-      });
+    if (!isExpanded) {
+      setErrors({});
+      setValid({});
+      setUsernameAvailable(null);
+      setEmailAvailable(null);
+      setUsernameHovered(false);
+      setEmailHovered(false);
+      if (user) {
+        setForm({
+          username: user.username || "",
+          email: user.email || "",
+        });
+      }
     }
-  }, [user]);
+  }, [isExpanded, user]);
 
   return (
     <div className="form-container account-settings-container">
       <div
-        className="form-header"
+        className="form-header-overlay"
         onClick={onExpand}
-        style={{ cursor: "pointer" }}
-      >
+        aria-label={isExpanded ? "Collapse" : "Expand"}
+      />
+      <div className="form-header">
         <h2 className="form-title">Account Settings</h2>
       </div>
       {isExpanded ? (

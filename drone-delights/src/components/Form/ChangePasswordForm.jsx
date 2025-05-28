@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import PasswordField from "../Form/PasswordField";
 
-function ChangePasswordForm({ isExpanded, onExpand, onCancel, onSuccess }) {
+function ChangePasswordForm({ onCancel, onSuccess }) {
   const [showPassword, setShowPassword] = useState({
     current: false,
     new: false,
@@ -91,13 +91,13 @@ function ChangePasswordForm({ isExpanded, onExpand, onCancel, onSuccess }) {
     <div className="form-container change-password-form-container">
       <div
         className="form-header"
-        onClick={onExpand}
+        // onClick={onExpand}
         style={{ cursor: "pointer" }}
       >
         <h2 className="form-title">Change Password</h2>
       </div>
-      {isExpanded ? (
-        <div>
+      {/* {isExpanded ? (
+        <div> */}
           <form className="form" onSubmit={handleSubmit}>
             <PasswordField
               label="Current"
@@ -160,8 +160,8 @@ function ChangePasswordForm({ isExpanded, onExpand, onCancel, onSuccess }) {
             {success && <div className="success">{success}</div>}
           </form>
         </div>
-      ) : null}
-    </div>
+    //   ) : null}
+    // </div>
   );
 }
 

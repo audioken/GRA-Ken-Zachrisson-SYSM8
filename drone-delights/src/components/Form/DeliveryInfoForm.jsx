@@ -5,7 +5,7 @@ import { validateInputs } from "../../utils/validateInputs";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 
-function DeliveryInfoForm() {
+function DeliveryInfoForm({isExpanded, onExpand}) {
   const { deliveryInfo, setDeliveryInfo, resetDeliveryInfo } =
     useContext(DeliveryContext);
   const [editMode, setEditMode] = useState(false);
@@ -34,24 +34,29 @@ function DeliveryInfoForm() {
   const isLoggedIn = !!user;
 
   useEffect(() => {
-    if (isLoggedIn) {
-      setForm({
-        name: user.name || "",
-        phone: user.phone || "",
-        address: user.address || "",
-        postalCode: user.postalCode || "",
-        city: user.city || "",
-      });
-    } else {
-      setForm({
-        name: deliveryInfo.name || "",
-        phone: deliveryInfo.phone || "",
-        address: deliveryInfo.address || "",
-        postalCode: deliveryInfo.postalCode || "",
-        city: deliveryInfo.city || "",
-      });
+    if (!isExpanded) {
+      setEditMode(false);
+      setErrors({});
+      setValid({});
+      if (isLoggedIn) {
+        setForm({
+          name: user.name || "",
+          phone: user.phone || "",
+          address: user.address || "",
+          postalCode: user.postalCode || "",
+          city: user.city || "",
+        });
+      } else {
+        setForm({
+          name: deliveryInfo.name || "",
+          phone: deliveryInfo.phone || "",
+          address: deliveryInfo.address || "",
+          postalCode: deliveryInfo.postalCode || "",
+          city: deliveryInfo.city || "",
+        });
+      }
     }
-  }, [user, deliveryInfo, isLoggedIn]);
+  }, [isExpanded, isLoggedIn, user, deliveryInfo]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -132,12 +137,26 @@ function DeliveryInfoForm() {
 
   return (
     <div className="form-container delivery-info-form-container">
+      <div
+        className="form-header-overlay"
+        onClick={onExpand}
+        aria-label={isExpanded ? "Collapse" : "Expand"}
+      />
       <div className="form-header">
         <h2 className="form-title">Delivery Information</h2>
         {!editMode && (
           <div
             className="icon-container-for-form icon-pen"
-            onClick={handleEdit}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (!isExpanded) {
+                onExpand(); // Expanda panelen först!
+                // Vänta tills panelen är öppen innan du sätter editMode
+                setTimeout(() => handleEdit(), 0);
+              } else {
+                handleEdit();
+              }
+            }}
             tabIndex={0}
             aria-label="Edit delivery info"
           >
@@ -154,96 +173,98 @@ function DeliveryInfoForm() {
           </button>
         )}
       </div>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-inputs-row-container">
+      {isExpanded ? (
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-inputs-row-container">
+            <InputField
+              label="Name"
+              name="name"
+              value={form.name}
+              onChange={handleInputChange}
+              onClear={() => handleClear("name")}
+              error={errors.name}
+              valid={valid.name && editMode}
+              readOnly={!editMode}
+              disabled={!editMode}
+              hovered={hovered.name}
+              setHovered={(v) => setHovered((prev) => ({ ...prev, name: v }))}
+            />
+            <InputField
+              label="Phone"
+              name="phone"
+              value={form.phone}
+              onChange={handleInputChange}
+              onClear={() => handleClear("phone")}
+              error={errors.phone}
+              valid={valid.phone && editMode}
+              readOnly={!editMode}
+              disabled={!editMode}
+              hovered={hovered.phone}
+              setHovered={(v) => setHovered((prev) => ({ ...prev, phone: v }))}
+            />
+          </div>
           <InputField
-            label="Name"
-            name="name"
-            value={form.name}
+            label="Address"
+            name="address"
+            value={form.address}
             onChange={handleInputChange}
-            onClear={() => handleClear("name")}
-            error={errors.name}
-            valid={valid.name && editMode}
+            onClear={() => handleClear("address")}
+            error={errors.address}
+            valid={valid.address && editMode}
             readOnly={!editMode}
             disabled={!editMode}
-            hovered={hovered.name}
-            setHovered={(v) => setHovered((prev) => ({ ...prev, name: v }))}
+            hovered={hovered.address}
+            setHovered={(v) => setHovered((prev) => ({ ...prev, address: v }))}
           />
-          <InputField
-            label="Phone"
-            name="phone"
-            value={form.phone}
-            onChange={handleInputChange}
-            onClear={() => handleClear("phone")}
-            error={errors.phone}
-            valid={valid.phone && editMode}
-            readOnly={!editMode}
-            disabled={!editMode}
-            hovered={hovered.phone}
-            setHovered={(v) => setHovered((prev) => ({ ...prev, phone: v }))}
-          />
-        </div>
-        <InputField
-          label="Address"
-          name="address"
-          value={form.address}
-          onChange={handleInputChange}
-          onClear={() => handleClear("address")}
-          error={errors.address}
-          valid={valid.address && editMode}
-          readOnly={!editMode}
-          disabled={!editMode}
-          hovered={hovered.address}
-          setHovered={(v) => setHovered((prev) => ({ ...prev, address: v }))}
-        />
-        <div className="form-inputs-row-container">
-          <InputField
-            label="Zip Code"
-            name="postalCode"
-            value={form.postalCode}
-            onChange={handleInputChange}
-            onClear={() => handleClear("postalCode")}
-            error={errors.postalCode}
-            valid={valid.postalCode && editMode}
-            readOnly={!editMode}
-            disabled={!editMode}
-            hovered={hovered.postalCode}
-            setHovered={(v) =>
-              setHovered((prev) => ({ ...prev, postalCode: v }))
-            }
-          />
-          <InputField
-            label="City"
-            name="city"
-            value={form.city}
-            onChange={handleInputChange}
-            onClear={() => handleClear("city")}
-            error={errors.city}
-            valid={valid.city && editMode}
-            readOnly={!editMode}
-            disabled={!editMode}
-            hovered={hovered.city}
-            setHovered={(v) => setHovered((prev) => ({ ...prev, city: v }))}
-          />
-          <button
-            className={`form-submit-btn-mini${
-              !editMode ||
-              !isFormChanged() ||
-              !Object.values(valid).every(Boolean)
-                ? " disabled"
-                : ""
-            }`}
-            type="submit"
-            disabled={
-              !editMode ||
-              !isFormChanged() ||
-              !Object.values(valid).every(Boolean)
-            }
-          >
-            <i className="fas fa-check"></i>
-          </button>
-        </div>
-      </form>
+          <div className="form-inputs-row-container">
+            <InputField
+              label="Zip Code"
+              name="postalCode"
+              value={form.postalCode}
+              onChange={handleInputChange}
+              onClear={() => handleClear("postalCode")}
+              error={errors.postalCode}
+              valid={valid.postalCode && editMode}
+              readOnly={!editMode}
+              disabled={!editMode}
+              hovered={hovered.postalCode}
+              setHovered={(v) =>
+                setHovered((prev) => ({ ...prev, postalCode: v }))
+              }
+            />
+            <InputField
+              label="City"
+              name="city"
+              value={form.city}
+              onChange={handleInputChange}
+              onClear={() => handleClear("city")}
+              error={errors.city}
+              valid={valid.city && editMode}
+              readOnly={!editMode}
+              disabled={!editMode}
+              hovered={hovered.city}
+              setHovered={(v) => setHovered((prev) => ({ ...prev, city: v }))}
+            />
+            <button
+              className={`form-submit-btn-mini${
+                !editMode ||
+                !isFormChanged() ||
+                !Object.values(valid).every(Boolean)
+                  ? " disabled"
+                  : ""
+              }`}
+              type="submit"
+              disabled={
+                !editMode ||
+                !isFormChanged() ||
+                !Object.values(valid).every(Boolean)
+              }
+            >
+              <i className="fas fa-check"></i>
+            </button>
+          </div>
+        </form>
+      ) : null}
     </div>
   );
 }
