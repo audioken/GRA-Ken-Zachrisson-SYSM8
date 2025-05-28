@@ -1,6 +1,6 @@
 import "./LoginPage.css";
 import PageHeader from "../../components/PageHeader/PageHeader";
-import LoginForm from "../../components/LoginForm/LoginForm";
+import LoginForm from "../../components/Form/LoginForm";
 import ButtonLink from "../../components/ButtonLink/ButtonLink";
 
 function LoginPage() {

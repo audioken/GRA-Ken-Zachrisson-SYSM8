@@ -154,7 +154,7 @@ export function validateInputs(fields) {
       errors.username = "Username can't be empty";
       valid.username = false;
     } else if (fields.username.length < 3 || fields.username.length > 20) {
-      errors.username = "Username must be 3-20 characters";
+      errors.username = "Must be 3-20 characters";
       valid.username = false;
     } else {
       valid.username = true;

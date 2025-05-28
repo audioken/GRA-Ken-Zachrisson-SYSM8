@@ -63,12 +63,6 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 
   // Uppdatera användarens information
-  // user.name = name || user.name;
-  // user.phone = phone || user.phone;
-  // user.address = address || user.address;
-  // user.postalCode = postalCode || user.postalCode;
-  // user.city = city || user.city;
-
   if (name !== undefined) user.name = name;
   if (phone !== undefined) user.phone = phone;
   if (address !== undefined) user.address = address;
@@ -87,6 +81,84 @@ const updateUser = asyncHandler(async (req, res) => {
       postalCode: updatedUser.postalCode,
       city: updatedUser.city,
       favourites: updatedUser.favourites.map((fav) => fav.toString()),
+    },
+  });
+});
+
+//@desc update username
+//@route PATCH /api/users/update-username
+//@access Private
+const updateUsername = asyncHandler(async (req, res) => {
+  const userId = req.user.id;
+  const { username } = req.body;
+
+  if (!username) {
+    res.status(400);
+    throw new Error("Username is required");
+  }
+
+  const user = await User.findById(userId);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  // Tillåt att spara samma username som man redan har
+  if (username !== user.username) {
+    const exists = await User.findOne({ username });
+    if (exists) {
+      res.status(400);
+      throw new Error("Username already taken");
+    }
+    user.username = username;
+    await user.save();
+  }
+
+  res.status(200).json({
+    user: {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      // ...lägg till andra fält om du vill
+    },
+  });
+});
+
+//@desc update email
+//@route PATCH /api/users/update-email
+//@access Private
+const updateEmail = asyncHandler(async (req, res) => {
+  const userId = req.user.id;
+  const { email } = req.body;
+
+  if (!email) {
+    res.status(400);
+    throw new Error("Email is required");
+  }
+
+  const user = await User.findById(userId);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  // Tillåt att spara samma email som man redan har
+  if (email !== user.email) {
+    const exists = await User.findOne({ email });
+    if (exists) {
+      res.status(400);
+      throw new Error("Email already registered");
+    }
+    user.email = email;
+    await user.save();
+  }
+
+  res.status(200).json({
+    user: {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      // ...lägg till andra fält om du vill
     },
   });
 });
@@ -120,6 +192,7 @@ const loginUser = asyncHandler(async (req, res) => {
       accessToken,
       user: {
         username: user.username,
+        email: user.email,
         id: user.id,
         name: user.name,
         phone: user.phone,
@@ -183,6 +256,8 @@ module.exports = {
   currentUser,
   registerUser,
   updateUser,
+  updateUsername,
+  updateEmail,
   loginUser,
   addFavorite,
   removeFavorite,

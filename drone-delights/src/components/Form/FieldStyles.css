@@ -1,0 +1,116 @@
+.form-group {
+  position: relative;
+}
+
+.edit-input,
+.save-input,
+.cancel-input {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  cursor: pointer;
+  z-index: 2;
+}
+/* .edit-input { right: 12px; color: #888; } */
+.save-input { right: 36px; color: #27ae60; }
+.cancel-input { right: 12px; color: #e74c3c; }
+
+/* ERRORS / SUCCESS */
+.error,
+.success {
+  font-family: "Roboto", system-ui;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.error {
+  color: #fe6d73;
+}
+
+.success {
+  color: #17c3b2;
+}
+
+.input-success {
+  border: 2px solid #27ae60;
+  background: #f6fff8;
+}
+
+.input-error {
+  border: 2px solid #fe6d73;
+  background: #fff0f0;
+}
+
+/* ICONS */
+.input-checkmark {
+  position: absolute;
+  right: 18px;
+  top: 52px;
+  transform: translateY(-50%);
+  color: #27ae60;
+  font-size: 1.3em;
+  pointer-events: none;
+}
+
+.clear-input {
+  position: absolute;
+  right: 18px;
+  top: 52px;
+  transform: translateY(-50%);
+  color: #7f7f7f;
+  font-size: 1.2em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  z-index: 2;
+  user-select: none;
+}
+
+.label-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 0px;
+  top: 28px;
+  cursor: pointer;
+}
+
+.icon-pen{
+  color: #227C9D;
+  font-size: 20px;
+}
+
+.icon-save{
+  right: 50px;
+  color: #17C3B2;
+  font-size: 20px;
+}
+
+.icon-cancel{
+  color: #FE6D73;
+  font-size: 20px;
+
+}
+
+.password-toggle {
+  color: #7f7f7f;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.form-group input {
+  padding-right: 2.2em;
+}

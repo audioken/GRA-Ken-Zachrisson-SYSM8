@@ -18,6 +18,7 @@ import MenuPage from "./pages/MenuPage/MenuPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage/OrderConfirmationPage";
+import UserPage from "./pages/UserPage/UserPage";
 
 function App() {
   return (
@@ -40,10 +41,10 @@ function App() {
                     element={<OrderConfirmationPage />}
                   />
                   <Route
-                    path="/user-profile"
+                    path="/user"
                     element={
                       <ProtectedRoute>
-                        <h1>User-Profile</h1>
+                        <UserPage />
                       </ProtectedRoute>
                     }
                   />

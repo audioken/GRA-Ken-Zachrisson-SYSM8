@@ -19,7 +19,7 @@ function DropdownMenu() {
 
   return (
     <div className="dropdown-menu-container">
-      <Link to="/user-profile" className="dropdown-menu-btn">
+      <Link to="/user" className="dropdown-menu-btn">
         <i className="fa-solid fa-cog dropdown-menu-btn-icon"></i>{" "}
         <span className="dropdown-menu-btn-text">User Settings</span>
       </Link>
