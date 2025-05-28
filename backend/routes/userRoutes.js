@@ -8,6 +8,7 @@ const {
   updateUser,
   updateUsername,
   updateEmail,
+  updatePassword,
   addFavorite,
   removeFavorite,
 } = require("../controllers/userController"); // Här importerar vi vår användarkontroller för att hantera användarrelaterade funktioner
@@ -20,6 +21,7 @@ router.get("/current", validateToken, currentUser); // Här definierar vi en rut
 router.post("/register", registerUser); // Här definierar vi en rutt för att registrera en användare
 router.post("/login", loginUser); // Här definierar vi en rutt för att logga in en användare)
 router.patch("/me", validateToken, updateUser);
+router.patch("/me/password", validateToken, updatePassword);
 router.patch("/update-username", validateToken, updateUsername);
 router.patch("/update-email", validateToken, updateEmail);
 router.post("/favorites/:itemId", validateToken, addFavorite);

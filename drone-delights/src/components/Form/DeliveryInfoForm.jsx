@@ -1,0 +1,251 @@
+import { useContext, useState, useEffect } from "react";
+import { DeliveryContext } from "../../context/DeliveryContext";
+import InputField from "./InputField";
+import { validateInputs } from "../../utils/validateInputs";
+import { useAuth } from "../../context/AuthContext";
+import axios from "axios";
+
+function DeliveryInfoForm() {
+  const { deliveryInfo, setDeliveryInfo, resetDeliveryInfo } =
+    useContext(DeliveryContext);
+  const [editMode, setEditMode] = useState(false);
+  const { user, token, login } = useAuth();
+  
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    address: "",
+    postalCode: "",
+    city: "",
+  });
+  
+  const [originalForm, setOriginalForm] = useState(form);
+  const [errors, setErrors] = useState({});
+  const [valid, setValid] = useState({});
+
+  const [hovered, setHovered] = useState({
+    name: false,
+    phone: false,
+    address: false,
+    postalCode: false,
+    city: false,
+  });
+
+  const isLoggedIn = !!user;
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setForm({
+        name: user.name || "",
+        phone: user.phone || "",
+        address: user.address || "",
+        postalCode: user.postalCode || "",
+        city: user.city || "",
+      });
+    } else {
+      setForm({
+        name: deliveryInfo.name || "",
+        phone: deliveryInfo.phone || "",
+        address: deliveryInfo.address || "",
+        postalCode: deliveryInfo.postalCode || "",
+        city: deliveryInfo.city || "",
+      });
+    }
+  }, [user, deliveryInfo, isLoggedIn]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    const updatedForm = { ...form, [name]: value };
+    setForm(updatedForm);
+
+    const { errors, valid } = validateInputs(updatedForm);
+    setErrors(errors);
+    setValid(valid);
+  };
+
+  const handleEdit = () => {
+    setEditMode(true);
+    setOriginalForm(form); // Spara originalvärden för att kunna återställa
+    const { errors, valid } = validateInputs(form);
+    setErrors(errors);
+    setValid(valid);
+  };
+
+  const isFormChanged = () => {
+    return Object.keys(form).some((key) => form[key] !== originalForm[key]);
+  };
+
+  const handleClear = (field) => {
+    const updatedForm = { ...form, [field]: "" };
+    setForm(updatedForm);
+
+    const { errors, valid } = validateInputs(updatedForm);
+    setErrors(errors);
+    setValid(valid);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { errors, valid } = validateInputs(form);
+    setErrors(errors);
+    setValid(valid);
+
+    if (Object.values(valid).every(Boolean)) {
+      if (isLoggedIn) {
+        // Spara till backend
+        const res = await axios.patch(
+          `${process.env.REACT_APP_API_URL}/users/me`,
+          form,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        // Uppdatera user i AuthContext direkt!
+        login(token, res.data.user);
+      } else {
+        setDeliveryInfo(form);
+      }
+      setEditMode(false);
+    }
+  };
+
+  const handleCancel = () => {
+    if (isLoggedIn) {
+      setForm({
+        name: user.name || "",
+        phone: user.phone || "",
+        address: user.address || "",
+        postalCode: user.postalCode || "",
+        city: user.city || "",
+      });
+    } else {
+      setForm({
+        name: deliveryInfo.name || "",
+        phone: deliveryInfo.phone || "",
+        address: deliveryInfo.address || "",
+        postalCode: deliveryInfo.postalCode || "",
+        city: deliveryInfo.city || "",
+      });
+    }
+    setErrors({});
+    setValid({});
+    setEditMode(false);
+  };
+
+  return (
+    <div className="form-container delivery-info-form-container">
+      <div className="form-header">
+        <h2 className="form-title">Delivery Information</h2>
+        {!editMode && (
+          <div
+            className="icon-container-for-form icon-pen"
+            onClick={handleEdit}
+            tabIndex={0}
+            aria-label="Edit delivery info"
+          >
+            <i className="fa-solid fa-pen"></i>
+          </div>
+        )}
+        {editMode && (
+          <button
+            className="form-cancel-btn-mini"
+            type="button"
+            onClick={handleCancel}
+          >
+            <i className="fas fa-times"></i>
+          </button>
+        )}
+      </div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-inputs-row-container">
+          <InputField
+            label="Name"
+            name="name"
+            value={form.name}
+            onChange={handleInputChange}
+            onClear={() => handleClear("name")}
+            error={errors.name}
+            valid={valid.name && editMode}
+            readOnly={!editMode}
+            disabled={!editMode}
+            hovered={hovered.name}
+            setHovered={(v) => setHovered((prev) => ({ ...prev, name: v }))}
+          />
+          <InputField
+            label="Phone"
+            name="phone"
+            value={form.phone}
+            onChange={handleInputChange}
+            onClear={() => handleClear("phone")}
+            error={errors.phone}
+            valid={valid.phone && editMode}
+            readOnly={!editMode}
+            disabled={!editMode}
+            hovered={hovered.phone}
+            setHovered={(v) => setHovered((prev) => ({ ...prev, phone: v }))}
+          />
+        </div>
+        <InputField
+          label="Address"
+          name="address"
+          value={form.address}
+          onChange={handleInputChange}
+          onClear={() => handleClear("address")}
+          error={errors.address}
+          valid={valid.address && editMode}
+          readOnly={!editMode}
+          disabled={!editMode}
+          hovered={hovered.address}
+          setHovered={(v) => setHovered((prev) => ({ ...prev, address: v }))}
+        />
+        <div className="form-inputs-row-container">
+          <InputField
+            label="Zip Code"
+            name="postalCode"
+            value={form.postalCode}
+            onChange={handleInputChange}
+            onClear={() => handleClear("postalCode")}
+            error={errors.postalCode}
+            valid={valid.postalCode && editMode}
+            readOnly={!editMode}
+            disabled={!editMode}
+            hovered={hovered.postalCode}
+            setHovered={(v) =>
+              setHovered((prev) => ({ ...prev, postalCode: v }))
+            }
+          />
+          <InputField
+            label="City"
+            name="city"
+            value={form.city}
+            onChange={handleInputChange}
+            onClear={() => handleClear("city")}
+            error={errors.city}
+            valid={valid.city && editMode}
+            readOnly={!editMode}
+            disabled={!editMode}
+            hovered={hovered.city}
+            setHovered={(v) => setHovered((prev) => ({ ...prev, city: v }))}
+          />
+          <button
+            className={`form-submit-btn-mini${
+              !editMode ||
+              !isFormChanged() ||
+              !Object.values(valid).every(Boolean)
+                ? " disabled"
+                : ""
+            }`}
+            type="submit"
+            disabled={
+              !editMode ||
+              !isFormChanged() ||
+              !Object.values(valid).every(Boolean)
+            }
+          >
+            <i className="fas fa-check"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default DeliveryInfoForm;

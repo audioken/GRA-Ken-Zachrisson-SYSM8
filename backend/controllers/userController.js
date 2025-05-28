@@ -48,7 +48,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 //@desc update a user
-//@route PATCH /api/users/:id
+//@route PATCH /api/users/me
 //@access Private
 const updateUser = asyncHandler(async (req, res) => {
   const userId = req.user.id; // Hämta användarens ID från URL:en
@@ -75,6 +75,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user: {
       id: updatedUser.id,
       username: updatedUser.username,
+      email: updatedUser.email,
       name: updatedUser.name,
       phone: updatedUser.phone,
       address: updatedUser.address,
@@ -119,7 +120,12 @@ const updateUsername = asyncHandler(async (req, res) => {
       id: user.id,
       username: user.username,
       email: user.email,
-      // ...lägg till andra fält om du vill
+      name: user.name,
+      phone: user.phone,
+      address: user.address,
+      postalCode: user.postalCode,
+      city: user.city,
+      favourites: user.favourites.map((fav) => fav.toString()),
     },
   });
 });
@@ -158,9 +164,46 @@ const updateEmail = asyncHandler(async (req, res) => {
       id: user.id,
       username: user.username,
       email: user.email,
-      // ...lägg till andra fält om du vill
+      name: user.name,
+      phone: user.phone,
+      address: user.address,
+      postalCode: user.postalCode,
+      city: user.city,
+      favourites: user.favourites.map((fav) => fav.toString()),
     },
   });
+});
+
+//@desc update password
+//@route PATCH /api/users/change-password
+//@access Private
+const updatePassword = asyncHandler(async (req, res) => {
+  const userId = req.user.id;
+  const { currentPassword, newPassword } = req.body;
+
+  if (!currentPassword || !newPassword) {
+    res.status(400);
+    throw new Error("Both current and new password are required");
+  }
+
+  const user = await User.findById(userId);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  // Kontrollera nuvarande lösenord
+  const match = await bcrypt.compare(currentPassword, user.password);
+  if (!match) {
+    res.status(400);
+    throw new Error("Current password is incorrect");
+  }
+
+  // Uppdatera till nytt lösenord
+  user.password = await bcrypt.hash(newPassword, 10);
+  await user.save();
+
+  res.status(200).json({ message: "Password updated" });
 });
 
 //@desc login a user
@@ -258,6 +301,7 @@ module.exports = {
   updateUser,
   updateUsername,
   updateEmail,
+  updatePassword,
   loginUser,
   addFavorite,
   removeFavorite,

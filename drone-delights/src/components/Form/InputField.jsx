@@ -8,12 +8,15 @@ function InputField({
   onClear,
   error,
   valid,
+  readOnly,
+  disabled,
   available, // t.ex. usernameAvailable
   type = "text",
   hovered,
   setHovered,
 }) {
-  const showClear = value && (!valid || hovered); // Visa X om ogiltig eller hover
+  // const showClear = value && (!valid || hovered); 
+  const showClear = !readOnly && hovered && value; // Visa X bara vid redigering och hover
 
   const showCheck = !hovered && valid && (available === undefined || available); // Visa check om valid + ev. available
 
@@ -44,7 +47,9 @@ function InputField({
         type={type}
         value={value}
         onChange={onChange}
-        className={inputClass}
+        readOnly={readOnly}
+        disabled={disabled}
+        className={`${inputClass} ${readOnly ? "input-readonly" : ""}`}
         autoComplete="off"
         required
       />

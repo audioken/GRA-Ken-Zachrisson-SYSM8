@@ -9,8 +9,7 @@ function DeliveryInfo({ className = "", onSubmit }) {
   const { deliveryInfo, setDeliveryInfo } = useContext(DeliveryContext);
 
   useEffect(() => {
-    // Om deliveryInfo är tomt och användaren är inloggad, förifyll
-    if (user && (!deliveryInfo || Object.keys(deliveryInfo).length === 0)) {
+    if (user) {
       setDeliveryInfo({
         name: user.name || "",
         phone: user.phone || "",
@@ -19,7 +18,7 @@ function DeliveryInfo({ className = "", onSubmit }) {
         city: user.city || "",
       });
     }
-  }, [user, deliveryInfo, setDeliveryInfo]);
+  }, [user]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
