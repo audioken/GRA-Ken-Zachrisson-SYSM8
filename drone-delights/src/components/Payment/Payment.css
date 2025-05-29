@@ -81,7 +81,7 @@ input {
   height: 33px;
 }
 
-.mastercard-icon{
+.mastercard-logo{
   width: 41px;
   height: 25px;
 }
@@ -94,12 +94,14 @@ input {
   width: 420px;
 }
 
-#expiry {
-  width: 130px;
+#expiry, #expiryDate {
+  /* width: 130px; */
+  width: 100%;
 }
 
 #cvc {
-  width: 100px;
+  /* width: 100px; */
+  width: 100%;
 }
 
 .submit-btn {
@@ -147,6 +149,7 @@ input {
 .postal-code-and-city-container {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .payment-info-form-swish {

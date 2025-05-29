@@ -80,7 +80,7 @@ function Payment({ className = "" }) {
             <img
               src={mastercard}
               alt="Mastercard"
-              className="mastercard-icon"
+              className="mastercard-logo"
             />
           </button>
         </div>

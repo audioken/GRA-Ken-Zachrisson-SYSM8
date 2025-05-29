@@ -64,6 +64,39 @@ const addPaymentMethod = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc update primary payment method
+// @route PATCH /api/users/payment-methods/:id/set-primary
+// @access Private
+const updatePaymentMethod = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  const { id } = req.params;
+  const { isPrimary } = req.body;
+  if (isPrimary === undefined) {
+    res.status(400);
+    throw new Error("isPrimary field is required");
+  }
+  const paymentMethod = user.paymentMethods.find(
+    (pm) => pm._id.toString() === id
+  );
+  if (!paymentMethod) {
+    res.status(404);
+    throw new Error("Payment method not found");
+  }
+  // Om isPrimary är true, nollställ alla andra korts isPrimary
+  if (isPrimary) {
+    user.paymentMethods.forEach((pm) => (pm.isPrimary = false));
+  }
+  paymentMethod.isPrimary = isPrimary;
+  await user.save();
+  res.status(200).json({
+    paymentMethods: user.paymentMethods,
+  });
+});
+
 //@desc remove a payment method
 //@route DELETE /api/users/payment-methods/:id
 //@access Private
@@ -376,6 +409,7 @@ module.exports = {
   getUsers,
   getPaymentMethods,
   addPaymentMethod,
+  updatePaymentMethod,
   removePaymentMethod,
   currentUser,
   registerUser,

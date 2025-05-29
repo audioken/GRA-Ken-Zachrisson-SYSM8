@@ -165,7 +165,7 @@ function DeliveryInfoForm({isExpanded, onExpand}) {
         )}
         {editMode && (
           <button
-            className="form-cancel-btn-mini"
+            className="cancel-button-m"
             type="button"
             onClick={handleCancel}
           >

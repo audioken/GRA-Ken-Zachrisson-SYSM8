@@ -4,6 +4,7 @@ const {
   getUsers,
   getPaymentMethods,
   addPaymentMethod,
+  updatePaymentMethod,
   removePaymentMethod,
   currentUser,
   registerUser,
@@ -22,6 +23,7 @@ const router = express.Router();
 router.get("/", getUsers);
 router.get("/payment-methods", validateToken, getPaymentMethods); // Här definierar vi en rutt för att hämta betalningsmetoder
 router.post("/payment-methods", validateToken, addPaymentMethod); // Här definierar vi en rutt för att lägga till en betalningsmetod
+router.patch("/payment-methods/:id/set-primary", validateToken, updatePaymentMethod); // Här definierar vi en rutt för att uppdatera en betalningsmetod
 router.delete("/payment-methods/:id", validateToken, removePaymentMethod); // Här definierar vi en rutt för att ta bort en betalningsmetod
 router.get("/current", validateToken, currentUser); // Här definierar vi en rutt för att hämta den aktuella användaren
 router.post("/register", registerUser); // Här definierar vi en rutt för att registrera en användare

@@ -1,0 +1,51 @@
+.payment-method-card-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.payment-method-card-primary-container-active,
+.payment-method-card-primary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 30px;
+}
+
+.payment-method-card-primary-container-active {
+  font-family: "Roboto", system-ui;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #00d82f;
+  border-radius: 12.5px;
+  color: white;
+}
+
+.payment-method-cardnumber-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  width: 180px;
+  height: 30px;
+}
+
+.set-primary-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: dotted 2px #CCCCCC;
+  color: #CCCCCC;
+  background-color: transparent;
+  width: 85px;
+  height: 30px;
+  border-radius: 12.5px;
+  font-family: "Roboto", system-ui;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}

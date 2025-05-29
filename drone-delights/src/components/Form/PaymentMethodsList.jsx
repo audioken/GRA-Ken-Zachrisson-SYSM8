@@ -1,3 +1,4 @@
+import "./PaymentMethodList.css";
 import { useAuth } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
 import PaymentMethodCard from "./PaymentMethodCard";
@@ -10,7 +11,7 @@ function PaymentMethodsList() {
   console.log("User: ", user);
 
   return (
-    <div className="payment-method-list-container">
+    <div className="payment-methods-list-container">
       {paymentMethods.length > 0 ? (
         paymentMethods.map((method) => (
           <PaymentMethodCard

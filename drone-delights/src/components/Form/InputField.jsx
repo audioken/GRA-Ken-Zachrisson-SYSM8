@@ -1,4 +1,5 @@
 import "./FieldStyles.css"; // Importera CSS för fältet
+import "../Buttons.css"; // Importera gemensamma knappar
 
 function InputField({
   label,
@@ -56,7 +57,7 @@ function InputField({
 
       {showClear && (
         <span
-          className="clear-input"
+          className="clear-button"
           onClick={onClear}
           tabIndex={0}
           aria-label={`Clear ${name}`}

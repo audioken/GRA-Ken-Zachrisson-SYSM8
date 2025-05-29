@@ -1,0 +1,6 @@
+.payment-methods-display-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 30px;
+  }
