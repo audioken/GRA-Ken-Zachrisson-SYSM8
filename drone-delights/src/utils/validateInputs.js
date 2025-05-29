@@ -152,6 +152,58 @@ export function validateInputs(fields) {
     }
   }
 
+  // Name on card: minst 2 tecken
+  if ("nameOnCard" in fields) {
+    if (!fields.nameOnCard?.trim()) {
+      errors.nameOnCard = "Required";
+      valid.nameOnCard = false;
+    } else if (fields.nameOnCard.trim().length < 2) {
+      errors.nameOnCard = "At least 2 characters";
+      valid.nameOnCard = false;
+    } else {
+      valid.nameOnCard = true;
+    }
+  }
+
+  // Card number: exakt 16 siffror
+  if ("cardNumber" in fields) {
+    if (!fields.cardNumber?.trim()) {
+      errors.cardNumber = "Required";
+      valid.cardNumber = false;
+    } else if (!/^\d{16}$/.test(fields.cardNumber.replace(/\s/g, ""))) {
+      errors.cardNumber = "Must be 16 digits";
+      valid.cardNumber = false;
+    } else {
+      valid.cardNumber = true;
+    }
+  }
+
+  // Expiry date: MM/YY
+  if ("expiryDate" in fields) {
+    if (!fields.expiryDate?.trim()) {
+      errors.expiryDate = "Required";
+      valid.expiryDate = false;
+    } else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(fields.expiryDate)) {
+      errors.expiryDate = "MM/YY";
+      valid.expiryDate = false;
+    } else {
+      valid.expiryDate = true;
+    }
+  }
+
+  // CVC: 3 eller 4 siffror
+  if ("cvc" in fields) {
+    if (!fields.cvc?.trim()) {
+      errors.cvc = "Required";
+      valid.cvc = false;
+    } else if (!/^\d{3,4}$/.test(fields.cvc)) {
+      errors.cvc = "3 or 4 digits";
+      valid.cvc = false;
+    } else {
+      valid.cvc = true;
+    }
+  }
+
   return { errors, valid };
 }
   

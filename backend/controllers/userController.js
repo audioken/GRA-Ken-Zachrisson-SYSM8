@@ -11,6 +11,83 @@ const getUsers = asyncHandler(async (req, res) => {
   res.status(200).json(users); // Skicka tillbaka användarna som JSON
 });
 
+//@desc get payment methods
+//@route GET /api/users/payment-methods
+//@access Private
+const getPaymentMethods = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  res.status(200).json(user.paymentMethods || []);
+});
+
+//@desc add a payment method
+//@route POST /api/users/payment-methods
+//@access Private
+const addPaymentMethod = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  const { nameOnCard, cardNumber, expiryDate, cvc, isPrimary } = req.body;
+  if (!nameOnCard || !cardNumber || !expiryDate || !cvc) {
+    res.status(400);
+    throw new Error("All fields are required");
+  }
+
+  // Om isPrimary är true, nollställ alla andra korts isPrimary
+  if (isPrimary) {
+    user.paymentMethods.forEach((pm) => (pm.isPrimary = false));
+  }
+
+  // Mappa till rätt fältnamn enligt modellen!
+  const newPayment = {
+    name: nameOnCard,
+    number: cardNumber,
+    expiry: expiryDate,
+    cvc,
+    isPrimary: !!isPrimary,
+  };
+
+  user.paymentMethods.push(newPayment);
+  await user.save();
+
+  res.status(201).json({
+    user: {
+      ...user.toObject(),
+      paymentMethods: user.paymentMethods,
+    },
+  });
+});
+
+//@desc remove a payment method
+//@route DELETE /api/users/payment-methods/:id
+//@access Private
+const removePaymentMethod = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  const { id } = req.params;
+  const before = user.paymentMethods.length;
+  user.paymentMethods = user.paymentMethods.filter(
+    (pm) => pm._id.toString() !== id
+  );
+  if (user.paymentMethods.length === before) {
+    res.status(404);
+    throw new Error("Payment method not found");
+  }
+  await user.save();
+  res.status(200).json({
+    paymentMethods: user.paymentMethods,
+  });
+});
+
 //@desc register a user
 //@route POST /api/users/register
 //@access Public
@@ -243,6 +320,7 @@ const loginUser = asyncHandler(async (req, res) => {
         postalCode: user.postalCode,
         city: user.city,
         favourites: user.favourites.map((fav) => fav.toString()),
+        paymentMethods: user.paymentMethods,
       },
     });
   } else {
@@ -296,6 +374,9 @@ const removeFavorite = asyncHandler(async (req, res) => {
 // Exporterar funktionerna så att de kan användas i andra filer
 module.exports = {
   getUsers,
+  getPaymentMethods,
+  addPaymentMethod,
+  removePaymentMethod,
   currentUser,
   registerUser,
   updateUser,

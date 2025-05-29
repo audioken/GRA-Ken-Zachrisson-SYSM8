@@ -15,6 +15,12 @@ export const AuthProvider = ({ children }) => {
 
   const logoutTimer = useRef(); // Referens för att hantera utloggningstimer
 
+  // Funktion för att uppdatera användarinformation
+  const updateUser = (updatedUser) => {
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  };
+
   // Funktion för att logga in
   const login = (newToken, userData) => {
     localStorage.setItem("token", newToken); // Lagrar token i localStorage
@@ -64,7 +70,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     // AuthContext.Provider tillhandahåller token och funktioner för login/logout till barnkomponenter
-    <AuthContext.Provider value={{ token, user, login, logout }}>
+    <AuthContext.Provider value={{ token, user, login, logout, updateUser }}>
       {children} {/* Renderar barnkomponenter */}
     </AuthContext.Provider>
   );

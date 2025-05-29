@@ -43,11 +43,26 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    favourites: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Item",
-      default: [],
-    }],
+    favourites: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Item",
+        default: [],
+      },
+    ],
+    paymentMethods: [
+      {
+        _id: { type: mongoose.Schema.Types.ObjectId, auto: true }, // <-- Lägg till denna rad
+        name: String,
+        number: String,
+        expiry: String,
+        cvc: String,
+        isPrimary: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
   },
   {
     timestamps: true, // Loggar när användaren skapades eller uppdaterades

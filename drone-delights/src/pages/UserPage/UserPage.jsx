@@ -3,15 +3,16 @@ import PageHeader from "../../components/PageHeader/PageHeader";
 import AccountSettingsForm from "../../components/Form/AccountSettingsForm";
 import ChangePasswordForm from "../../components/Form/ChangePasswordForm";
 import DeliveryInfoForm from "../../components/Form/DeliveryInfoForm";
+import PaymentMethodsDisplay from "../../components/Form/PaymentMethodsDisplay";
+import PaymentMethodForm from "../../components/Form/PaymentMethodForm";
 import { useState } from "react";
 
 function UserPage() {
   const [expanded, setExpanded] = useState("account"); // "account", "password", null
   const [showChangePassword, setShowChangePassword] = useState(false);
+  const [showPaymentMethodForm, setShowPaymentMethodForm] = useState(false);
   
   const handleExpand = (panel) => {
-    // Om man klickar på redan öppen panel: stäng alla
-    // Annars: öppna vald panel och stäng ChangePasswordForm
     if (expanded === panel) {
       setExpanded(null);
       setShowChangePassword(false);
@@ -41,6 +42,18 @@ function UserPage() {
           onExpand={() => handleExpand("delivery")}
           isExpanded={expanded === "delivery"}
         />
+        {!showPaymentMethodForm ? (
+          <PaymentMethodsDisplay
+            onAddNewCardClick={() => setShowPaymentMethodForm(true)}
+            onExpand={() => handleExpand("payment")}
+            isExpanded={expanded === "payment"}
+          />
+        ) : (
+          <PaymentMethodForm
+            onCancel={() => setShowPaymentMethodForm(false)}
+            onSuccess={() => setShowPaymentMethodForm(false)}
+          />
+        )}
       </div>
     </div>
   );

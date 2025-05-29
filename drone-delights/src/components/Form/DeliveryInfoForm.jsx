@@ -1,12 +1,12 @@
 import { useContext, useState, useEffect } from "react";
-import { DeliveryContext } from "../../context/DeliveryContext";
-import InputField from "./InputField";
-import { validateInputs } from "../../utils/validateInputs";
 import { useAuth } from "../../context/AuthContext";
+import { DeliveryContext } from "../../context/DeliveryContext";
+import { validateInputs } from "../../utils/validateInputs";
+import InputField from "./InputField";
 import axios from "axios";
 
 function DeliveryInfoForm({isExpanded, onExpand}) {
-  const { deliveryInfo, setDeliveryInfo, resetDeliveryInfo } =
+  const { deliveryInfo, setDeliveryInfo } =
     useContext(DeliveryContext);
   const [editMode, setEditMode] = useState(false);
   const { user, token, login } = useAuth();
