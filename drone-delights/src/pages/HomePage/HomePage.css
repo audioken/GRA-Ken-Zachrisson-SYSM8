@@ -1,3 +1,12 @@
 .home-page-container {
     width: 100%;
 }
+
+.home-page-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 150px;
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+  

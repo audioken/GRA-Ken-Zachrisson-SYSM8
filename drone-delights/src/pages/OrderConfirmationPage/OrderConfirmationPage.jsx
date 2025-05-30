@@ -1,7 +1,7 @@
 import "./OrderConfirmationPage.css";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import OrderConfirmation from "../../components/OrderConfirmation/OrderConfirmation";
-import ButtonLink from "../../components/ButtonLink/ButtonLink";
+import PageHeader from "../../components/Layout/PageHeader/PageHeader";
+import OrderConfirmation from "../../components/Order/OrderConfirmation/OrderConfirmation";
+import ButtonLink from "../../components/UI/Button/ButtonLink";
 
 function OrderConfirmationPage() {
   return (

@@ -1,17 +1,16 @@
 import "./CheckoutPage.css";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import TotalPrice from "../../components/TotalPrice/TotalPrice";
-import DeliveryInfoCheckout from "../../components/Form/DeliveryInfoCheckout";
-// import Payment from "../../components/Payment/Payment";
-import PaymentCheckout from "../../components/Form/PaymentCheckout";
-import ButtonLink from "../../components/ButtonLink/ButtonLink";
+import PageHeader from "../../components/Layout/PageHeader/PageHeader";
+import TotalPrice from "../../components/Shared/TotalPrice/TotalPrice";
+import DeliveryInfoCheckout from "../../components/Checkout/DeliveryInfoCheckout";
+import PaymentCheckout from "../../components/Checkout/PaymentCheckout";
+import ButtonLink from "../../components/UI/Button/ButtonLink";
 import { useState, useEffect } from "react";
 
 function CheckoutPage() {
   useEffect(() => {
     sessionStorage.removeItem("orderSent");
   }, []);
-  
+
   const [currentView, setCurrentView] = useState("delivery");
 
   return (

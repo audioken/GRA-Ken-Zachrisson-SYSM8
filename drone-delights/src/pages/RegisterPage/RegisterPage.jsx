@@ -1,6 +1,6 @@
 import "./RegisterPage.css";
-import RegisterForm from "../../components/Form/RegisterForm";
-import PageHeader from "../../components/PageHeader/PageHeader";
+import RegisterForm from "../../components/Auth/RegisterForm";
+import PageHeader from "../../components/Layout/PageHeader/PageHeader";
 
 function RegisterPage() {
   return (

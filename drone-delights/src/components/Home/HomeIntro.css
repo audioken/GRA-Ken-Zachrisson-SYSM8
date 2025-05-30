@@ -1,0 +1,21 @@
+.hero-bottom-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 150px;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.home-intro-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  width: 391px;
+  gap: 20px;
+}
+
+.home-intro-text-container {
+  width: 391px;
+  height: 224px;
+  text-align: left;
+}

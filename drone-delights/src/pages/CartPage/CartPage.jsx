@@ -1,7 +1,7 @@
 import "./CartPage.css";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import CartList from "../../components/CartList/CartList";
-import CartSummary from "../../components/CartSummary/CartSummary";
+import PageHeader from "../../components/Layout/PageHeader/PageHeader";
+import CartList from "../../components/Cart/CartList/CartList";
+import CartSummary from "../../components/Cart/CartSummary/CartSummary";
 
 function CartPage() {
   return (

@@ -1,7 +1,7 @@
 import "./MenuPage.css";
-import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
-import MenuList from "../../components/MenuList/MenuList";
-import PageHeader from "../../components/PageHeader/PageHeader";
+import CategoryFilter from "../../components/Menu/CategoryFilter/CategoryFilter";
+import MenuList from "../../components/Menu/MenuList/MenuList";
+import PageHeader from "../../components/Layout/PageHeader/PageHeader";
 import { CategoryProvider } from "../../context/CategoryContext";
 
 function MenuPage() {

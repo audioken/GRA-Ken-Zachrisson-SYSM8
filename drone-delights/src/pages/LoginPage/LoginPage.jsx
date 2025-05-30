@@ -1,7 +1,7 @@
 import "./LoginPage.css";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import LoginForm from "../../components/Form/LoginForm";
-import ButtonLink from "../../components/ButtonLink/ButtonLink";
+import PageHeader from "../../components/Layout/PageHeader/PageHeader";
+import LoginForm from "../../components/Auth/LoginForm";
+import ButtonLink from "../../components/UI/Button/ButtonLink";
 
 function LoginPage() {
   return (
@@ -10,7 +10,7 @@ function LoginPage() {
       <div className="login-page-body">
         <LoginForm />
       </div>
-      <ButtonLink path={"/register"} style={"lite"} text={"Register"}/>
+      <ButtonLink path={"/register"} style={"lite"} text={"Register"} />
     </div>
   );
 }

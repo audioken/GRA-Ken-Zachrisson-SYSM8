@@ -10,7 +10,7 @@ import { DeliveryProvider } from "./context/DeliveryContext";
 import { PaymentProvider } from "./context/PaymentContext";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Header from "./components/Header/Header";
+import Header from "./components/Layout/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
