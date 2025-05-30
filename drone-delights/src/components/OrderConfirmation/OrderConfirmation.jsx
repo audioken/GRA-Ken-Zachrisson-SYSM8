@@ -17,7 +17,7 @@ function OrderConfirmation() {
   function addOrderToServer() {
     const order = {
       items: cartItems,
-      totalPrice: totalPrice,
+      totalPrice: Number(totalPrice),
       deliveryInfo: deliveryInfo,
       paymentInfo: paymentInfo,
     };
@@ -38,6 +38,8 @@ function OrderConfirmation() {
       .catch((error) => {
         console.error("Error confirming order:", error);
       });
+      console.log("Order skickas:", order);
+      console.log("paymentInfo i OrderConfirmation:", paymentInfo);
   }
 
   useEffect(() => {
@@ -76,8 +78,11 @@ function OrderConfirmation() {
       </h2>
       <div className="order-summary-container">
         <div className="order-items-all-cards-container">
-          {items.map((item) => (
-            <div className="order-item-card-container" key={item._id}>
+          {items.map((item, index) => (
+            <div
+              className="order-item-card-container"
+              key={item._id || `${item.name}-${index}`}
+            >
               <div className="order-image-container">
                 <img src={item.image} alt="" className="order-image" />{" "}
               </div>
@@ -109,6 +114,14 @@ function OrderConfirmation() {
               {payment.method}
               <br />
               {payment.phone}
+            </p>
+            <p className="payment-method-text">
+              {payment.method}
+              <br />
+              {payment.method === "Swish" && payment.phone}
+              {payment.method === "Mastercard" && (
+                <>**** **** **** {payment.number.slice(-4)}</>
+              )}
             </p>
           </section>
 

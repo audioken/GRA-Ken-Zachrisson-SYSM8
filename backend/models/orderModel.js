@@ -23,7 +23,15 @@ const orderSchema = new mongoose.Schema(
     },
     paymentInfo: {
       method: { type: String, required: true },
-      phone: { type: String, required: true },
+
+      // Swish
+      phone: { type: String },
+
+      // Mastercard
+      name: { type: String },
+      number: { type: String },
+      expiry: { type: String },
+      cvc: { type: String },
     },
   },
   { timestamps: true }

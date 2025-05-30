@@ -2,7 +2,8 @@ import "./CheckoutPage.css";
 import PageHeader from "../../components/PageHeader/PageHeader";
 import TotalPrice from "../../components/TotalPrice/TotalPrice";
 import DeliveryInfoCheckout from "../../components/Form/DeliveryInfoCheckout";
-import Payment from "../../components/Payment/Payment";
+// import Payment from "../../components/Payment/Payment";
+import PaymentCheckout from "../../components/Form/PaymentCheckout";
 import ButtonLink from "../../components/ButtonLink/ButtonLink";
 import { useState, useEffect } from "react";
 
@@ -10,6 +11,7 @@ function CheckoutPage() {
   useEffect(() => {
     sessionStorage.removeItem("orderSent");
   }, []);
+  
   const [currentView, setCurrentView] = useState("delivery");
 
   return (
@@ -21,7 +23,10 @@ function CheckoutPage() {
           className={`delivery-view ${currentView === "payment" ? "hide" : ""}`}
           onSubmit={() => setCurrentView("payment")}
         />
-        <Payment
+        {/* <Payment
+          className={`payment-view ${currentView === "delivery" ? "hide" : ""}`}
+        /> */}
+        <PaymentCheckout
           className={`payment-view ${currentView === "delivery" ? "hide" : ""}`}
         />
         <div className="checkout-page-btns">

@@ -153,41 +153,41 @@ export function validateInputs(fields) {
   }
 
   // Name on card: minst 2 tecken
-  if ("nameOnCard" in fields) {
-    if (!fields.nameOnCard?.trim()) {
-      errors.nameOnCard = "Required";
-      valid.nameOnCard = false;
-    } else if (fields.nameOnCard.trim().length < 2) {
-      errors.nameOnCard = "At least 2 characters";
-      valid.nameOnCard = false;
-    } else {
-      valid.nameOnCard = true;
-    }
-  }
+  // if ("nameOnCard" in fields) {
+  //   if (!fields.nameOnCard?.trim()) {
+  //     errors.nameOnCard = "Required";
+  //     valid.nameOnCard = false;
+  //   } else if (fields.nameOnCard.trim().length < 2) {
+  //     errors.nameOnCard = "At least 2 characters";
+  //     valid.nameOnCard = false;
+  //   } else {
+  //     valid.nameOnCard = true;
+  //   }
+  // }
 
   // Card number: exakt 16 siffror
-  if ("cardNumber" in fields) {
-    if (!fields.cardNumber?.trim()) {
-      errors.cardNumber = "Required";
-      valid.cardNumber = false;
-    } else if (!/^\d{16}$/.test(fields.cardNumber.replace(/\s/g, ""))) {
-      errors.cardNumber = "Must be 16 digits";
-      valid.cardNumber = false;
+  if ("number" in fields) {
+    if (!fields.number?.trim()) {
+      errors.number = "Required";
+      valid.number = false;
+    } else if (!/^\d{16}$/.test(fields.number.replace(/\s/g, ""))) {
+      errors.number = "Must be 16 digits";
+      valid.number = false;
     } else {
-      valid.cardNumber = true;
+      valid.number = true;
     }
   }
 
   // Expiry date: MM/YY
-  if ("expiryDate" in fields) {
-    if (!fields.expiryDate?.trim()) {
-      errors.expiryDate = "Required";
-      valid.expiryDate = false;
-    } else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(fields.expiryDate)) {
-      errors.expiryDate = "MM/YY";
-      valid.expiryDate = false;
+  if ("expiry" in fields) {
+    if (!fields.expiry?.trim()) {
+      errors.expiry = "Required";
+      valid.expiry = false;
+    } else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(fields.expiry)) {
+      errors.expiry = "MM/YY";
+      valid.expiry = false;
     } else {
-      valid.expiryDate = true;
+      valid.expiry = true;
     }
   }
 

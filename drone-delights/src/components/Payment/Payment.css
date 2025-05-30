@@ -90,6 +90,14 @@ input {
   width: 420px;
 }
 
+#name{
+  width: 100%;
+}
+
+#phone{
+  width: 100%;
+}
+
 #card {
   width: 420px;
 }

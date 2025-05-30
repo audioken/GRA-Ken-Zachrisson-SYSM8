@@ -33,8 +33,8 @@ const addPaymentMethod = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-  const { nameOnCard, cardNumber, expiryDate, cvc, isPrimary } = req.body;
-  if (!nameOnCard || !cardNumber || !expiryDate || !cvc) {
+  const { name, number, expiry, cvc, isPrimary } = req.body;
+  if (!name || !number || !expiry || !cvc) {
     res.status(400);
     throw new Error("All fields are required");
   }
@@ -46,10 +46,10 @@ const addPaymentMethod = asyncHandler(async (req, res) => {
 
   // Mappa till rätt fältnamn enligt modellen!
   const newPayment = {
-    name: nameOnCard,
-    number: cardNumber,
-    expiry: expiryDate,
-    cvc,
+    name: name,
+    number: number,
+    expiry: expiry,
+    cvc: cvc,
     isPrimary: !!isPrimary,
   };
 

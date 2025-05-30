@@ -17,7 +17,7 @@ function PaymentMethodsList() {
           <PaymentMethodCard
             key={method._id}
             id={method._id} 
-            cardNumber={method.number}
+            number={method.number}
             isPrimary={method.isPrimary}
           />
         ))

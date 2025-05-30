@@ -9,17 +9,17 @@ import InputField from "./InputField";
 
 function PaymentMethodForm({ onCancel, onSuccess }) {
   const [form, setForm] = useState({
-    nameOnCard: "",
-    cardNumber: "",
-    expiryDate: "",
+    name: "",
+    number: "",
+    expiry: "",
     cvc: "",
     isPrimary: false,
   });
 
   const [hovered, setHovered] = useState({
-    nameOnCard: false,
-    cardNumber: false,
-    expiryDate: false,
+    name: false,
+    number: false,
+    expiry: false,
     cvc: false,
   });
 
@@ -30,7 +30,7 @@ function PaymentMethodForm({ onCancel, onSuccess }) {
   const [formComplete, setFormComplete] = useState(false);
 
   const handleCancel = () => {
-    setForm({ nameOnCard: "", cardNumber: "", expiryDate: "", cvc: "" });
+    setForm({ name: "", number: "", expiry: "", cvc: "" });
     setErrors({});
     setValid({});
     setSuccess("");
@@ -67,9 +67,9 @@ function PaymentMethodForm({ onCancel, onSuccess }) {
     setValid(valid);
 
     if (
-      !valid.nameOnCard ||
-      !valid.cardNumber ||
-      !valid.expiryDate ||
+      !valid.name ||
+      !valid.number ||
+      !valid.expiry ||
       !valid.cvc
     ) {
       console.log("Fälten är inte giltiga, avbryter inskickningen");
@@ -102,9 +102,9 @@ function PaymentMethodForm({ onCancel, onSuccess }) {
           paymentMethods: [
             ...(user.paymentMethods || []),
             {
-              name: form.nameOnCard,
-              number: form.cardNumber,
-              expiry: form.expiryDate,
+              name: form.name,
+              number: form.number,
+              expiry: form.expiry,
               cvc: form.cvc,
             },
           ],
@@ -112,7 +112,7 @@ function PaymentMethodForm({ onCancel, onSuccess }) {
       }
 
       setSuccess("Payment method added successfully!");
-      setForm({ nameOnCard: "", cardNumber: "", expiryDate: "", cvc: "" });
+      setForm({ name: "", number: "", expiry: "", cvc: "" });
       setErrors({});
       setValid({});
       if (onSuccess) onSuccess();
@@ -137,7 +137,7 @@ function PaymentMethodForm({ onCancel, onSuccess }) {
 
   useEffect(() => {
     // Kolla att alla valideringsregler är true och inga errors finns
-    const requiredFields = ["nameOnCard", "cardNumber", "expiryDate", "cvc"];
+    const requiredFields = ["name", "number", "expiry", "cvc"];
     const allValid =
       requiredFields.every((field) => valid[field]) &&
       requiredFields.every((field) => !errors[field]);
@@ -159,42 +159,40 @@ function PaymentMethodForm({ onCancel, onSuccess }) {
       <form className="form" onSubmit={handleSubmit}>
         <InputField
           label="Name on Card"
-          name="nameOnCard"
+          name="name"
           type="text"
-          value={form.nameOnCard}
+          value={form.name}
           onChange={handleInputChange}
-          onClear={() => handleClear("nameOnCard")}
-          error={errors.nameOnCard}
-          valid={valid.nameOnCard}
-          hovered={hovered.nameOnCard}
-          setHovered={(v) => setHovered((prev) => ({ ...prev, nameOnCard: v }))}
+          onClear={() => handleClear("name")}
+          error={errors.name}
+          valid={valid.name}
+          hovered={hovered.name}
+          setHovered={(v) => setHovered((prev) => ({ ...prev, name: v }))}
         />
         <InputField
           label="Card Number"
-          name="cardNumber"
+          name="number"
           type="text"
-          value={form.cardNumber}
+          value={form.number}
           onChange={handleInputChange}
-          onClear={() => handleClear("cardNumber")}
-          error={errors.cardNumber}
-          valid={valid.cardNumber}
-          hovered={hovered.cardNumber}
-          setHovered={(v) => setHovered((prev) => ({ ...prev, cardNumber: v }))}
+          onClear={() => handleClear("number")}
+          error={errors.number}
+          valid={valid.number}
+          hovered={hovered.number}
+          setHovered={(v) => setHovered((prev) => ({ ...prev, number: v }))}
         />
         <div className="form-inputs-row-container">
           <InputField
             label="Expiry"
-            name="expiryDate"
+            name="expiry"
             type="text"
-            value={form.expiryDate}
+            value={form.expiry}
             onChange={handleInputChange}
-            onClear={() => handleClear("expiryDate")}
-            error={errors.expiryDate}
-            valid={valid.expiryDate}
-            hovered={hovered.expiryDate}
-            setHovered={(v) =>
-              setHovered((prev) => ({ ...prev, expiryDate: v }))
-            }
+            onClear={() => handleClear("expiry")}
+            error={errors.expiry}
+            valid={valid.expiry}
+            hovered={hovered.expiry}
+            setHovered={(v) => setHovered((prev) => ({ ...prev, expiry: v }))}
           />
           <InputField
             label="CVC"

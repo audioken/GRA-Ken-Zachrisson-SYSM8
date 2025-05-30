@@ -4,6 +4,6 @@ const { getOrders, postOrder } = require("../controllers/orderController"); // H
 const router = express.Router();
 
 router.get("/", getOrders); // Här definierar vi en rutt för att hämta alla ordrar
-router.post("/", postOrder); // Här definierar vi en rutt för att registrera en användare
+router.post("/", postOrder); // Här definierar vi en rutt för att skapa en ny order
 
 module.exports = router; // Här exporterar vi app-instansen så att den kan användas i andra filer, t.ex. för tester

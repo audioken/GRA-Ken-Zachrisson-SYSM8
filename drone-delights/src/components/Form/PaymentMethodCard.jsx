@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 
-function PaymentMethodCard({ id, cardNumber, isPrimary }) {
-  const [lastFourDigits] = useState(cardNumber.slice(-4));
+function PaymentMethodCard({ id, number, isPrimary }) {
+  const [lastFourDigits] = useState(number.slice(-4));
   const [hovered, setHovered] = useState(false);
   const { token, user, updateUser } = useAuth();
 
