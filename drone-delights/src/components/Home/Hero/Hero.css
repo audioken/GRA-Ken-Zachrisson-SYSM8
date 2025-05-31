@@ -1,7 +1,6 @@
 .hero-section {
   overflow: hidden;
   position: relative;
-  height: 33rem;
   height: clamp(10rem, 42vw, 33rem);
   padding: 2rem;
 }

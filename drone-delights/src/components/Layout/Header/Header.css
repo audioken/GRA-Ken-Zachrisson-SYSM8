@@ -56,44 +56,6 @@
   gap: 2.5rem;
 }
 
-/* .user-dropdown {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  gap: 1.25rem;
-} */
-
-/* .dropdown-text {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  gap: 0.5rem;
-}
-
-.user-icon {
-  color: #227c9d;
-  font-size: 1.75rem;
-}
-
-.hi-dropdown-text {
-  font-family: "Knewave", system-ui;
-  font-weight: 400;
-  font-size: 1.375rem;
-  color: #227c9d;
-}
-
-.username-dropdown-text {
-  font-family: "Knewave", system-ui;
-  font-weight: 400;
-  font-size: 28px;
-  color: #fe6d73;
-}
-
-.dropdown-icon {
-  color: #227c9d;
-  font-size: 22px;
-} */
-
 .basket-btn {
   display: flex;
   justify-content: center;

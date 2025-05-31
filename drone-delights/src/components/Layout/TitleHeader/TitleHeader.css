@@ -1,23 +1,25 @@
 .title-header-container {
   position: relative;
   width: 100%;
-  height: 265px;
+  /* height: 265px; */
+  height: clamp(5rem, 21.5vw, 16.5rem);
   margin-bottom: 30px;
 }
 
 .title-header-background {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   top: 0;
   left: 0;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
   z-index: 1;
 }
 
 .title-header-content {
   position: relative;
-  height: 100%;
+  height: clamp(4rem, 21.5vw, 16.5rem);
   display: flex;
   justify-content: center;
   align-items: center;
