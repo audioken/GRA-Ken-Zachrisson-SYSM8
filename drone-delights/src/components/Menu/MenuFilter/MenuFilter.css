@@ -3,17 +3,16 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 847px;
-  height: 75px;
-  gap: 46px;
+  width: clamp(15rem, 50vw, 50rem);
+  height: 5rem;
+  gap: clamp(0.5rem, 4vw, 5rem);
 }
 
 .category-btn {
   font-family: "Hachi Maru Pop", cursive;
-  font-size: 32px;
+  font-size: clamp(1rem, 4vw, 2rem);
   height: 75px;
-  width: 250px;
-  padding: 0 20px;
+  width: auto;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -22,11 +21,13 @@
 
 .selected{
   font-family: "Knewave", system-ui;
-  width: 250px;
-  transform: scale(1.25);
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transform: scale(1.5);
 }
 
 .fav-filter-selected{
   color:#FE6D73;
-  scale: 1.25;
+  scale: 1.5;
 }
