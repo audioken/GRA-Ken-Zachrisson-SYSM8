@@ -1,17 +1,17 @@
 import "./MenuPage.css";
-import CategoryFilter from "../../components/Menu/CategoryFilter/CategoryFilter";
-import MenuList from "../../components/Menu/MenuList/MenuList";
-import PageHeader from "../../components/Layout/PageHeader/PageHeader";
+import MenuFilter from "../../components/Menu/MenuFilter/MenuFilter";
+import MenuItemsList from "../../components/Menu/MenuItemsList/MenuItemsList";
+import TitleHeader from "../../components/Layout/TitleHeader/TitleHeader";
 import { CategoryProvider } from "../../context/CategoryContext";
 
 function MenuPage() {
   return (
     <CategoryProvider>
       <div className="menu-page-container">
-        <PageHeader pageTitleBlue="Our" pageTitleRed="Menu!" />
+        <TitleHeader pageTitleBlue="Our" pageTitleRed="Menu!" />
         <div className="menu-page-body">
-          <CategoryFilter />
-          <MenuList />
+          <MenuFilter />
+          <MenuItemsList />
         </div>
       </div>
     </CategoryProvider>

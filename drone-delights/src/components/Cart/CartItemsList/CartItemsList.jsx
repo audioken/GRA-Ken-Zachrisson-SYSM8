@@ -1,14 +1,14 @@
-import "./CartList.css";
+import "./CartItemsList.css";
 import { CartContext } from "../../../context/CartContext";
 import { useContext } from "react";
 import CartItemCard from "../CartItemCard/CartItemCard";
-import CartEmpty from "../CartEmpty/CartEmpty";
+import EmptyCart from "../EmptyCart/EmptyCart";
 
-function CartList() {
+function CartItemsList() {
   const { cartItems } = useContext(CartContext);
 
   if (cartItems.length === 0) {
-    return <CartEmpty />;
+    return <EmptyCart />;
   }
 
   return (
@@ -20,4 +20,4 @@ function CartList() {
   );
 }
 
-export default CartList;
+export default CartItemsList;

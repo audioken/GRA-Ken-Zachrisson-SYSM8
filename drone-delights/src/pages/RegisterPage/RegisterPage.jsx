@@ -1,11 +1,11 @@
 import "./RegisterPage.css";
 import RegisterForm from "../../components/Auth/RegisterForm";
-import PageHeader from "../../components/Layout/PageHeader/PageHeader";
+import TitleHeader from "../../components/Layout/TitleHeader/TitleHeader";
 
 function RegisterPage() {
   return (
     <div className="register-page-container ">
-      <PageHeader pageTitleBlue="Register" pageTitleRed="Account!" />
+      <TitleHeader pageTitleBlue="Register" pageTitleRed="Account!" />
       <div className="register-page-body">
         <RegisterForm />
       </div>

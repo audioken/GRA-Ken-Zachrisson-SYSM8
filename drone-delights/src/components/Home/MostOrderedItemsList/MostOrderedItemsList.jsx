@@ -1,9 +1,9 @@
-import "./MostOrderedList.css";
-import ItemCard from "../../Menu/ItemCard/ItemCard";
+import "./MostOrderedItemsList.css";
+import MenuItemCard from "../../Menu/MenuItemCard/MenuItemCard";
 import useFetch from "../../../hooks/useFetch";
 import Masonry from "react-masonry-css";
 
-function MostOrderdList() {
+function MostOrderedItemsList() {
   const { data, loading, error } = useFetch(
     `${process.env.REACT_APP_API_URL}/items`
   );
@@ -24,7 +24,7 @@ function MostOrderdList() {
           columnClassName="most-ordered-item-cards-column"
         >
           {mostOrderedItems.map((item) => (
-            <ItemCard key={item._id} {...item} />
+            <MenuItemCard key={item._id} {...item} />
           ))}
         </Masonry>
       </div>
@@ -32,4 +32,4 @@ function MostOrderdList() {
   );
 }
 
-export default MostOrderdList;
+export default MostOrderedItemsList;

@@ -1,13 +1,13 @@
-import "./MenuList.css";
+import "./MenuItemsList.css";
 import useFetch from "../../../hooks/useFetch";
-import ItemCard from "../ItemCard/ItemCard";
+import ItemCard from "../MenuItemCard/MenuItemCard";
 import Masonry from "react-masonry-css";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CategoryContext } from "../../../context/CategoryContext";
 import { useAuth } from "../../../context/AuthContext";
 
-function MenuList() {
+function MenuItemsList() {
   const { data, loading, error } = useFetch(
     `${process.env.REACT_APP_API_URL}/items`
   );
@@ -59,4 +59,4 @@ function MenuList() {
   );
 }
 
-export default MenuList;
+export default MenuItemsList;

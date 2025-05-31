@@ -6,7 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import InputField from "../UI/Input/InputField";
 
-function PaymentMethodForm({ onCancel, onSuccess }) {
+function UserPaymentForm({ onCancel, onSuccess }) {
   const [form, setForm] = useState({
     name: "",
     number: "",
@@ -45,32 +45,13 @@ function PaymentMethodForm({ onCancel, onSuccess }) {
     setValid(valid);
   };
 
-  // const handleAddCard = async (cardData) => {
-  //   const res = await axios.post(
-  //     `${process.env.REACT_APP_API_URL}/users/payment-methods`,
-  //     cardData,
-  //     { headers: { Authorization: `Bearer ${token}` } }
-  //   );
-  //   // Hämta nya paymentMethods från backend (eller hela user)
-  //   const updatedUser = {
-  //     ...user,
-  //     paymentMethods: [...user.paymentMethods, cardData],
-  //   };
-  //   updateUser(updatedUser);
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { errors, valid } = validateInputs(form);
     setErrors(errors);
     setValid(valid);
 
-    if (
-      !valid.name ||
-      !valid.number ||
-      !valid.expiry ||
-      !valid.cvc
-    ) {
+    if (!valid.name || !valid.number || !valid.expiry || !valid.cvc) {
       console.log("Fälten är inte giltiga, avbryter inskickningen");
       return;
     }
@@ -233,4 +214,4 @@ function PaymentMethodForm({ onCancel, onSuccess }) {
   );
 }
 
-export default PaymentMethodForm;
+export default UserPaymentForm;

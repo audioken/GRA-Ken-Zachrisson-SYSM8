@@ -6,7 +6,7 @@ import { validateInputs } from "../../utils/validateInputs";
 import InputField from "../UI/Input/InputField";
 import axios from "axios";
 
-function DeliveryInfoCheckout({ className = "", onSubmit }) {
+function CheckoutDeliveryForm({ className = "", onSubmit }) {
   const { deliveryInfo, setDeliveryInfo } = useContext(DeliveryContext);
   const { user, token, login } = useAuth();
 
@@ -22,7 +22,6 @@ function DeliveryInfoCheckout({ className = "", onSubmit }) {
   const [valid, setValid] = useState({});
 
   useEffect(() => {
-    // Fyll i från user eller deliveryInfo
     if (user) {
       setForm({
         name: user.name || "",
@@ -68,7 +67,7 @@ function DeliveryInfoCheckout({ className = "", onSubmit }) {
 
     if (!Object.values(valid).every(Boolean)) return;
 
-    setDeliveryInfo({ ...form, saveAddress }); // Spara alltid till context
+    setDeliveryInfo({ ...form, saveAddress });
 
     if (user && saveAddress) {
       try {
@@ -168,4 +167,4 @@ function DeliveryInfoCheckout({ className = "", onSubmit }) {
   );
 }
 
-export default DeliveryInfoCheckout;
+export default CheckoutDeliveryForm;

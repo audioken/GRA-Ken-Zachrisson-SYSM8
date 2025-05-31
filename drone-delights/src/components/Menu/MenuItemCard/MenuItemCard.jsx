@@ -1,11 +1,11 @@
-import "./ItemCard.css";
+import "./MenuItemCard.css";
 import { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function ItemCard({ _id, name, image, price, description }) {
+function MenuItemCard({ _id, name, image, price, description }) {
   const { cartItems, addToCart, updateQuantity, removeFromCart } =
     useContext(CartContext);
 
@@ -17,7 +17,6 @@ function ItemCard({ _id, name, image, price, description }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Kontrollera om produkten är favorit
-  // const isFavourite = user?.favourites?.includes(_id);
   const isFavourite = user?.favourites?.includes(_id);
 
   // Hantera klick på hjärtat
@@ -145,4 +144,4 @@ function ItemCard({ _id, name, image, price, description }) {
   );
 }
 
-export default ItemCard;
+export default MenuItemCard;

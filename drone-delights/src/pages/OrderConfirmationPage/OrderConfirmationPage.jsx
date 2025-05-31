@@ -1,12 +1,12 @@
 import "./OrderConfirmationPage.css";
-import PageHeader from "../../components/Layout/PageHeader/PageHeader";
+import TitleHeader from "../../components/Layout/TitleHeader/TitleHeader";
 import OrderConfirmation from "../../components/Order/OrderConfirmation/OrderConfirmation";
 import ButtonLink from "../../components/UI/Button/ButtonLink";
 
 function OrderConfirmationPage() {
   return (
     <div className="order-confirmation-page-container">
-      <PageHeader pageTitleBlue={"Order"} pageTitleRed="Confirmation!" />
+      <TitleHeader pageTitleBlue={"Order"} pageTitleRed="Confirmation!" />
       <div className="order-confirmation-body">
         <OrderConfirmation />
         <div className="order-confirmation-btns">

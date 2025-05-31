@@ -1,15 +1,15 @@
 import "./CartPage.css";
-import PageHeader from "../../components/Layout/PageHeader/PageHeader";
-import CartList from "../../components/Cart/CartList/CartList";
-import CartSummary from "../../components/Cart/CartSummary/CartSummary";
+import TitleHeader from "../../components/Layout/TitleHeader/TitleHeader";
+import CartItemsList from "../../components/Cart/CartItemsList/CartItemsList";
+import CartTotal from "../../components/Cart/CartTotal/CartTotal";
 
 function CartPage() {
   return (
     <div className="cart-page-container">
-      <PageHeader pageTitleBlue="Your" pageTitleRed="Cart!" />
+      <TitleHeader pageTitleBlue="Your" pageTitleRed="Cart!" />
       <div className="cart-page-body">
-        <CartList />
-        <CartSummary />
+        <CartItemsList />
+        <CartTotal />
       </div>
     </div>
   );

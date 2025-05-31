@@ -1,12 +1,12 @@
 import "./LoginPage.css";
-import PageHeader from "../../components/Layout/PageHeader/PageHeader";
+import TitleHeader from "../../components/Layout/TitleHeader/TitleHeader";
 import LoginForm from "../../components/Auth/LoginForm";
 import ButtonLink from "../../components/UI/Button/ButtonLink";
 
 function LoginPage() {
   return (
     <div className="login-page-container">
-      <PageHeader pageTitleBlue={"Welcome"} pageTitleRed={"Back!"} />
+      <TitleHeader pageTitleBlue={"Welcome"} pageTitleRed={"Back!"} />
       <div className="login-page-body">
         <LoginForm />
       </div>

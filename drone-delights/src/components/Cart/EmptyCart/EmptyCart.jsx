@@ -1,7 +1,7 @@
-import "./CartEmpty.css";
+import "./EmptyCart.css";
 import { Link } from "react-router-dom";
 
-function CartEmpty() {
+function EmptyCart() {
   return (
     <div className="cart-empty-container">
       <div className="cart-empty-text-container">
@@ -21,4 +21,4 @@ function CartEmpty() {
   );
 }
 
-export default CartEmpty;
+export default EmptyCart;

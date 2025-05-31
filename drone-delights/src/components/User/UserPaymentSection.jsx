@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import "../../styles/FormStyles.css";
 import "../../styles/PaymentStyles.css";
-import PaymentMethodList from "./PaymentMethodsList/PaymentMethodsList";
+import PaymentsCardsList from "./PaymentsCardsList/PaymentsCardsList";
 
-function PaymentMethodsDisplay({ isExpanded, onExpand, onAddNewCardClick }) {
+function UserPaymentSection({ isExpanded, onExpand, onAddNewCardClick }) {
   return (
     <div className="form-container payment-methods-display-container">
       <div
@@ -16,7 +16,7 @@ function PaymentMethodsDisplay({ isExpanded, onExpand, onAddNewCardClick }) {
       </div>
       {isExpanded ? (
         <div className="payment-methods-display-form ">
-          <PaymentMethodList />
+          <PaymentsCardsList />
           <button className="full-button-blue" onClick={onAddNewCardClick}>
             Add New Card
           </button>
@@ -26,4 +26,4 @@ function PaymentMethodsDisplay({ isExpanded, onExpand, onAddNewCardClick }) {
   );
 }
 
-export default PaymentMethodsDisplay;
+export default UserPaymentSection;

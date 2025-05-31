@@ -1,7 +1,7 @@
-import "./PageHeader.css";
+import "./TitleHeader.css";
 import waveyBackground from "../../../assets/images/wavey-background-pages.svg";
 
-function PageHeader({ pageTitleBlue, pageTitleRed }) {
+function TitleHeader({ pageTitleBlue, pageTitleRed }) {
   return (
     <div className="page-header-container">
       <div className="page-header-content">
@@ -19,4 +19,4 @@ function PageHeader({ pageTitleBlue, pageTitleRed }) {
   );
 }
 
-export default PageHeader;
+export default TitleHeader;

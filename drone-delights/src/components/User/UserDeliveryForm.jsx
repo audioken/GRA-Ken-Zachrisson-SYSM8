@@ -5,12 +5,11 @@ import { validateInputs } from "../../utils/validateInputs";
 import InputField from "../UI/Input/InputField";
 import axios from "axios";
 
-function DeliveryInfoForm({isExpanded, onExpand}) {
-  const { deliveryInfo, setDeliveryInfo } =
-    useContext(DeliveryContext);
+function UserDeliveryForm({ isExpanded, onExpand }) {
+  const { deliveryInfo, setDeliveryInfo } = useContext(DeliveryContext);
   const [editMode, setEditMode] = useState(false);
   const { user, token, login } = useAuth();
-  
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -18,7 +17,7 @@ function DeliveryInfoForm({isExpanded, onExpand}) {
     postalCode: "",
     city: "",
   });
-  
+
   const [originalForm, setOriginalForm] = useState(form);
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState({});
@@ -269,4 +268,4 @@ function DeliveryInfoForm({isExpanded, onExpand}) {
   );
 }
 
-export default DeliveryInfoForm;
+export default UserDeliveryForm;

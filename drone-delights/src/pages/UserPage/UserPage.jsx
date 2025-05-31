@@ -1,10 +1,10 @@
 import "./UserPage.css";
-import PageHeader from "../../components/Layout/PageHeader/PageHeader";
-import AccountSettingsForm from "../../components/User/AccountSettingsForm";
+import TitleHeader from "../../components/Layout/TitleHeader/TitleHeader";
+import UserSettingsForm from "../../components/User/UserSettingsForm";
 import ChangePasswordForm from "../../components/Auth/ChangePasswordForm";
-import DeliveryInfoForm from "../../components/User/DeliveryInfoForm";
-import PaymentMethodsDisplay from "../../components/User/PaymentMethodsDisplay";
-import PaymentMethodForm from "../../components/User/PaymentMethodForm";
+import UserDeliveryForm from "../../components/User/UserDeliveryForm";
+import UserPaymentSection from "../../components/User/UserPaymentSection";
+import UserPaymentForm from "../../components/User/UserPaymentForm";
 import { useState } from "react";
 
 function UserPage() {
@@ -24,10 +24,10 @@ function UserPage() {
 
   return (
     <div className="user-page-container">
-      <PageHeader pageTitleBlue={"User"} pageTitleRed={"Settings!"} />
+      <TitleHeader pageTitleBlue={"User"} pageTitleRed={"Settings!"} />
       <div className="user-page-body">
         {!showChangePassword ? (
-          <AccountSettingsForm
+          <UserSettingsForm
             onChangePasswordClick={() => setShowChangePassword(true)}
             onExpand={() => handleExpand("account")}
             isExpanded={expanded === "account"}
@@ -38,18 +38,18 @@ function UserPage() {
             onSuccess={() => setShowChangePassword(false)}
           />
         )}
-        <DeliveryInfoForm
+        <UserDeliveryForm
           onExpand={() => handleExpand("delivery")}
           isExpanded={expanded === "delivery"}
         />
         {!showPaymentMethodForm ? (
-          <PaymentMethodsDisplay
+          <UserPaymentSection
             onAddNewCardClick={() => setShowPaymentMethodForm(true)}
             onExpand={() => handleExpand("payment")}
             isExpanded={expanded === "payment"}
           />
         ) : (
-          <PaymentMethodForm
+          <UserPaymentForm
             onCancel={() => setShowPaymentMethodForm(false)}
             onSuccess={() => setShowPaymentMethodForm(false)}
           />

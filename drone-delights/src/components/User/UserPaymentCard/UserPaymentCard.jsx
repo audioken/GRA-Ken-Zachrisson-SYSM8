@@ -1,11 +1,11 @@
-import "./PaymentMethodCard.css";
+import "./UserPaymentCard.css";
 import "../../../styles/ButtonStyles.css";
 import masterCardLogo from "../../../assets/images/mastercard.svg";
 import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import axios from "axios";
 
-function PaymentMethodCard({ id, number, isPrimary }) {
+function UserPaymentCard({ id, number, isPrimary }) {
   const [lastFourDigits] = useState(number.slice(-4));
   const [hovered, setHovered] = useState(false);
   const { token, user, updateUser } = useAuth();
@@ -26,7 +26,7 @@ function PaymentMethodCard({ id, number, isPrimary }) {
     try {
       const res = await axios.patch(
         `${process.env.REACT_APP_API_URL}/users/payment-methods/${id}/set-primary`,
-        { isPrimary: true }, // <-- Skicka med isPrimary!
+        { isPrimary: true },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       if (res.data.user) {
@@ -35,7 +35,7 @@ function PaymentMethodCard({ id, number, isPrimary }) {
         updateUser({ ...user, paymentMethods: res.data.paymentMethods });
       }
     } catch (err) {
-      // Hantera fel
+      console.error("Error setting primary payment method:", err);
     }
   };
 
@@ -85,4 +85,4 @@ function PaymentMethodCard({ id, number, isPrimary }) {
   );
 }
 
-export default PaymentMethodCard;
+export default UserPaymentCard;

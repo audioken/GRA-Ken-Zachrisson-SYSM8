@@ -1,8 +1,8 @@
-import "./PaymentMethodsList.css";
+import "./PaymentsCardsList.css";
 import { useAuth } from "../../../context/AuthContext";
-import PaymentMethodCard from "../PaymentMethodCard/PaymentMethodCard";
+import UserPaymentCard from "../UserPaymentCard/UserPaymentCard";
 
-function PaymentMethodsList() {
+function PaymentsCardsList() {
   const { user } = useAuth();
   const paymentMethods = user?.paymentMethods || [];
 
@@ -13,7 +13,7 @@ function PaymentMethodsList() {
     <div className="payment-methods-list-container">
       {paymentMethods.length > 0 ? (
         paymentMethods.map((method) => (
-          <PaymentMethodCard
+          <UserPaymentCard
             key={method._id}
             id={method._id}
             number={method.number}
@@ -27,4 +27,4 @@ function PaymentMethodsList() {
   );
 }
 
-export default PaymentMethodsList;
+export default PaymentsCardsList;

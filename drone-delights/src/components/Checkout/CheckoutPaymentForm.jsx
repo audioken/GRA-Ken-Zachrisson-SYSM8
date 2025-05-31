@@ -7,10 +7,10 @@ import { PaymentContext } from "../../context/PaymentContext";
 import { useState, useEffect, useContext } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { validateInputs } from "../../utils/validateInputs";
-import InputField from "../UI/Input/InputField";
 import { useNavigate } from "react-router-dom";
+import InputField from "../UI/Input/InputField";
 
-function PaymentCheckout({ onSuccess, className = "" }) {
+function CheckoutPaymentForm({ onSuccess, className = "" }) {
   const { paymentInfo, setPaymentInfo } = useContext(PaymentContext);
   const { user, token, updateUser } = useAuth();
   const [selected, setSelected] = useState("mastercard");
@@ -316,4 +316,4 @@ function PaymentCheckout({ onSuccess, className = "" }) {
   );
 }
 
-export default PaymentCheckout;
+export default CheckoutPaymentForm;

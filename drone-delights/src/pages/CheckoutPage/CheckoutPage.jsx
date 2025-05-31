@@ -1,8 +1,8 @@
 import "./CheckoutPage.css";
-import PageHeader from "../../components/Layout/PageHeader/PageHeader";
+import TitleHeader from "../../components/Layout/TitleHeader/TitleHeader";
 import TotalPrice from "../../components/Shared/TotalPrice/TotalPrice";
-import DeliveryInfoCheckout from "../../components/Checkout/DeliveryInfoCheckout";
-import PaymentCheckout from "../../components/Checkout/PaymentCheckout";
+import CheckoutDeliveryForm from "../../components/Checkout/CheckoutDeliveryForm";
+import CheckoutPaymentForm from "../../components/Checkout/CheckoutPaymentForm";
 import ButtonLink from "../../components/UI/Button/ButtonLink";
 import { useState, useEffect } from "react";
 
@@ -15,17 +15,14 @@ function CheckoutPage() {
 
   return (
     <div className="checkout-page-container">
-      <PageHeader pageTitleBlue={"Finally"} pageTitleRed={"Checkout!"} />
+      <TitleHeader pageTitleBlue={"Finally"} pageTitleRed={"Checkout!"} />
       <div className="checkout-page-body">
         <TotalPrice />
-        <DeliveryInfoCheckout
+        <CheckoutDeliveryForm
           className={`delivery-view ${currentView === "payment" ? "hide" : ""}`}
           onSubmit={() => setCurrentView("payment")}
         />
-        {/* <Payment
-          className={`payment-view ${currentView === "delivery" ? "hide" : ""}`}
-        /> */}
-        <PaymentCheckout
+        <CheckoutPaymentForm
           className={`payment-view ${currentView === "delivery" ? "hide" : ""}`}
         />
         <div className="checkout-page-btns">

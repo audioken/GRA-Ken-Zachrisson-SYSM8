@@ -4,7 +4,7 @@ import axios from "axios";
 import { validateInputs } from "../../utils/validateInputs";
 import InputFieldEdit from "../UI/Input/InputFieldEdit";
 
-function AccountSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
+function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
   const [usernameAvailable, setUsernameAvailable] = useState(null);
   const [emailAvailable, setEmailAvailable] = useState(null);
   const [usernameHovered, setUsernameHovered] = useState(false);
@@ -176,4 +176,4 @@ function AccountSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
   );
 }
 
-export default AccountSettingsForm;
+export default UserSettingsForm;

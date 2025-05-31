@@ -1,7 +1,7 @@
-import ButtonLink from "../UI/Button/ButtonLink";
-import "./HomeIntro.css";
+import ButtonLink from "../../UI/Button/ButtonLink";
+import "./MenuTeaser.css";
 
-function HomeIntro() {
+function MenuTeaser() {
   return (
     <div className="home-intro-container">
       <div className="home-intro-text-container">
@@ -17,4 +17,4 @@ function HomeIntro() {
   );
 }
 
-export default HomeIntro;
+export default MenuTeaser;
