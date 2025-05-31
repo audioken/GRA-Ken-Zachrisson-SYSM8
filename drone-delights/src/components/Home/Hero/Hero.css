@@ -1,14 +1,9 @@
-h2 {
-  font-family: "Hachi Maru Pop", cursive;
-}
-
 .hero-section {
   overflow: hidden;
-}
-
-.hero-top-section {
   position: relative;
-  height: 518px;
+  height: 33rem;
+  height: clamp(10rem, 42vw, 33rem);
+  padding: 2rem;
 }
 
 .wavey-background {
@@ -24,15 +19,16 @@ h2 {
 
 .drone-carry-burger {
   position: absolute;
-  top: 180px;
-  left: 200px;
-  width: 20%;
+  top: clamp(4rem, 15vw, 12rem);
+  left: clamp(1rem, 10vw, 12rem);
+  width: clamp(15%, 20vw, 20%);
   z-index: 1;
   animation: droneHover 3s ease-in-out infinite;
 }
 
 @keyframes droneHover {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(-10deg);
   }
   50% {
@@ -42,21 +38,8 @@ h2 {
 
 .slogan-container {
   position: absolute;
-  top: 100px;
-  right: 100px;
+  top: clamp(2rem, 8vw, 6rem);
+  right: clamp(4rem, 12vw, 8rem);
   text-align: right;
-  font-family: "Knewave", system-ui;
   z-index: 1;
-}
-
-.slogan-part-one {
-  font-size: 50px;
-  font-weight: 400;
-  color: #227c9d;
-}
-
-.slogan-part-two {
-  font-size: 64px;
-  font-weight: 400;
-  color: #fe6d73;
 }

@@ -1,0 +1,46 @@
+.font1 {
+  font-family: "Knewave", system-ui;
+}
+
+.font2 {
+  font-family: "Hachi Maru Pop", cursive;
+}
+
+.font3 {
+  font-family: "Roboto", sans-serif;
+}
+
+/* TITLEHEADER */
+.title-header-blue,
+.title-header-red {
+  font-family: "Knewave", system-ui;
+  font-weight: 400;
+}
+
+.title-header-blue {
+  font-size: clamp(1rem, 5vw, 3rem);
+  color: #227c9d;
+}
+
+.title-header-red {
+  font-size: clamp(1.25rem, 6vw, 4rem);
+  color: #fe6d73;
+}
+
+.menu-teaser-text {
+  font-family: "Hachi Maru Pop", cursive;
+  font-weight: 400;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.menu-item-card-title {
+  font-family: "Knewave", system-ui;
+  font-size: 1.25rem;
+  color: #227c9d;
+}
+
+.menu-item-card-price {
+}
+
+.menu-item-card-description {
+}

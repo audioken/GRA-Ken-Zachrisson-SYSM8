@@ -8,7 +8,7 @@ function CartItemCard({ _id, name, image, price, description }) {
   const quantity = cartItem ? cartItem.quantity : 1;
 
   return (
-    <div className="cart-item-card-container">
+    <article className="cart-item-card-container">
       <div className="cart-item-img-container">
         {/* IMAGE */}
         <img src={image} alt={name} className="cart-item-img" />
@@ -69,7 +69,7 @@ function CartItemCard({ _id, name, image, price, description }) {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 

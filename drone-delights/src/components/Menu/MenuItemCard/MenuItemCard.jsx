@@ -1,4 +1,5 @@
 import "./MenuItemCard.css";
+import "../../../styles/TypographyStyles.css";
 import { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { useAuth } from "../../../context/AuthContext";
@@ -48,10 +49,10 @@ function MenuItemCard({ _id, name, image, price, description }) {
   };
 
   return (
-    <div className="item-card">
+    <article className="menu-item-card" aria-label={`Menu item: ${name}`}>
       <div className="img-container">
         {/* IMAGE */}
-        <img src={image} alt={name} className="item-img" />
+        <img src={image} alt={name} className="menu-item-img" />
         {/* QUANTITY */}
         <div
           className={`full-quantity-container ${quantity < 1 ? "hide" : ""}`}
@@ -96,10 +97,16 @@ function MenuItemCard({ _id, name, image, price, description }) {
         </button>
       </div>
       {/* INFO */}
-      <div className={`item-info-full ${isExpanded ? "bounce-expand" : ""}`}>
-        <div className="item-top-info">
+      <div
+        className={`menu-item-info-full ${isExpanded ? "bounce-expand" : ""}`}
+      >
+        <div className="menu-item-top-info">
           {/* NAME */}
-          <h3 className={`item-name ${!isExpanded ? "truncated-text" : ""}`}>
+          <h3
+            className={`menu-item-name menu-item-card-title ${
+              !isExpanded ? "truncated-text" : ""
+            }`}
+          >
             {name}
           </h3>
           {/* FAVORITE BUTTON */}
@@ -118,17 +125,17 @@ function MenuItemCard({ _id, name, image, price, description }) {
           </button>
         </div>
         <div
-          className="item-middle-bottom-container"
+          className="menu-item-middle-bottom-container"
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          <div className="item-middle-info">
+          <div className="menu-item-middle-info">
             {/* PRICE */}
             <span className="price">${price}</span>
           </div>
-          <div className="item-bottom-info">
+          <div className="menu-item-bottom-info">
             {/* DESCRIPTION */}
             <p
-              className={`item-description ${
+              className={`menu-item-description ${
                 !isExpanded ? "truncated-text" : ""
               }`}
             >
@@ -140,7 +147,7 @@ function MenuItemCard({ _id, name, image, price, description }) {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 
