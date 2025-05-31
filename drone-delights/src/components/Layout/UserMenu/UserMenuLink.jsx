@@ -1,14 +1,15 @@
 import "./UserMenuStyles.css";
+import "../../../styles/TypographyStyles.css";
 
 function UserMenuLink({user, onClick}) {
     return (
-      <div className="dropdown-button-container" onClick={onClick}>
+      <div className="user-menu-button-container" onClick={onClick}>
           <span className="user-icon">
             <i className="fa-solid fa-user"></i>
           </span>
-          <div className="dropdown-text">
-            <span className="hi-dropdown-text">Hi,</span>
-            <span className="username-dropdown-text">{user?.username}!</span>
+          <div className="user-menu-text">
+            <span className="user-menu-text-hi">Hi,</span>
+            <span className="user-menu-text-username">{user?.username}!</span>
           </div>
           <span className="dropdown-icon">
             <i className="fa-solid fa-caret-down"></i>

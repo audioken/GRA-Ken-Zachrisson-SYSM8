@@ -7,7 +7,7 @@ function UserMenuContainer({ user }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="dropdown-container">
+    <div className="user-menu-container-container">
       <UserMenuLink user={user} onClick={() => setOpen((open) => !open)} />
       {open && <UserMenu />}
     </div>
