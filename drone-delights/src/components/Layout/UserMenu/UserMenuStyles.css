@@ -81,3 +81,19 @@
   font-size: 20px;
   white-space: nowrap;
 }
+
+/* Dölj mobilmeny på större skärmar */
+.mobile-only {
+  display: none;
+}
+
+/* Visa bara på mindre skärmar */
+@media (max-width: 900px) {
+  .mobile-only {
+    display: flex;
+  }
+
+  .header-btns-container {
+    display: none;
+  }
+}

@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+#root{
+  --header-height: clamp(3.75rem, 8vw, 6rem);
+}
+
 html {
   font-size: 16px;
 }
@@ -16,6 +20,6 @@ html, body, #root {
 .app-container {
   max-width: 1240px;
   margin: 0 auto;
-  margin-top: 80px;
+  margin-top: var(--header-height);
   width: 100%;
 }

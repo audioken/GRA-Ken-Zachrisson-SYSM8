@@ -1,137 +1,140 @@
-.header-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1240px;
-    margin: 0 auto;
-    height: 80px;
-    font-family: "Knewave", system-ui;
-    background-color: #FEF9EF;
-    padding: 0 20px;
-    position: fixed;
-    user-select: none;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
+  height: var(--header-height);
+  font-family: "Knewave", system-ui;
+  background-color: #fef9ef;
+  padding: 0 1.25rem;
+  position: fixed;
+  user-select: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
-.logo-link{
+.logo-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  text-decoration: none;
+}
+
+.full-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.drone-delights-logo {
+  width: clamp(3rem, 6vw, 4rem);
+}
+
+.company-name-container {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.drone {
+  color: #227c9d;
+}
+
+.delights {
+  color: #fe6d73;
+}
+
+.header-btns-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.user-dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.dropdown-text {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.user-icon {
+  color: #227c9d;
+  font-size: 28px;
+}
+
+.hi-dropdown-text {
+  font-family: "Knewave", system-ui;
+  font-weight: 400;
+  font-size: 22px;
+  color: #227c9d;
+}
+
+.username-dropdown-text {
+  font-family: "Knewave", system-ui;
+  font-weight: 400;
+  font-size: 28px;
+  color: #fe6d73;
+}
+
+.dropdown-icon {
+  color: #227c9d;
+  font-size: 22px;
+}
+
+.basket-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  position: relative;
+  background-color: transparent;
+  color: #227c9d;
+  text-decoration: none;
+}
+
+.basket-icon {
+  color: #227c9d;
+  font-size: 34px;
+}
+
+.basket-counter-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  background-color: #fe6d73;
+  color: white;
+}
+
+.hide {
+  display: none;
+}
+
+.container-test{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    text-decoration: none;
+    gap: 2rem;
 }
-
-.full-logo-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.drone-delights-logo{
-    width: 51px;
-    height: 46px;
-}
-
-.header-title{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 184px;
-    height: 45px;
-    font-size: 45px;
-}
-
-.drone{
-    color: #227C9D;
-}
-
-.delights{
-    color: #FE6D73;
-}
-
-.header-btns-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-}
-
-.user-dropdown{
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 20px;
-}
-
-.dropdown-text{
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 5px;
-}
-
-.user-icon{
-    color: #227C9D;
-    font-size: 28px;
-}
-
-.hi-dropdown-text{
-    font-family: "Knewave", system-ui;
-    font-weight: 400;
-    font-size: 22px;
-    color: #227C9D;
-}
-
-.username-dropdown-text{
-    font-family: "Knewave", system-ui;
-    font-weight: 400;
-    font-size: 28px;
-    color: #FE6D73;
-}
-
-.dropdown-icon{
-    color: #227C9D;
-    font-size: 22px;
-}
-
-.basket-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 44px;
-    height: 44px;
-    border: none;
-    position: relative;
-    background-color: transparent;
-    color: #227C9D;
-    text-decoration: none;
-}
-
-.basket-icon{
-    color: #227C9D;
-    font-size: 34px;
-}
-
-.basket-counter-container{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: -6px;
-    right: -6px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
-    background-color: #FE6D73 ;
-    color: white;
-}
-
-.hide{
-    display: none;
-  }
