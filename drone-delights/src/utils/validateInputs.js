@@ -35,10 +35,10 @@ export function validateInputs(fields) {
   // Address: minst 5 tecken
   if ("address" in fields) {
     if (!fields.address?.trim()) {
-      errors.address = "Address can't be empty";
+      errors.address = "Required";
       valid.address = false;
     } else if (fields.address.trim().length < 5) {
-      errors.address = "At least 5 characters";
+      errors.address = "Min. 5 characters";
       valid.address = false;
     } else {
       valid.address = true;
@@ -64,7 +64,7 @@ export function validateInputs(fields) {
       errors.city = "Required";
       valid.city = false;
     } else if (fields.city.trim().length < 2) {
-      errors.city = "At least 2 characters";
+      errors.city = "Min. 2 characters";
       valid.city = false;
     } else {
       valid.city = true;
@@ -74,10 +74,10 @@ export function validateInputs(fields) {
   // Username
   if ("username" in fields) {
     if (!fields.username?.trim()) {
-      errors.username = "Username can't be empty";
+      errors.username = "Required";
       valid.username = false;
     } else if (fields.username.length < 3 || fields.username.length > 20) {
-      errors.username = "Must be 3-20 characters";
+      errors.username = "3-20 characters";
       valid.username = false;
     } else {
       valid.username = true;
@@ -109,7 +109,7 @@ export function validateInputs(fields) {
         fields.email
       )
     ) {
-      errors.email = "Please enter a valid email";
+      errors.email = "Not a valid email";
       valid.email = false;
     } else {
       valid.email = true;

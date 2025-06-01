@@ -7,6 +7,7 @@ import { PaymentContext } from "../../context/PaymentContext";
 import { useContext } from "react";
 import InputField from "../UI/Input/InputField";
 import PasswordField from "../UI/Input/PasswordField";
+import Button from "../UI/Button/Button";
 import axios from "axios";
 
 function LoginForm() {
@@ -55,36 +56,36 @@ function LoginForm() {
   };
 
   return (
-    <div className="form-container login-form-container">
+    <div className="form-container">
       <div className="form-header">
         <h2 className="form-title">Log In</h2>
       </div>
       <form className="form" onSubmit={handleSubmit}>
-        <InputField
-          label="Username"
-          name="username"
-          value={form.username}
-          onChange={handleInputChange}
-          error={errors.username}
-          valid={valid.username}
-        />
-        <PasswordField
-          label="Password"
-          name="password"
-          value={form.password}
-          onChange={handleInputChange}
-          error={errors.password}
-          valid={valid.password}
-          hovered={hovered.password}
-          setHovered={(v) => setHovered((prev) => ({ ...prev, password: v }))}
-          showPassword={showPassword.password}
-          setShowPassword={(v) =>
-            setShowPassword((prev) => ({ ...prev, password: v }))
-          }
-        />
-        <button className="form-submit-btn" type="submit">
-          Log In
-        </button>
+        <div className="form-inputs-container">
+          <InputField
+            label="Username"
+            name="username"
+            value={form.username}
+            onChange={handleInputChange}
+            error={errors.username}
+            valid={valid.username}
+          />
+          <PasswordField
+            label="Password"
+            name="password"
+            value={form.password}
+            onChange={handleInputChange}
+            error={errors.password}
+            valid={valid.password}
+            hovered={hovered.password}
+            setHovered={(v) => setHovered((prev) => ({ ...prev, password: v }))}
+            showPassword={showPassword.password}
+            setShowPassword={(v) =>
+              setShowPassword((prev) => ({ ...prev, password: v }))
+            }
+          />
+        </div>
+        <Button text="Log In" style="full-green" onClick={handleSubmit} />
       </form>
     </div>
   );

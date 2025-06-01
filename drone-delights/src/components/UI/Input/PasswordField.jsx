@@ -24,7 +24,7 @@ function PasswordField({
       onMouseLeave={() => setHovered(false)}
     >
       <div className="label-container">
-        <label htmlFor={name}>{label}</label>
+        <label className="label-title" htmlFor={name}>{label}</label>
         {error && <span className="error">{error}</span>}
       </div>
 

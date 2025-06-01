@@ -6,6 +6,6 @@
 }
 
 .cart-summary-empty-cart-container{
-    width: 378px;
-    height: 145px;
+    /* width: clamp(20rem, 10vw, 30rem); */
+    height: 9rem;
 }

@@ -9,7 +9,7 @@
   color: white;
   border: none;
   text-align: center;
-  border-radius: 50px;
+  border-radius: 12.5px;
   text-decoration: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
@@ -129,12 +129,24 @@
   border: none;
 }
 
-.full {
+.full, .full-green, .full-blue {
   text-align: center;
   background-color: #ffd899;
-  border-radius: 50px;
+  border-radius: 12.5px;
   text-decoration: none;
+  width: 100%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.full-green{
+  background-color: #17c3b2;
+  color: white;
+}
+
+.full-blue{
+  background-color: #227c9d;
+  color: white;
 }
 
 .lite {

@@ -16,7 +16,7 @@ function InputField({
   hovered,
   setHovered,
 }) {
-  // const showClear = value && (!valid || hovered); 
+  // const showClear = value && (!valid || hovered);
   const showClear = !readOnly && hovered && value; // Visa X bara vid redigering och hover
 
   const showCheck = !hovered && valid && (available === undefined || available); // Visa check om valid + ev. available
@@ -35,42 +35,48 @@ function InputField({
       onMouseLeave={() => setHovered?.(false)}
     >
       <div className="label-container">
-        <label htmlFor={name}>{label}</label>
+        <label className="label-title" htmlFor={name}>
+          {label}
+        </label>
         {error && <span className="error">{error}</span>}
         {available === false && (
-          <span className="error">{label} already taken</span>
+          <span className="error">{label} occupied</span>
         )}
       </div>
 
-      <input
-        id={name}
-        name={name}
-        type={type}
-        value={value}
-        onChange={onChange}
-        readOnly={readOnly}
-        disabled={disabled}
-        className={`${inputClass} ${readOnly ? "input-readonly" : ""}`}
-        autoComplete="off"
-        required
-      />
+      <div className="input-wrapper">
+        <input
+          id={name}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          readOnly={readOnly}
+          disabled={disabled}
+          className={`form-input ${inputClass} ${
+            readOnly ? "input-readonly" : ""
+          }`}
+          autoComplete="off"
+          required
+        />
 
-      {showClear && (
-        <span
-          className="clear-button"
-          onClick={onClear}
-          tabIndex={0}
-          aria-label={`Clear ${name}`}
-        >
-          <i className="fa-solid fa-xmark"></i>
-        </span>
-      )}
+        {showClear && (
+          <span
+            className="clear-button icon-wrapper"
+            onClick={onClear}
+            tabIndex={0}
+            aria-label={`Clear ${name}`}
+          >
+            <i className="fa-solid fa-xmark"></i>
+          </span>
+        )}
 
-      {showCheck && (
-        <span className="input-checkmark">
-          <i className="fa-solid fa-check"></i>
-        </span>
-      )}
+        {showCheck && (
+          <span className="input-checkmark icon-wrapper">
+            <i className="fa-solid fa-check"></i>
+          </span>
+        )}
+      </div>
     </div>
   );
 }

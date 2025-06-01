@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { validateInputs } from "../../utils/validateInputs";
 import InputField from "../UI/Input/InputField";
 import PasswordField from "../UI/Input/PasswordField";
+import Button from "../UI/Button/Button";
 import axios from "axios";
 
 function RegisterForm() {
@@ -103,48 +104,48 @@ function RegisterForm() {
         <h2 className="form-title">Create an Account</h2>
       </div>
       <form className="form" onSubmit={handleSubmit}>
-        <InputField
-          label="Username"
-          name="username"
-          value={form.username}
-          onChange={handleInputChange}
-          onClear={() => clearField("username")}
-          error={errors.username}
-          valid={valid.username}
-          available={usernameAvailable}
-          hovered={usernameHovered}
-          setHovered={setUsernameHovered}
-        />
+        <div className="form-inputs-container">
+          <InputField
+            label="Username"
+            name="username"
+            value={form.username}
+            onChange={handleInputChange}
+            onClear={() => clearField("username")}
+            error={errors.username}
+            valid={valid.username}
+            available={usernameAvailable}
+            hovered={usernameHovered}
+            setHovered={setUsernameHovered}
+          />
 
-        <InputField
-          label="Email"
-          name="email"
-          type="email"
-          value={form.email}
-          onChange={handleInputChange}
-          onClear={() => clearField("email")}
-          error={errors.email}
-          valid={valid.email}
-          available={emailAvailable}
-          hovered={emailHovered}
-          setHovered={setEmailHovered}
-        />
+          <InputField
+            label="Email"
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={handleInputChange}
+            onClear={() => clearField("email")}
+            error={errors.email}
+            valid={valid.email}
+            available={emailAvailable}
+            hovered={emailHovered}
+            setHovered={setEmailHovered}
+          />
 
-        <PasswordField
-          label="Password"
-          name="password"
-          value={form.password}
-          onChange={handleInputChange}
-          error={errors.password}
-          valid={valid.password}
-          hovered={passwordHovered}
-          setHovered={setPasswordHovered}
-          showPassword={showPassword}
-          setShowPassword={setShowPassword}
-        />
-        <button className="form-submit-btn" type="submit">
-          Register
-        </button>
+          <PasswordField
+            label="Password"
+            name="password"
+            value={form.password}
+            onChange={handleInputChange}
+            error={errors.password}
+            valid={valid.password}
+            hovered={passwordHovered}
+            setHovered={setPasswordHovered}
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
+          />
+        </div>
+        <Button text="Register" style="full-green" onClick={handleSubmit} />
       </form>
     </div>
   );

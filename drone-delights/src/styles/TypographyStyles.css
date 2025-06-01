@@ -58,12 +58,30 @@
   color: #fe6d73;
 }
 
+.empty-cart-text-blue,
+.empty-cart-text-red {
+  font-family: "Knewave", system-ui;
+  font-weight: 400;
+}
+
+.empty-cart-text-blue {
+  font-size: clamp(1rem, 5vw, 2rem);
+  color: #227c9d;
+}
+
+.empty-cart-text-red {
+  font-size: clamp(1.25rem, 6vw, 3rem);
+  color: #fe6d73;
+}
+
+/* MENU TEASER */
 .menu-teaser-text {
   font-family: "Hachi Maru Pop", cursive;
   font-weight: 400;
   font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
+/* ITEM CARDS */
 .menu-item-card-title {
   font-family: "Knewave", system-ui;
   font-size: 1.25rem;
@@ -93,6 +111,7 @@
   color: #7f7f7f;
 }
 
+/* TOTAL PRICE */
 .total-price-title,
 .total-price-inc-text {
   font-family: "Knewave", system-ui;

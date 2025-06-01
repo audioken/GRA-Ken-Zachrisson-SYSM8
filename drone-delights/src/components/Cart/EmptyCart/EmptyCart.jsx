@@ -1,22 +1,23 @@
 import "./EmptyCart.css";
-import { Link } from "react-router-dom";
+import ButtonLink from "../../UI/Button/ButtonLink";
 
 function EmptyCart() {
+  const smiley = ":(";
+
   return (
-    <div className="cart-empty-container">
-      <div className="cart-empty-text-container">
-        <p className="cart-empty-line">
-          <span className="no-food-in-cart">No food in cart</span>
+    <div className="empty-cart-container">
+      <div className="empty-cart-text-container">
+        <p className="empty-cart-line">
+          <span className="empty-cart-text-blue">No food in cart</span>
         </p>
-        <p className="cart-empty-line">
-          <span className="no-food">No food</span>{" "}
-          <span className="in">in</span> <span className="belly">belly</span>{" "}
-          <span className="smiley">:(</span>{" "}
+        <p className="empty-cart-line">
+          <span className="empty-cart-text-blue no-food">No food</span>{" "}
+          <span className="empty-cart-text-blue">in</span>{" "}
+          <span className="empty-cart-text-red">belly</span>{" "}
+          <span className="empty-cart-text-red smiley">{smiley}</span>{" "}
         </p>
       </div>
-      <Link to="/menu" className="cart-empty-see-menu-btn">
-        See Menu
-      </Link>
+      <ButtonLink path="/menu" style="full" text="See Menu" />
     </div>
   );
 }
