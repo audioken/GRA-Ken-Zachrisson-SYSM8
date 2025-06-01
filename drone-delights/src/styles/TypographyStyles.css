@@ -75,3 +75,40 @@
 
 .menu-item-card-description {
 }
+
+.cart-item-card-title{
+  font-family: "Knewave", system-ui;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #227c9d;
+}
+
+.cart-item-card-price{
+  font-family: "Knewave", system-ui;
+  color: #17c3b2;
+}
+
+.cart-item-card-description{
+  font-family: "Roboto", system-ui;
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  color: #7f7f7f;
+}
+
+.total-price-title,
+.total-price-inc-text {
+  font-family: "Knewave", system-ui;
+  color: #404040;
+}
+
+.total-price-title {
+  font-size: clamp(1.25rem, 4vw, 2rem);
+}
+
+.total-price-inc-text {
+  font-size: clamp(0.7rem, 2vw, 1.25rem);
+}
+
+.total-price {
+  font-family: "Knewave", system-ui;
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  color: #17c3b2;
+}
