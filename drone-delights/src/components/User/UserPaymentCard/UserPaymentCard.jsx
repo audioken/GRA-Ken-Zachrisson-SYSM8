@@ -3,12 +3,15 @@ import "../../../styles/ButtonStyles.css";
 import masterCardLogo from "../../../assets/images/mastercard.svg";
 import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
+import Button from "../../UI/Button/Button";
+import useIsMobile from "../../../hooks/useIsMobile";
 import axios from "axios";
 
 function UserPaymentCard({ id, number, isPrimary }) {
   const [lastFourDigits] = useState(number.slice(-4));
   const [hovered, setHovered] = useState(false);
   const { token, user, updateUser } = useAuth();
+  const isMobile = useIsMobile(500);
 
   const deletePaymentMethod = async () => {
     try {
@@ -73,14 +76,11 @@ function UserPaymentCard({ id, number, isPrimary }) {
           </button>
         )}
       </div>
-      <button
-        className="cancel-button-s"
-        type="button"
+      <Button
+        text={<i className="fas fa-times"></i>}
+        style="cancel-button-s"
         onClick={deletePaymentMethod}
-        aria-label="Delete Payment Method"
-      >
-        <i className="fas fa-times"></i>
-      </button>
+      />
     </div>
   );
 }

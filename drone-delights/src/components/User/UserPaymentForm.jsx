@@ -129,7 +129,7 @@ function UserPaymentForm({ onCancel, onSuccess }) {
       <div className="form-header">
         <h2 className="form-title">Add Payment Method</h2>
         <button
-          className="cancel-button-m"
+          className="cancel-button-s"
           type="button"
           onClick={handleCancel}
         >
