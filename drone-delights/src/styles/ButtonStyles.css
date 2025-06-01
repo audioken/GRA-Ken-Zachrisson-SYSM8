@@ -150,6 +150,14 @@
   color: white;
 }
 
+.full-green.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  background-color: #bdbdbd;
+  color: #fff;
+  cursor: not-allowed;
+}
+
 .full-blue{
   background-color: #227c9d;
   color: white;

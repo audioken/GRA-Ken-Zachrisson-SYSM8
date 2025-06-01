@@ -58,11 +58,11 @@
   }
   
   #postalCode{
-      width: 110px;
+      /* width: 110px; */
   }
   
   #city{
-      width: 200px;
+      /* width: 200px; */
   }
   
   .submit-btn-delivery{

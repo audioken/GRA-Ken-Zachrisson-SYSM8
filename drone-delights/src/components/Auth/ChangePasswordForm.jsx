@@ -95,7 +95,7 @@ function ChangePasswordForm({ onCancel, onSuccess }) {
         <h2 className="form-title">Change Password</h2>
         <Button
           text={<i className="fas fa-times"></i>}
-          style="cancel-button-m"
+          style="cancel-button-s"
           onClick={handleCancel}
         />
       </div>
