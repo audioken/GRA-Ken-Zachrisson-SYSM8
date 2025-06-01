@@ -85,7 +85,7 @@ function LoginForm() {
             }
           />
         </div>
-        <Button text="Log In" style="full-green" onClick={handleSubmit} />
+        <Button type="submit" text="Log In" style="full-green" onClick={handleSubmit} />
       </form>
     </div>
   );

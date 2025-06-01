@@ -1,13 +1,13 @@
 import "../../../styles/ButtonStyles.css";
 
-function Button({ text, onClick, style = "full", className = "" }) {
+function Button({ text, type, onClick, style = "full", className = "" }) {
   return (
     <button
-      type="submit"
+      type={type}
       onClick={onClick}
-      className={`button-link ${style} ${className}`}
+      className={`${style} ${className}`}
     >
-      {style === "return" ? `< ${text}` : text}
+      {text}
     </button>
   );
 }

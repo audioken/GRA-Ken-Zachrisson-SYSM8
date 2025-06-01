@@ -111,7 +111,7 @@ function InputFieldEdit({
             </div>
             {/* Avbryt/kryss */}
             <div
-              className="icon-container icon-cancel"
+              className="icon-cancel icon-wrapper"
               onClick={() => {
                 setTempValue(value);
                 setEditMode(false);

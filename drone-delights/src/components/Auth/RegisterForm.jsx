@@ -145,7 +145,7 @@ function RegisterForm() {
             setShowPassword={setShowPassword}
           />
         </div>
-        <Button text="Register" style="full-green" onClick={handleSubmit} />
+        <Button type="submit" text="Register" style="full-green" onClick={handleSubmit} />
       </form>
     </div>
   );
