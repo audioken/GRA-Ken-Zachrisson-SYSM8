@@ -39,9 +39,7 @@ function InputField({
           {label}
         </label>
         {error && <span className="error">{error}</span>}
-        {available === false && (
-          <span className="error">{label} occupied</span>
-        )}
+        {available === false && <span className="error">{label} occupied</span>}
       </div>
 
       <div className="input-wrapper">

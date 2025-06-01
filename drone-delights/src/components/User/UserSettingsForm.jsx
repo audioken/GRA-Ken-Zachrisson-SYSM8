@@ -1,8 +1,10 @@
+import "../../styles/FormStyles.css";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import { validateInputs } from "../../utils/validateInputs";
 import InputFieldEdit from "../UI/Input/InputFieldEdit";
+import Button from "../UI/Button/Button";
 
 function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
   const [usernameAvailable, setUsernameAvailable] = useState(null);
@@ -119,7 +121,7 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
   }, [isExpanded, user]);
 
   return (
-    <div className="form-container account-settings-container">
+    <div className="form-container">
       <div
         className="form-header-overlay"
         onClick={onExpand}
@@ -130,46 +132,46 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
       </div>
       {isExpanded ? (
         <div className="form">
-          <InputFieldEdit
-            label="Username"
-            name="username"
-            value={form.username}
-            originalValue={user?.username}
-            onSave={handleSaveUsername}
-            onCancel={() =>
-              setForm((prev) => ({ ...prev, username: user?.username }))
-            }
-            onChange={handleInputChange}
-            error={errors.username}
-            valid={valid.username}
-            available={usernameAvailable}
-            hovered={usernameHovered}
-            setHovered={setUsernameHovered}
-          />
-          <InputFieldEdit
-            label="Email"
-            name="email"
-            type="email"
-            value={form.email}
-            originalValue={user?.email}
-            onSave={handleSaveEmail}
-            onCancel={() =>
-              setForm((prev) => ({ ...prev, email: user?.email }))
-            }
-            onChange={handleInputChange}
-            error={errors.email}
-            valid={valid.email}
-            available={emailAvailable}
-            hovered={emailHovered}
-            setHovered={setEmailHovered}
-          />
-          <button
-            className="form-submit-btn form-submit-btn-blue"
-            type="button"
+          <div className="form-inputs-container">
+            <InputFieldEdit
+              label="Username"
+              name="username"
+              value={form.username}
+              originalValue={user?.username}
+              onSave={handleSaveUsername}
+              onCancel={() =>
+                setForm((prev) => ({ ...prev, username: user?.username }))
+              }
+              onChange={handleInputChange}
+              error={errors.username}
+              valid={valid.username}
+              available={usernameAvailable}
+              hovered={usernameHovered}
+              setHovered={setUsernameHovered}
+            />
+            <InputFieldEdit
+              label="Email"
+              name="email"
+              type="email"
+              value={form.email}
+              originalValue={user?.email}
+              onSave={handleSaveEmail}
+              onCancel={() =>
+                setForm((prev) => ({ ...prev, email: user?.email }))
+              }
+              onChange={handleInputChange}
+              error={errors.email}
+              valid={valid.email}
+              available={emailAvailable}
+              hovered={emailHovered}
+              setHovered={setEmailHovered}
+            />
+          </div>
+          <Button
+            text="Change Password"
+            style="full-blue"
             onClick={onChangePasswordClick}
-          >
-            Change Password
-          </button>
+          />
         </div>
       ) : null}
     </div>

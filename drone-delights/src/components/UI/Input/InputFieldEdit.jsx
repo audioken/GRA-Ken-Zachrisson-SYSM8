@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./FieldStyles.css";
+import "../../../styles/ButtonStyles.css";
 
 function InputFieldEdit({
   label,
@@ -44,82 +45,86 @@ function InputFieldEdit({
       onMouseLeave={() => setHovered?.(false)}
     >
       <div className="label-container">
-        <label htmlFor={name}>{displayLabel}</label>
+        <label className="label-title" htmlFor={name}>
+          {displayLabel}
+        </label>
         {error && <span className="error">{error}</span>}
         {available === false && (
           <span className="error">{label} already taken</span>
         )}
       </div>
 
-      <input
-        id={name}
-        name={name}
-        type={type}
-        value={editMode ? tempValue : value}
-        onChange={
-          editMode
-            ? (e) => {
-                setTempValue(e.target.value);
-                // Anropa onChange så att realtidssökning och validering sker!
-                onChange && onChange(e);
-              }
-            : undefined
-        }
-        className={`form-input ${inputClass} ${
-          !editMode ? "input-readonly" : ""
-        }`}
-        autoComplete="off"
-        required
-        disabled={!editMode}
-      />
+      <div className="input-wrapper">
+        <input
+          id={name}
+          name={name}
+          type={type}
+          value={editMode ? tempValue : value}
+          onChange={
+            editMode
+              ? (e) => {
+                  setTempValue(e.target.value);
+                  // Anropa onChange så att realtidssökning och validering sker!
+                  onChange && onChange(e);
+                }
+              : undefined
+          }
+          className={`form-input ${inputClass} ${
+            !editMode ? "input-readonly" : ""
+          }`}
+          autoComplete="off"
+          required
+          disabled={!editMode}
+        />
 
-      {/* Ikoner till höger */}
-      {!editMode && (
-        <div
-          className="icon-container icon-pen"
-          onClick={() => setEditMode(true)}
-          tabIndex={0}
-          aria-label={`Edit ${name}`}
-        >
-          <i className="fa-solid fa-pen"></i>
-        </div>
-      )}
-
-      {editMode && (
-        <>
-          {/* Spara/checkmark */}
+        {/* Ikoner till höger */}
+        {!editMode && (
           <div
-            className="icon-container icon-save"
-            onClick={() => {
-              // Tillåt spara om det är nytt värde eller samma som original
-              if (
-                tempValue === originalValue ||
-                (valid && (available === undefined || available))
-              ) {
-                onSave(name, tempValue);
+            className=" icon-pen icon-wrapper"
+            onClick={() => setEditMode(true)}
+            tabIndex={0}
+            aria-label={`Edit ${name}`}
+          >
+            <i className="fa-solid fa-pen"></i>
+          </div>
+        )}
+
+        {editMode && (
+          <>
+            {/* Spara/checkmark */}
+            <div
+              className="icon-save icon-wrapper"
+              onClick={() => {
+                // Tillåt spara om det är nytt värde eller samma som original
+                if (
+                  tempValue === originalValue ||
+                  (valid && (available === undefined || available))
+                ) {
+                  onSave(name, tempValue);
+                  setEditMode(false);
+                }
+              }}
+              tabIndex={0}
+              aria-label={`Save ${name}`}
+            >
+              <i className="fa-solid fa-check"></i>
+            </div>
+            {/* Avbryt/kryss */}
+            <div
+              className="icon-container icon-cancel"
+              onClick={() => {
+                setTempValue(value);
                 setEditMode(false);
-              }
-            }}
-            tabIndex={0}
-            aria-label={`Save ${name}`}
-          >
-            <i className="fa-solid fa-check"></i>
-          </div>
-          {/* Avbryt/kryss */}
-          <div
-            className="icon-container icon-cancel"
-            onClick={() => {
-              setTempValue(value);
-              setEditMode(false);
-              onCancel?.(name);
-            }}
-            tabIndex={0}
-            aria-label={`Cancel ${name}`}
-          >
-            <i className="fa-solid fa-xmark"></i>
-          </div>
-        </>
-      )}
+                onCancel?.(name);
+              }}
+              tabIndex={0}
+              aria-label={`Cancel ${name}`}
+            >
+              <i className="fa-solid fa-xmark"></i>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }

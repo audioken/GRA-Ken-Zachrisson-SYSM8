@@ -24,43 +24,47 @@ function PasswordField({
       onMouseLeave={() => setHovered(false)}
     >
       <div className="label-container">
-        <label className="label-title" htmlFor={name}>{label}</label>
+        <label className="label-title" htmlFor={name}>
+          {label}
+        </label>
         {error && <span className="error">{error}</span>}
       </div>
 
-      <input
-        id={name}
-        name={name}
-        type={showPassword ? "text" : "password"}
-        value={value}
-        onChange={onChange}
-        className={inputClass}
-        autoComplete="off"
-        required
-      />
+      <div className="input-wrapper">
+        <input
+          id={name}
+          name={name}
+          type={showPassword ? "text" : "password"}
+          value={value}
+          onChange={onChange}
+          className={`form-input ${inputClass}`}
+          autoComplete="off"
+          required
+        />
 
-      {hovered && (
-        <span
-          className="password-toggle"
-          onClick={() => setShowPassword(!showPassword)}
-          tabIndex={0}
-          aria-label={showPassword ? "Hide password" : "Show password"}
-        >
-          <div className="icon-container">
-            <i
-              className={`fa-solid ${
-                showPassword ? "fa-eye" : "fa-eye-slash"
-              }`}
-            ></i>
-          </div>
-        </span>
-      )}
+        {hovered && (
+          <span
+            className="password-toggle"
+            onClick={() => setShowPassword(!showPassword)}
+            tabIndex={0}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            <div className="icon-wrapper">
+              <i
+                className={`fa-solid ${
+                  showPassword ? "fa-eye" : "fa-eye-slash"
+                }`}
+              ></i>
+            </div>
+          </span>
+        )}
 
-      {showCheck && (
-        <span className="input-checkmark">
-          <i className="fa-solid fa-check"></i>
-        </span>
-      )}
+        {showCheck && (
+          <span className="input-checkmark icon-wrapper">
+            <i className="fa-solid fa-check"></i>
+          </span>
+        )}
+      </div>
     </div>
   );
 }

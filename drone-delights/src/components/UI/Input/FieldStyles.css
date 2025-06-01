@@ -53,11 +53,16 @@
 }
 
 .icon-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.125rem;
+  height: 3.125rem;
   font-size: 1.3em;
   position: absolute;
   transform: translateY(-50%);
   top: 50%;
-  right: 1rem;
+  right: 0.5rem;
 }
 
 .input-checkmark {
@@ -92,7 +97,7 @@
   font-size: clamp(0.8rem, 2.5vw, 1rem);
 }
 
-.icon-container {
+/* .icon-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,7 +107,7 @@
   right: 0px;
   top: 28px;
   cursor: pointer;
-}
+} */
 
 .icon-container-for-form {
   display: flex;
