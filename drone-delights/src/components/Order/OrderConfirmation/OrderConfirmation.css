@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 50px;
+  gap: clamp(1.5rem, 5vw, 3.125rem);
   width: 100%;
   background-color: rgba(255, 255, 255, 0.507);
   border-radius: 25px;
@@ -11,19 +11,17 @@
   border-top: 1px solid #bfbfbf;
   border-left: 1px solid #bfbfbf;
   border-right: 1px solid #bfbfbf;
-  padding: 40px;
+  padding: 2.5rem;
 }
 
 .confirmed-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 100px;
 }
 
 .confirmed {
-  font-size: 100px;
+  font-size: clamp(4rem, 15vw, 6.25rem);
   color: #17c3b2;
 }
 
@@ -32,17 +30,18 @@
   flex-direction: column;
   font-family: "Knewave", system-ui;
   font-weight: 400;
-  font-size: 32px;
+  font-size: 2rem;
   text-align: center;
 }
 
 .your-order-is {
   color: #227c9d;
+  font-size: clamp(1rem, 5vw, 2rem);
 }
 
 .on-the-way {
   color: #fe6d73;
-  font-size: 40px;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
 
 .order-summary-container {
@@ -50,7 +49,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 1.125rem;
   width: 100%;
 }
 
@@ -72,18 +71,18 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 80px;
+  height: 5rem;
   overflow: hidden;
 }
 
 .order-image-container {
-  width: 120px;
-  height: 80px;
+  width: 7.5rem;
+  height: 5rem;
 }
 
 .order-image {
   width: 100%;
-  height: 80px;
+  height: 5rem;
   object-fit: cover;
 }
 
@@ -95,16 +94,16 @@
   border-bottom: 1px solid #bfbfbf;
   border-radius: 12.5px 0 0 12.5px;
   width: 100%;
-  height: 80px;
-  margin-left: -20px;
-  padding: 20px;
+  height: 5rem;
+  margin-left: -1.25rem;
+  padding: 1.25rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .order-item-title {
   font-family: "Knewave", system-ui;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: #227c9d;
 }
 
@@ -113,12 +112,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 0.3rem;
 }
 
 .order-item-price {
   font-family: "Knewave", system-ui;
-  font-size: 16px;
+  font-size: 1rem;
   color: #17c3b2;
 }
 
@@ -126,18 +125,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 0.3rem;
 }
 
 .order-item-quantity-text {
   font-family: "Hachi Maru Pop", cursive;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #404040;
 }
 
 .order-item-quantity {
   font-family: "Knewave", system-ui;
-  font-size: 16px;
+  font-size: 1rem;
   color: #404040;
 }
 
@@ -147,7 +146,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 20px;
+  padding: 1.25rem;
   background-color: white;
   border-radius: 12.5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -164,7 +163,7 @@
 }
 
 .home-btn{
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 
 .order-number-container{
@@ -183,22 +182,22 @@
 }
 
 .order-number-row{
-  justify-content: flex-end;
-  gap: 10px;
+  justify-content: center;
+  /* gap: 0.625rem; */
 }
 
 .total-cost-text,
 .order-number-text {
   font-family: "Knewave", system-ui;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #404040;
 }
 
 .total-cost-price,
 .order-number-id {
   font-family: "Knewave", system-ui;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #17c3b2;
 }
 
@@ -214,8 +213,8 @@
   background-color: white;
   border-radius: 12.5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 20px;
-  gap: 20px;
+  padding: 1.25rem;
+  gap: 1.25rem;
   width: 100%;
   border-top: 1px solid #bfbfbf;
   border-left: 1px solid #bfbfbf;
@@ -231,13 +230,13 @@
 .payment-method-title {
   font-family: "Knewave", system-ui;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   color: #404040;
 }
 
 .payment-method-text {
   font-family: "Roboto", system-ui;
-  font-size: 16px;
+  font-size: 1rem;
   color: #404040;
 }
 
@@ -251,13 +250,13 @@
 .delivery-address-title {
   font-family: "Knewave", system-ui;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   color: #404040;
 }
 
 .thank-you-text {
   font-family: "Knewave", system-ui;
   font-weight: 400;
-  font-size: 32px;
+  font-size: 2rem;
   color: #227c9d;
 }
