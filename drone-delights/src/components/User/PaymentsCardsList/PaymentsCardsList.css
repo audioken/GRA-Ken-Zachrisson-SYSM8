@@ -1,5 +1,5 @@
 .payment-cards-list-container{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: clamp(0.8rem, 3vw, 1.5rem);
 }

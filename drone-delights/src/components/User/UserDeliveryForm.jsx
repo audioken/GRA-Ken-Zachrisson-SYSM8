@@ -1,7 +1,7 @@
 import "../../styles/TypographyStyles.css";
 import "../../styles/FormStyles.css";
 import "../../styles/DeliveryStyles.css";
-import { useContext, useState, useEffect, use } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { DeliveryContext } from "../../context/DeliveryContext";
 import { validateInputs } from "../../utils/validateInputs";
@@ -275,25 +275,25 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
                 />
               )}
             </div>
-            </div>
-            {isMobile && (
-              <Button
-                className={`full-green${
-                  !editMode ||
-                  !isFormChanged() ||
-                  !Object.values(valid).every(Boolean)
-                    ? " disabled"
-                    : ""
-                }`}
-                type="submit"
-                text="Save Changes"
-                disabled={
-                  !editMode ||
-                  !isFormChanged() ||
-                  !Object.values(valid).every(Boolean)
-                }
-              />
-            )}
+          </div>
+          {isMobile && (
+            <Button
+              className={`full-green${
+                !editMode ||
+                !isFormChanged() ||
+                !Object.values(valid).every(Boolean)
+                  ? " disabled"
+                  : ""
+              }`}
+              type="submit"
+              text="Save Changes"
+              disabled={
+                !editMode ||
+                !isFormChanged() ||
+                !Object.values(valid).every(Boolean)
+              }
+            />
+          )}
         </form>
       ) : null}
     </div>

@@ -3,8 +3,10 @@ import "../../styles/ButtonStyles.css";
 import { useState, useEffect } from "react";
 import { validateInputs } from "../../utils/validateInputs";
 import { useAuth } from "../../context/AuthContext";
+import useIsMobile from "../../hooks/useIsMobile";
 import axios from "axios";
 import InputField from "../UI/Input/InputField";
+import Button from "../UI/Button/Button";
 
 function UserPaymentForm({ onCancel, onSuccess }) {
   const [form, setForm] = useState({
@@ -27,6 +29,7 @@ function UserPaymentForm({ onCancel, onSuccess }) {
   const [valid, setValid] = useState({});
   const [success, setSuccess] = useState("");
   const [formComplete, setFormComplete] = useState(false);
+  const isMobile = useIsMobile(768);
 
   const handleCancel = () => {
     setForm({ name: "", number: "", expiry: "", cvc: "" });
@@ -125,76 +128,84 @@ function UserPaymentForm({ onCancel, onSuccess }) {
   }, [valid, errors]);
 
   return (
-    <div className="form-container payment-method-form-container">
+    <div className="form-container">
       <div className="form-header">
         <h2 className="form-title">Add Payment Method</h2>
-        <button
-          className="cancel-button-s"
-          type="button"
+        <Button
+          text={<i className="fas fa-times"></i>}
+          style="cancel-button-s"
           onClick={handleCancel}
-        >
-          <i className="fas fa-times"></i>
-        </button>
+        />
       </div>
       <form className="form" onSubmit={handleSubmit}>
-        <InputField
-          label="Name on Card"
-          name="name"
-          type="text"
-          value={form.name}
-          onChange={handleInputChange}
-          onClear={() => handleClear("name")}
-          error={errors.name}
-          valid={valid.name}
-          hovered={hovered.name}
-          setHovered={(v) => setHovered((prev) => ({ ...prev, name: v }))}
-        />
-        <InputField
-          label="Card Number"
-          name="number"
-          type="text"
-          value={form.number}
-          onChange={handleInputChange}
-          onClear={() => handleClear("number")}
-          error={errors.number}
-          valid={valid.number}
-          hovered={hovered.number}
-          setHovered={(v) => setHovered((prev) => ({ ...prev, number: v }))}
-        />
-        <div className="form-inputs-row-container">
+        <div className="form-inputs-container">
           <InputField
-            label="Expiry"
-            name="expiry"
+            label="Name on Card"
+            name="name"
             type="text"
-            value={form.expiry}
+            value={form.name}
             onChange={handleInputChange}
-            onClear={() => handleClear("expiry")}
-            error={errors.expiry}
-            valid={valid.expiry}
-            hovered={hovered.expiry}
-            setHovered={(v) => setHovered((prev) => ({ ...prev, expiry: v }))}
+            onClear={() => handleClear("name")}
+            error={errors.name}
+            valid={valid.name}
+            hovered={hovered.name}
+            setHovered={(v) => setHovered((prev) => ({ ...prev, name: v }))}
           />
           <InputField
-            label="CVC"
-            name="cvc"
+            label="Card Number"
+            name="number"
             type="text"
-            value={form.cvc}
+            value={form.number}
             onChange={handleInputChange}
-            onClear={() => handleClear("cvc")}
-            error={errors.cvc}
-            valid={valid.cvc}
-            hovered={hovered.cvc}
-            setHovered={(v) => setHovered((prev) => ({ ...prev, cvc: v }))}
+            onClear={() => handleClear("number")}
+            error={errors.number}
+            valid={valid.number}
+            hovered={hovered.number}
+            setHovered={(v) => setHovered((prev) => ({ ...prev, number: v }))}
           />
-          <button
-            className={`add-button-l ${!formComplete ? "disabled" : ""}`}
+          <div className="form-inputs-row-container">
+            <InputField
+              label="Expiry"
+              name="expiry"
+              type="text"
+              value={form.expiry}
+              onChange={handleInputChange}
+              onClear={() => handleClear("expiry")}
+              error={errors.expiry}
+              valid={valid.expiry}
+              hovered={hovered.expiry}
+              setHovered={(v) => setHovered((prev) => ({ ...prev, expiry: v }))}
+            />
+            <InputField
+              label="CVC"
+              name="cvc"
+              type="text"
+              value={form.cvc}
+              onChange={handleInputChange}
+              onClear={() => handleClear("cvc")}
+              error={errors.cvc}
+              valid={valid.cvc}
+              hovered={hovered.cvc}
+              setHovered={(v) => setHovered((prev) => ({ ...prev, cvc: v }))}
+            />
+            {!isMobile && (
+              <Button
+                className={`add-button-l ${!formComplete ? "disabled" : ""}`}
+                type="submit"
+                disabled={!formComplete}
+                text={<i className="fas fa-add"></i>}
+              />
+            )}
+          </div>
+        </div>
+        {isMobile && (
+          <Button
+            className={`full-green ${!formComplete ? "disabled" : ""}`}
             type="submit"
             disabled={!formComplete}
-          >
-            <i className="fas fa-add"></i>
-          </button>
-        </div>
-        {/* Skapa en checkbox för att spara kortet som primärt */}
+            text="Save New Card"
+          />
+        )}
         <div className="checkbox-container">
           <input
             type="checkbox"
