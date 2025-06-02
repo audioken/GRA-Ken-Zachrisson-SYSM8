@@ -84,7 +84,7 @@
 /* ITEM CARDS */
 .menu-item-card-title {
   font-family: "Knewave", system-ui;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 3vw, 1.25rem);
   color: #227c9d;
 }
 

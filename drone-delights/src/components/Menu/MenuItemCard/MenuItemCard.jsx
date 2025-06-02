@@ -53,6 +53,12 @@ function MenuItemCard({ _id, name, image, price, description }) {
       <div className="img-container">
         {/* IMAGE */}
         <img src={image} alt={name} className="menu-item-img" />
+        {/* PLUS BUTTON ALONE */}
+      </div>
+      {/* INFO */}
+      <div
+        className={`menu-item-info-full ${isExpanded ? "bounce-expand" : ""}`}
+      >
         {/* QUANTITY */}
         <div
           className={`full-quantity-container ${quantity < 1 ? "hide" : ""}`}
@@ -86,7 +92,6 @@ function MenuItemCard({ _id, name, image, price, description }) {
             </button>
           </div>
         </div>
-        {/* PLUS BUTTON ALONE */}
         <button
           className={`plus-btn-alone quantity-btn ${
             quantity > 0 ? "hide" : ""
@@ -95,11 +100,6 @@ function MenuItemCard({ _id, name, image, price, description }) {
         >
           <i className="fa-solid fa-plus quantity-icon plus-icon"></i>
         </button>
-      </div>
-      {/* INFO */}
-      <div
-        className={`menu-item-info-full ${isExpanded ? "bounce-expand" : ""}`}
-      >
         <div className="menu-item-top-info">
           {/* NAME */}
           <h3
