@@ -10,7 +10,7 @@ function PaymentsCardsList() {
   console.log("User: ", user);
 
   return (
-    <div className="payment-methods-list-container">
+    <div className="payment-cards-list-container">
       {paymentMethods.length > 0 ? (
         paymentMethods.map((method) => (
           <UserPaymentCard

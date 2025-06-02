@@ -44,7 +44,7 @@ function UserPaymentCard({ id, number, isPrimary }) {
 
   return (
     <div
-      className="payment-method-card-container"
+      className="user-payment-card-container"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -54,30 +54,26 @@ function UserPaymentCard({ id, number, isPrimary }) {
           alt="MasterCard logo"
           className="mastercard-logo"
         ></img>
-        <div className="payment-method-cardnumber-container">
+        <div className="payment-cardnumber-container">
           <p>**** **** **** {lastFourDigits}</p>
         </div>
       </div>
 
       <div className="payment-card-btns-container">
-        <div
-          className={`${
-            isPrimary
-              ? "payment-method-card-primary-container-active"
-              : "payment-method-card-primary-container"
-          }`}
-        >
-          {isPrimary && (
+        {isPrimary && (
+          <div className="payment-method-card-primary-enabled">
             <p className="payment-method-card-primary-text">PRIMARY</p>
-          )}
-          {!isPrimary && hovered && (
-            <Button
-              text="PRIMARY"
-              onClick={handleSetPrimary}
-              className="set-primary-button"
-            />
-          )}
-        </div>
+          </div>
+        )}
+
+        {!isPrimary && (
+          
+          <Button
+            text="PRIMARY"
+            onClick={handleSetPrimary}
+            className={`payment-method-card-primary-disabled ${hovered ? "primary-hovered" : ""}`}
+          />
+        )}
         <Button
           text={<i className="fas fa-times"></i>}
           style="cancel-button-s"

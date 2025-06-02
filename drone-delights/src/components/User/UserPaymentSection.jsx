@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import "../../styles/FormStyles.css";
 import "../../styles/PaymentStyles.css";
 import PaymentsCardsList from "./PaymentsCardsList/PaymentsCardsList";
+import Button from "../UI/Button/Button";
 
 function UserPaymentSection({ isExpanded, onExpand, onAddNewCardClick }) {
   return (
-    <div className="form-container payment-methods-display-container">
+    <div className="form-container">
       <div
         className="form-header-overlay"
         onClick={onExpand}
@@ -15,11 +16,13 @@ function UserPaymentSection({ isExpanded, onExpand, onAddNewCardClick }) {
         <h2 className="form-title">Payment Methods</h2>
       </div>
       {isExpanded ? (
-        <div className="payment-methods-display-form ">
+        <div className="form">
           <PaymentsCardsList />
-          <button className="full-button-blue" onClick={onAddNewCardClick}>
-            Add New Card
-          </button>
+          <Button
+            className="full-blue"
+            onClick={onAddNewCardClick}
+            text="Add New Card"
+          />
         </div>
       ) : null}
     </div>

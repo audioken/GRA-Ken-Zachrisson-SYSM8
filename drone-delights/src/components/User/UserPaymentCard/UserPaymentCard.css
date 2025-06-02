@@ -1,4 +1,4 @@
-.payment-method-card-container {
+.user-payment-card-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,11 +6,22 @@
   gap: 1rem;
 }
 
-.payment-card-details-container{
+.payment-card-details-container {
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.payment-cardnumber-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  width: auto;
+  height: 1.875rem;
+  font-size: clamp(0.6rem, 2vw, 0.8rem);
 }
 
 .payment-card-btns-container {
@@ -18,61 +29,45 @@
   justify-content: space-between;
   align-items: center;
   width: 7.5rem;
+  width: clamp(6rem, 20vw, 7.5rem);
+  height: 1.875rem;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
-.payment-method-card-primary-container-active,
-.payment-method-card-primary-container {
+.payment-method-card-primary-enabled,
+.payment-method-card-primary-disabled {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 0.5rem;
-  width: clamp(3rem, 20vw, 5rem);
   width: 100%;
-  height: 1.875rem;
-}
-
-.payment-method-card-primary-container-active {
+  height: 100%;
+  border: none;
   font-family: "Roboto", system-ui;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-weight: bold;
-  font-size: 1rem;
   font-size: clamp(0.6rem, 2vw, 1rem);
-  background-color: #00d82f;
+  padding: 0.5rem 0.5rem;
   border-radius: 12.5px;
+  background-color: #00d82f;
   color: white;
 }
 
-.payment-method-cardnumber-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  width: 11.25rem;
-  width: auto;
-  height: 1.875rem;
-  font-size: clamp(0.6rem, 2vw, 0.8rem);
+.payment-method-card-primary-enabled {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.payment-method-card-primary-text{
-  font-size: clamp(0.6rem, 2vw, 1rem);
-}
-
-.set-primary-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: dotted 2px #CCCCCC;
-  color: #CCCCCC;
+.payment-method-card-primary-disabled {
   background-color: transparent;
-  width: auto;
-  height: 1.875rem;
-  padding: 0.5rem 0.5rem;
-  border-radius: 12.5px;
-  font-family: "Roboto", system-ui;
-  font-weight: bold;
-  font-size: clamp(0.6rem, 2vw, 1rem);
+  color: transparent;
   cursor: pointer;
+}
+
+.primary-hovered {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #f2f2f2;
+  color: #cccccc;
+}
+
+.payment-method-card-primary-text {
+  font-size: clamp(0.6rem, 2vw, 1rem);
 }

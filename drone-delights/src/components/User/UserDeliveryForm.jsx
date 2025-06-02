@@ -275,6 +275,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
                 />
               )}
             </div>
+            </div>
             {isMobile && (
               <Button
                 className={`full-green${
@@ -285,7 +286,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
                     : ""
                 }`}
                 type="submit"
-                text="Update Delivery Info"
+                text="Save Changes"
                 disabled={
                   !editMode ||
                   !isFormChanged() ||
@@ -293,7 +294,6 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
                 }
               />
             )}
-          </div>
         </form>
       ) : null}
     </div>
