@@ -50,11 +50,11 @@
   }
   
   #name{
-      width: 250px;
+      /* width: 250px; */
   }
   
   #phone{
-      width: 150px;
+      /* width: 150px; */
   }
   
   #postalCode{
@@ -65,7 +65,7 @@
       /* width: 200px; */
   }
   
-  .submit-btn-delivery{
+  /* .submit-btn-delivery{
     height: 70px;
     width: 70px;
     border-radius: 50%;
@@ -73,7 +73,7 @@
     background-color: #17C3B2;
     margin-top: 18px;
     cursor: pointer;
-  }
+  } */
   
   .submit-arrow{
     font-size: 30px;

@@ -47,7 +47,7 @@ function Header() {
       <div className="all-header-btns-container">
         {/* DESKTOP-VY */}
         {!isMobile && (
-          <div>
+          <div className="all-header-btns-container">
             {token ? (
               <UserMenuContainer user={user} />
             ) : (

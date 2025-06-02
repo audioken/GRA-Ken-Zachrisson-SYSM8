@@ -8,6 +8,8 @@ import { useState, useEffect, useContext } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { validateInputs } from "../../utils/validateInputs";
 import { useNavigate } from "react-router-dom";
+import useIsMobile from "../../hooks/useIsMobile";
+import Button from "../UI/Button/Button";
 import InputField from "../UI/Input/InputField";
 
 function CheckoutPaymentForm({ onSuccess, className = "" }) {
@@ -16,6 +18,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
   const [selected, setSelected] = useState("mastercard");
   const [saveCard, setSaveCard] = useState(false);
   const navigate = useNavigate();
+  const isMobile = useIsMobile(768);
 
   const [form, setForm] = useState({
     name: "",
@@ -87,16 +90,15 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
   };
 
   useEffect(() => {
-    // Validera rätt fält beroende på metod
-    let requiredFields = [];
-    if (selected === "mastercard") {
-      requiredFields = ["name", "number", "expiry", "cvc"];
-    } else if (selected === "swish") {
-      requiredFields = ["phone"];
-    }
-    const allValid =
-      requiredFields.every((field) => valid[field]) &&
-      requiredFields.every((field) => !errors[field]);
+    const relevantFields =
+      selected === "mastercard"
+        ? ["name", "number", "expiry", "cvc"]
+        : ["phone"];
+
+    const allValid = relevantFields.every(
+      (field) => valid[field] && !errors[field]
+    );
+
     setFormComplete(allValid);
   }, [valid, errors, selected]);
 
@@ -195,7 +197,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
             onClick={() => setSelected("swish")}
             type="button"
           >
-            <img src={swish} alt="Swish" className="swish-icon" />
+            <img src={swish} alt="Swish" className="swish-logo" />
           </button>
           <button
             className={`mastercard-btn payment-btn ${
@@ -215,63 +217,78 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
 
       {selected === "mastercard" && (
         <form className="form" onSubmit={handleSubmit}>
-          <InputField
-            label="Name on Card"
-            name="name"
-            type="text"
-            value={form.name}
-            onChange={handleInputChange}
-            onClear={() => handleClear("name")}
-            error={errors.name}
-            valid={valid.name}
-            hovered={hovered.name}
-            setHovered={(v) => setHovered((prev) => ({ ...prev, name: v }))}
-          />
-          <InputField
-            label="Card Number"
-            name="number"
-            type="text"
-            value={form.number}
-            onChange={handleInputChange}
-            onClear={() => handleClear("number")}
-            error={errors.number}
-            valid={valid.number}
-            hovered={hovered.number}
-            setHovered={(v) => setHovered((prev) => ({ ...prev, number: v }))}
-          />
-          <div className="form-inputs-row-container">
+          <div className="form-inputs-container">
             <InputField
-              label="Expiry"
-              name="expiry"
+              label="Name on Card"
+              name="name"
               type="text"
-              value={form.expiry}
+              value={form.name}
               onChange={handleInputChange}
-              onClear={() => handleClear("expiry")}
-              error={errors.expiry}
-              valid={valid.expiry}
-              hovered={hovered.expiry}
-              setHovered={(v) => setHovered((prev) => ({ ...prev, expiry: v }))}
+              onClear={() => handleClear("name")}
+              error={errors.name}
+              valid={valid.name}
+              hovered={hovered.name}
+              setHovered={(v) => setHovered((prev) => ({ ...prev, name: v }))}
             />
             <InputField
-              label="CVC"
-              name="cvc"
+              label="Card Number"
+              name="number"
               type="text"
-              value={form.cvc}
+              value={form.number}
               onChange={handleInputChange}
-              onClear={() => handleClear("cvc")}
-              error={errors.cvc}
-              valid={valid.cvc}
-              hovered={hovered.cvc}
-              setHovered={(v) => setHovered((prev) => ({ ...prev, cvc: v }))}
+              onClear={() => handleClear("number")}
+              error={errors.number}
+              valid={valid.number}
+              hovered={hovered.number}
+              setHovered={(v) => setHovered((prev) => ({ ...prev, number: v }))}
             />
-            <button
-              className={`full-button-green ${!formComplete ? "disabled" : ""}`}
-              type="submit"
-              disabled={!formComplete}
-            >
-              <span className="button-text">Place Order</span>
-            </button>
+            <div className="form-inputs-row-container">
+              <InputField
+                label="Expiry"
+                name="expiry"
+                type="text"
+                value={form.expiry}
+                onChange={handleInputChange}
+                onClear={() => handleClear("expiry")}
+                error={errors.expiry}
+                valid={valid.expiry}
+                hovered={hovered.expiry}
+                setHovered={(v) =>
+                  setHovered((prev) => ({ ...prev, expiry: v }))
+                }
+              />
+              <InputField
+                label="CVC"
+                name="cvc"
+                type="text"
+                value={form.cvc}
+                onChange={handleInputChange}
+                onClear={() => handleClear("cvc")}
+                error={errors.cvc}
+                valid={valid.cvc}
+                hovered={hovered.cvc}
+                setHovered={(v) => setHovered((prev) => ({ ...prev, cvc: v }))}
+              />
+              {!isMobile && (
+                <Button
+                  className={`${!formComplete ? "disabled" : ""}`}
+                  type="submit"
+                  text="Pay"
+                  style="full-green-pay"
+                  disabled={!formComplete}
+                />
+              )}
+            </div>
           </div>
+          {isMobile && (
+            <Button
+              className={`${!formComplete ? "disabled" : ""}`}
+              type="submit"
+              text="Pay"
+              style="full-green"
+              disabled={!formComplete}
+            />
+          )}
           {user && selected === "mastercard" && (
             <div className="checkbox-container">
               <input
@@ -291,25 +308,31 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
 
       {selected === "swish" && (
         <form className="form" onSubmit={handleSubmit}>
-          <InputField
-            label="Phone"
-            name="phone"
-            type="text"
-            value={form.phone || ""}
-            onChange={handleInputChange}
-            onClear={() => handleClear("phone")}
-            error={errors.phone}
-            valid={valid.phone}
-            hovered={hovered.phone}
-            setHovered={(v) => setHovered((prev) => ({ ...prev, phone: v }))}
-          />
-          <button
-            className={`add-button-l ${!formComplete ? "disabled" : ""}`}
-            type="submit"
-            disabled={!formComplete}
-          >
-            <span className="button-text">Place Order</span>
-          </button>
+          <div className="form-inputs-container">
+            <div className="form-inputs-row-container-nowrap">
+              <InputField
+                label="Phone"
+                name="phone"
+                type="text"
+                value={form.phone || ""}
+                onChange={handleInputChange}
+                onClear={() => handleClear("phone")}
+                error={errors.phone}
+                valid={valid.phone}
+                hovered={hovered.phone}
+                setHovered={(v) =>
+                  setHovered((prev) => ({ ...prev, phone: v }))
+                }
+              />
+              <Button
+                className={`${!formComplete ? "disabled" : ""}`}
+                type="submit"
+                text="Pay"
+                style="full-green-pay"
+                disabled={!formComplete}
+              />
+            </div>
+          </div>
         </form>
       )}
     </div>

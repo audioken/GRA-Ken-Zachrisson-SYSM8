@@ -170,7 +170,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
         )}
         {editMode && (
           <button
-            className="cancel-button-m"
+            className="cancel-button-s"
             type="button"
             onClick={handleCancel}
           >
@@ -257,7 +257,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
               />
               {!isMobile && (
                 <Button
-                  className={`form-submit-btn-mini${
+                  className={`${
                     !editMode ||
                     !isFormChanged() ||
                     !Object.values(valid).every(Boolean)
@@ -278,7 +278,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
           </div>
           {isMobile && (
             <Button
-              className={`full-green${
+              className={`${
                 !editMode ||
                 !isFormChanged() ||
                 !Object.values(valid).every(Boolean)
@@ -292,6 +292,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
                 !isFormChanged() ||
                 !Object.values(valid).every(Boolean)
               }
+              style="full-green"
             />
           )}
         </form>
