@@ -48,39 +48,42 @@ function UserPaymentCard({ id, number, isPrimary }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <img
-        src={masterCardLogo}
-        alt="MasterCard logo"
-        className="mastercard-logo"
-      ></img>
-      <div className="payment-method-cardnumber-container">
-        <p>**** **** **** {lastFourDigits}</p>
+      <div className="payment-card-details-container">
+        <img
+          src={masterCardLogo}
+          alt="MasterCard logo"
+          className="mastercard-logo"
+        ></img>
+        <div className="payment-method-cardnumber-container">
+          <p>**** **** **** {lastFourDigits}</p>
+        </div>
       </div>
-      <div
-        className={`${
-          isPrimary
-            ? "payment-method-card-primary-container-active"
-            : "payment-method-card-primary-container"
-        }`}
-      >
-        {isPrimary && (
-          <p className="payment-method-card-primary-text">PRIMARY</p>
-        )}
-        {!isPrimary && hovered && (
-          <button
-            className="set-primary-button"
-            type="button"
-            onClick={handleSetPrimary}
-          >
-            PRIMARY
-          </button>
-        )}
+
+      <div className="payment-card-btns-container">
+        <div
+          className={`${
+            isPrimary
+              ? "payment-method-card-primary-container-active"
+              : "payment-method-card-primary-container"
+          }`}
+        >
+          {isPrimary && (
+            <p className="payment-method-card-primary-text">PRIMARY</p>
+          )}
+          {!isPrimary && hovered && (
+            <Button
+              text="PRIMARY"
+              onClick={handleSetPrimary}
+              className="set-primary-button"
+            />
+          )}
+        </div>
+        <Button
+          text={<i className="fas fa-times"></i>}
+          style="cancel-button-s"
+          onClick={deletePaymentMethod}
+        />
       </div>
-      <Button
-        text={<i className="fas fa-times"></i>}
-        style="cancel-button-s"
-        onClick={deletePaymentMethod}
-      />
     </div>
   );
 }

@@ -40,14 +40,14 @@
 .form-inputs-container{
   display: flex;
   flex-direction: column;
-  gap: clamp(0.6rem, 3vw, 2rem);
+  gap: clamp(0.6rem, 3vw, 0.8rem);
 }
 
 .form-inputs-row-container {
   display: flex;
   justify-content: space-between;
   align-items: last baseline;
-  gap: clamp(0.6rem, 3vw, 2rem);
+  gap: clamp(0.6rem, 3vw, 0.8rem);
 }
 
 .form-btns-container {
@@ -145,17 +145,6 @@
 }
 
 @media (max-width: 768px) {
-  /* .form-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .form-title {
-    font-size: clamp(1rem, 5vw, 1.5rem);
-    padding-left: 0;
-    margin-bottom: 0.5rem;
-  } */
-
   .form-inputs-row-container {
     flex-direction: column;
     align-items: normal

@@ -90,7 +90,7 @@ function ChangePasswordForm({ onCancel, onSuccess }) {
   };
 
   return (
-    <div className="form-container change-password-form-container">
+    <div className="form-container">
       <div className="form-header" style={{ cursor: "pointer" }}>
         <h2 className="form-title">Change Password</h2>
         <Button

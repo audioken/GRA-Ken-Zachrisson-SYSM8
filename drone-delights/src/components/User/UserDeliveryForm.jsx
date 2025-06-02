@@ -285,8 +285,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
                     : ""
                 }`}
                 type="submit"
-                text={<i className="fas fa-check"></i>}
-                // style="add-button-l"
+                text="Update Delivery Info"
                 disabled={
                   !editMode ||
                   !isFormChanged() ||

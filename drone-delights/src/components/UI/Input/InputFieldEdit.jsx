@@ -69,7 +69,7 @@ function InputFieldEdit({
                 }
               : undefined
           }
-          className={`form-input ${inputClass} ${
+          className={`form-input form-input-edit ${inputClass} ${
             !editMode ? "input-readonly" : ""
           }`}
           autoComplete="off"

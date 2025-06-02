@@ -2,8 +2,19 @@
   position: relative;
 }
 
+.form-group input {
+}
+
 .form-input{
+  padding-right: 3.125rem;
+  height: clamp(2rem, 8vw, 3.5rem);
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  text-overflow: ellipsis;
   width: 100%;
+}
+
+.form-input-edit{
+  padding-right: 6.25rem;
 }
 
 .edit-input,
@@ -62,27 +73,13 @@
   position: absolute;
   transform: translateY(-50%);
   top: 50%;
-  right: 0.5rem;
+  right: 0;
 }
 
 .input-checkmark {
   color: #27ae60;
   pointer-events: none;
 }
-/* .clear-input {
-  position: absolute;
-  right: 18px;
-  top: 52px;
-  transform: translateY(-50%);
-  color: #7f7f7f;
-  font-size: 1.2em;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  z-index: 2;
-  user-select: none;
-} */
 
 .label-container {
   display: flex;
@@ -96,18 +93,6 @@
 .label-title{
   font-size: clamp(0.6rem, 2.5vw, 1rem);
 }
-
-/* .icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  right: 0px;
-  top: 28px;
-  cursor: pointer;
-} */
 
 .icon-container-for-form {
   display: flex;
@@ -142,8 +127,4 @@
   font-size: 1.2rem;
 }
 
-.form-group input {
-  padding-right: 2.2rem;
-  height: clamp(2rem, 8vw, 3.5rem);
-  font-size: clamp(0.8rem, 2.5vw, 1rem);
-}
+
