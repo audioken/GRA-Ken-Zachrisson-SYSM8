@@ -9,10 +9,14 @@ function NotFoundPage() {
 
   return (
     <div className="not-found-page-container">
-      <TitleHeader/>
+      <TitleHeader />
       <div className="not-found-page-body">
         <NotFound />
-        <ButtonLink path="/menu" style="full" text="See Menu" />
+        <div className="not-found-page-btns-container">
+          <ButtonLink path="/menu" style="full" text="See Menu" />
+          <ButtonLink path="/login" style="full" text="Log In" />
+          <ButtonLink path="/register" style="full" text="Register" />
+        </div>
       </div>
     </div>
   );

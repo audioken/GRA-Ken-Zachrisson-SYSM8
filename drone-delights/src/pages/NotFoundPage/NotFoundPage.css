@@ -1,16 +1,27 @@
-.not-found-page-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.not-found-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.not-found-page-body{
-    width: 100%;
-    display: flex;
+.not-found-page-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.25rem 1.25rem 1.25rem;
+  gap: 4rem;
+}
+
+.not-found-page-btns-container {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 500px) {
+  .not-found-page-btns-container {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 1.25rem 1.25rem 1.25rem;
-    gap: 2rem;
+  }
 }

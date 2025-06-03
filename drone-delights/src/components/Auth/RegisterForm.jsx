@@ -5,6 +5,7 @@ import { validateInputs } from "../../utils/validateInputs";
 import InputField from "../UI/Input/InputField";
 import PasswordField from "../UI/Input/PasswordField";
 import Button from "../UI/Button/Button";
+import TextToLink from "../Shared/TextToLink/TextToLink";
 import axios from "axios";
 
 function RegisterForm() {
@@ -147,6 +148,12 @@ function RegisterForm() {
         </div>
         <Button type="submit" text="Register" style="full-green" onClick={handleSubmit} />
       </form>
+      <TextToLink
+        message="Have an account?"
+        path="/login"
+        style="lite"
+        text="Log In"
+      />
     </div>
   );
 }

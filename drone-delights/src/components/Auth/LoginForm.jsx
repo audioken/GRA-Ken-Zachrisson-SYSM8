@@ -8,6 +8,7 @@ import { useContext } from "react";
 import InputField from "../UI/Input/InputField";
 import PasswordField from "../UI/Input/PasswordField";
 import Button from "../UI/Button/Button";
+import TextToLink from "../Shared/TextToLink/TextToLink";
 import axios from "axios";
 
 function LoginForm() {
@@ -85,8 +86,19 @@ function LoginForm() {
             }
           />
         </div>
-        <Button type="submit" text="Log In" style="full-green" onClick={handleSubmit} />
+        <Button
+          type="submit"
+          text="Log In"
+          style="full-green"
+          onClick={handleSubmit}
+        />
       </form>
+      <TextToLink
+        message="No account?"
+        path="/register"
+        style="lite"
+        text="Register"
+      />
     </div>
   );
 }

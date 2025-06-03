@@ -75,13 +75,12 @@
 }
 
 /* NOT FOUND */
-
 .xl{
-  font-size: clamp(1rem, 10vw, 6rem);
+  font-size: clamp(1rem, 10vw, 4rem);
 }
 
 .xxl{
-  font-size: clamp(3rem, 20vw, 10rem);
+  font-size: clamp(3rem, 20vw, 6rem);
 }
 
 .smiley{

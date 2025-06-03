@@ -10,7 +10,6 @@ function LoginPage() {
       <div className="login-page-body">
         <LoginForm />
       </div>
-      <ButtonLink path={"/register"} style={"lite"} text={"Register"} />
     </div>
   );
 }
