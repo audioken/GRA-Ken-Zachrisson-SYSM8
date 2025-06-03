@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { DeliveryProvider } from "./context/DeliveryContext";
 import { PaymentProvider } from "./context/PaymentContext";
@@ -19,6 +14,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage/OrderConfirmationPage";
 import UserPage from "./pages/UserPage/UserPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -48,6 +44,7 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
+                  <Route path ="*" element={<NotFoundPage />} />
                 </Routes>
               </div>
             </Router>
