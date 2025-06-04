@@ -1,10 +1,9 @@
 import "../../styles/FormStyles.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { DeliveryContext } from "../../context/DeliveryContext";
 import { PaymentContext } from "../../context/PaymentContext";
-import { useContext } from "react";
 import InputField from "../UI/Input/InputField";
 import PasswordField from "../UI/Input/PasswordField";
 import Button from "../UI/Button/Button";
@@ -18,10 +17,9 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({ username: "", password: "" });
-  const [errors, setErrors] = useState({});
-  const [valid, setValid] = useState({});
   const [showPassword, setShowPassword] = useState({ password: false });
   const [hovered, setHovered] = useState({ password: false });
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +50,7 @@ function LoginForm() {
       });
       navigate("/menu");
     } catch (error) {
+      setError("Username or Password was wrong");
       console.error("Inloggning misslyckades:", error);
     }
   };
@@ -68,16 +67,12 @@ function LoginForm() {
             name="username"
             value={form.username}
             onChange={handleInputChange}
-            error={errors.username}
-            valid={valid.username}
           />
           <PasswordField
             label="Password"
             name="password"
             value={form.password}
             onChange={handleInputChange}
-            error={errors.password}
-            valid={valid.password}
             hovered={hovered.password}
             setHovered={(v) => setHovered((prev) => ({ ...prev, password: v }))}
             showPassword={showPassword.password}
@@ -86,12 +81,8 @@ function LoginForm() {
             }
           />
         </div>
-        <Button
-          type="submit"
-          text="Log In"
-          style="full-green"
-          onClick={handleSubmit}
-        />
+        {error && <div className="form-error">{error}</div>}
+        <Button type="submit" text="Log In" style="full-green" />
       </form>
       <TextToLink
         message="No account?"

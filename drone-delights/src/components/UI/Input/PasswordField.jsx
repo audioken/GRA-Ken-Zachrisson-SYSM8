@@ -1,11 +1,10 @@
-import "./FieldStyles.css"; // Importera CSS för fältet
+import "./FieldStyles.css";
 
 function PasswordField({
   label,
   name,
   value,
   onChange,
-  onClear,
   error,
   valid,
   hovered,
@@ -46,7 +45,6 @@ function PasswordField({
           <span
             className="password-toggle"
             onClick={() => setShowPassword(!showPassword)}
-            tabIndex={0}
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
             <div className="icon-wrapper">

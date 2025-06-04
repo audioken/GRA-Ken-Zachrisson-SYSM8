@@ -15,6 +15,7 @@ import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage/OrderConfirmationPage";
 import UserPage from "./pages/UserPage/UserPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import Footer from "./components/Layout/Footer/Footer";
 
 function App() {
   return (
@@ -25,27 +26,30 @@ function App() {
             <Router>
               <div className="app-container">
                 <Header />
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/register" element={<RegisterPage />} />
-                  <Route path="/menu" element={<MenuPage />} />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/checkout" element={<CheckoutPage />} />
-                  <Route
-                    path="/order-confirmation"
-                    element={<OrderConfirmationPage />}
-                  />
-                  <Route
-                    path="/user"
-                    element={
-                      <ProtectedRoute>
-                        <UserPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route path ="*" element={<NotFoundPage />} />
-                </Routes>
+                <div className="routes-wrapper">
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/menu" element={<MenuPage />} />
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/checkout" element={<CheckoutPage />} />
+                    <Route
+                      path="/order-confirmation"
+                      element={<OrderConfirmationPage />}
+                    />
+                    <Route
+                      path="/user"
+                      element={
+                        <ProtectedRoute>
+                          <UserPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
+                </div>
+                <Footer />
               </div>
             </Router>
           </CartProvider>

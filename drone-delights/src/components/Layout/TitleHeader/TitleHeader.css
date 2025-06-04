@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   height: clamp(5rem, 21.5vw, 16.5rem);
-  margin-bottom: 30px;
+  margin-bottom: 1.875rem;
 }
 
 .title-header-background {
@@ -27,7 +27,7 @@
 
 .title-header-text {
   display: flex;
-  gap: 10px;
+  gap: 0.625rem;
   align-items: baseline;
   user-select: none;
 }

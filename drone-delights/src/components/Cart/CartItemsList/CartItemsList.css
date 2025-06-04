@@ -6,6 +6,5 @@
 }
 
 .cart-summary-empty-cart-container{
-    /* width: clamp(20rem, 10vw, 30rem); */
     height: 9rem;
 }

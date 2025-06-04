@@ -6,6 +6,22 @@
 
 #root{
   --header-height: clamp(3.75rem, 8vw, 6rem);
+
+  --c0: #FEF9EF; 
+  --c1: #227c9d;
+  --c2: #fe6d73;
+  --c3: #17C3B2;
+  --c4: #FFD899;
+  --c5: white;
+  --c6: #404040;
+  --c7: #7F7F7F;
+
+  --cGood: #17C3B2;
+  --cBad: #fe6d73;
+
+  --f1: "Knewave";
+  --f2: "Hachi Maru Pop";
+  --f3: "Roboto";
 }
 
 html {
@@ -18,8 +34,15 @@ html, body, #root {
 }
 
 .app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   max-width: 1240px;
   margin: 0 auto;
   margin-top: var(--header-height);
   width: 100%;
+}
+
+.app-container > .routes-wrapper {
+  flex: 1;
 }

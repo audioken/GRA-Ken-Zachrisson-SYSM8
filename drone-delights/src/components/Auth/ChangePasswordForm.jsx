@@ -1,5 +1,5 @@
 import "../../styles/FormStyles.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { validateInputs } from "../../utils/validateInputs";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
@@ -23,6 +23,15 @@ function ChangePasswordForm({ onCancel, onSuccess }) {
   const [valid, setValid] = useState({});
   const [success, setSuccess] = useState("");
   const { user, token } = useAuth();
+  const [formComplete, setFormComplete] = useState(false);
+
+  useEffect(() => {
+    const requiredFields = ["current", "new", "confirm"];
+    const allValid =
+      requiredFields.every((field) => valid[field]) &&
+      requiredFields.every((field) => !errors[field]);
+    setFormComplete(allValid);
+  }, [valid, errors]);
 
   const [form, setForm] = useState({
     current: "",
@@ -91,14 +100,14 @@ function ChangePasswordForm({ onCancel, onSuccess }) {
 
   return (
     <div className="form-container">
-      <div className="form-header" style={{ cursor: "pointer" }}>
+      <header className="form-header" style={{ cursor: "pointer" }}>
         <h2 className="form-title">Change Password</h2>
         <Button
           text={<i className="fas fa-times"></i>}
           style="cancel-button-s"
           onClick={handleCancel}
         />
-      </div>
+      </header>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-inputs-container">
           <PasswordField
@@ -144,8 +153,18 @@ function ChangePasswordForm({ onCancel, onSuccess }) {
             }
           />
         </div>
-        <Button text="Update Password" style="full-green" />
-        {success && <div className="success">{success}</div>}
+        <Button
+          text="Update Password"
+          style={`full-green ${!formComplete ? "disabled" : ""}`}
+          type="submit"
+          disabled={!formComplete}
+        />
+
+        {success && (
+          <div className="success" role="status" aria-live="polite">
+            {success}
+          </div>
+        )}
       </form>
     </div>
   );

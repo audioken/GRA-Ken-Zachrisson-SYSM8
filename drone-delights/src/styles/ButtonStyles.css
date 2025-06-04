@@ -1,12 +1,12 @@
 /* BUTTONS */
 .full-button-blue,
 .full-button-green {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
-  font-size: 22px;
-  height: 70px;
-  padding: 10px 20px;
-  color: white;
+  font-size: 1.375rem;
+  height: 4.375rem;
+  padding: 0.625rem 1.25rem;
+  color: var(--c5);
   border: none;
   text-align: center;
   border-radius: 12.5px;
@@ -16,23 +16,23 @@
   flex-shrink: 0;
 }
 
-.full-button-blue {
-  background-color: #227c9d;
-}
+/* .full-button-blue {
+  background-color: var(--c1);
+} */
 
-.full-button-green {
-  background-color: #17c3b2;
-}
+/* .full-button-green {
+  background-color: var(--c3);
+} */
 
 .add-button-s,
 .add-button-m,
 .add-button-l {
-  font-size: 30px;
-  color: white;
+  font-size: 1.875rem;
+  color: var(--c5);
   cursor: pointer;
   border-radius: 50%;
   border: none;
-  background-color: #17c3b2;
+  background-color: var(--c3);
   flex-shrink: 0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -43,33 +43,33 @@
   opacity: 0.5;
   pointer-events: none;
   background-color: #bdbdbd;
-  color: #fff;
+  color: var(--c5);
   cursor: not-allowed;
 }
 
 .add-button-s {
   width: 2.125rem;
   height: 2.125rem;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .add-button-m {
   width: 3.125rem;
   height: 3.125rem;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .add-button-l {
   width: 5rem;
   height: 5rem;
-  font-size: 30px;
+  font-size: 1.875rem;
 }
 
 .cancel-button-s,
 .cancel-button-m,
 .cancel-button-l {
-  background-color: #fe6d73;
-  color: white;
+  background-color: var(--cBad);
+  color: var(--c5);
   border-radius: 50%;
   border: none;
   text-align: center;
@@ -82,19 +82,19 @@
 .cancel-button-s {
   width: 2.125rem;
   height: 2.125rem;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .cancel-button-m {
   width: 3.125rem;
   height: 3.125rem;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .cancel-button-l {
   width: 5rem;
   height: 5rem;
-  font-size: 30px;
+  font-size: 1.875rem;
 }
 
 .clear-button {
@@ -102,7 +102,7 @@
   right: 18px;
   top: 52px;
   transform: translateY(-50%);
-  color: #7f7f7f;
+  color: var(--c7);
   font-size: 1.2em;
   cursor: pointer;
   background: none;
@@ -123,10 +123,10 @@
 
 /* BUTTONLINK */
 .button-link {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-size: 1.375rem;
   padding: 0.625rem 1.25rem;
-  color: #fe6d73;
+  color: var(--c2);
   border: none;
 }
 
@@ -137,13 +137,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
-  font-size: 22px;
-  padding: 10px 20px;
+  font-size: 1.375rem;
+  padding: 0.625rem 1.25rem;
   border: none;
   text-align: center;
-  background-color: #ffd899;
+  background-color: var(--c4);
   border-radius: 12.5px;
   text-decoration: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -154,18 +154,18 @@
 .full-blue,
 .full-green-pay {
   width: 100%;
-  color: white;
+  color: var(--c5);
 }
 
 .full-green {
-  background-color: #17c3b2;
+  background-color: var(--c3);
 }
 
 .full-green.disabled {
   opacity: 0.5;
   pointer-events: none;
   background-color: #bdbdbd;
-  color: #fff;
+  color: var(---c5);
   cursor: not-allowed;
 }
 
@@ -174,19 +174,19 @@
   height: clamp(3.5rem, 12vw, 5rem);
   border-radius: 50%;
   flex-shrink: 0;
-  background-color: #17c3b2;
+  background-color: var(--c3);
 }
 
 .full-green-pay.disabled {
   opacity: 0.5;
   pointer-events: none;
   background-color: #bdbdbd;
-  color: #fff;
+  color: var(--c5);
   cursor: not-allowed;
 }
 
 .full-blue {
-  background-color: #227c9d;
+  background-color: var(--c1);
 }
 
 .lite {

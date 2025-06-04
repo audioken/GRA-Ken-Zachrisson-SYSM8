@@ -1,6 +1,13 @@
 import "../../../styles/ButtonStyles.css";
 
-function Button({ text, type="button", onClick, style, className = "", isDisabled = false }) {
+function Button({
+  text,
+  type = "button",
+  onClick,
+  style,
+  className = "",
+  isDisabled = false,
+}) {
   return (
     <button
       type={type}

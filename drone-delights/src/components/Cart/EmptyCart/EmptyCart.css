@@ -26,5 +26,5 @@
 }
 
 .smiley{
-    color: #404040;
+    color: var(--c6);
 }

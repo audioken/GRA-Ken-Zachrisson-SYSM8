@@ -13,20 +13,9 @@ import MobileUserMenu from "../UserMenu/MobileUserMenu";
 function Header() {
   const { cartQuantity } = useContext(CartContext);
   const { token, user } = useAuth();
-
-  // const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
   const [menuOpen, setMenuOpen] = useState(false);
   
   const isMobile = useIsMobile(900);
-
-  // useEffect(() => {
-  //   function handleResize() {
-  //     setIsMobile(window.innerWidth < 900);
-  //     if (window.innerWidth >= 900) setMenuOpen(false);
-  //   }
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
 
   return (
     <nav className="header-container" aria-label="Main Navigation">

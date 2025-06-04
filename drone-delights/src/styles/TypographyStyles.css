@@ -145,3 +145,15 @@
   font-size: clamp(1.25rem, 4vw, 2rem);
   color: #17c3b2;
 }
+
+/* FOOTER */
+.footer-text {
+  font-family: "Hachi Maru Pop";
+  font-size: clamp(0.5rem, 2vw, 0.8rem);
+  color: #404040;
+}
+
+.footer-company-name{
+  font-family: "Knewave", system-ui;
+  font-size: clamp(0.6rem, 2vw, 1rem);
+}
