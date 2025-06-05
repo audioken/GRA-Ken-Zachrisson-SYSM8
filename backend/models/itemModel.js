@@ -1,4 +1,4 @@
-const mongoose = require("mongoose"); // Importerar mongoose för att arbeta med MongoDB
+const mongoose = require("mongoose");
 
 const itemSchema = new mongoose.Schema(
   {
@@ -32,8 +32,8 @@ const itemSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Loggar när objektet skapades eller uppdaterades
+    timestamps: true,
   }
 );
 
-module.exports = mongoose.model("Item", itemSchema); // Exporterar modellen så att den kan användas i andra filer
+module.exports = mongoose.model("Item", itemSchema);

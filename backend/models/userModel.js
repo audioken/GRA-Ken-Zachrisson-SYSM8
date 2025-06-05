@@ -52,7 +52,7 @@ const userSchema = new mongoose.Schema(
     ],
     paymentMethods: [
       {
-        _id: { type: mongoose.Schema.Types.ObjectId, auto: true }, // <-- Lägg till denna rad
+        _id: { type: mongoose.Schema.Types.ObjectId, auto: true }, // Auto-genererar ett unikt ID för varje betalningsmetod
         name: String,
         number: String,
         expiry: String,
@@ -65,8 +65,8 @@ const userSchema = new mongoose.Schema(
     ],
   },
   {
-    timestamps: true, // Loggar när användaren skapades eller uppdaterades
+    timestamps: true,
   }
 );
 
-module.exports = mongoose.model("User", userSchema); // Exporterar modellen så att den kan användas i andra filer
+module.exports = mongoose.model("User", userSchema);

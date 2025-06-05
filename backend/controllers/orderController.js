@@ -5,8 +5,8 @@ const Order = require("../models/orderModel");
 // @route GET /api/orders
 // @access Private
 const getOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({}); // Hämta alla ordrar från databasen
-  res.status(200).json(orders); // Skicka tillbaka ordrarna som JSON
+  const orders = await Order.find({});
+  res.status(200).json(orders);
 });
 
 //@desc post an order
@@ -20,7 +20,6 @@ const postOrder = asyncHandler(async (req, res) => {
     throw new Error("Please add all fields");
   }
 
-  // Skapa order
   const order = await Order.create({
     items,
     totalPrice,

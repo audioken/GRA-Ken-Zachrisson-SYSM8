@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Item = require("../models/itemModel"); // Importera Item-modellen
+const Item = require("../models/itemModel");
 
 //@desc get all items
 //@route GET /api/items
