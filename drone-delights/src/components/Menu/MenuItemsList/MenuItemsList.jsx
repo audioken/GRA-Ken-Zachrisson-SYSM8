@@ -1,11 +1,12 @@
 import "./MenuItemsList.css";
-import useFetch from "../../../hooks/useFetch";
-import ItemCard from "../MenuItemCard/MenuItemCard";
-import Masonry from "react-masonry-css";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CategoryContext } from "../../../context/CategoryContext";
 import { useAuth } from "../../../context/AuthContext";
+import useFetch from "../../../hooks/useFetch";
+import Masonry from "react-masonry-css";
+import ItemCard from "../MenuItemCard/MenuItemCard";
+import NoFavourites from "../NoFavourites/NoFavourites";
 
 function MenuItemsList() {
   const { data, loading, error } = useFetch(
@@ -43,6 +44,13 @@ function MenuItemsList() {
     if (count === 2) return { default: 2, 500: 1 };
     return { default: 1 };
   };
+
+  if (
+    selectedCategory === "Favorites" &&
+    (!user?.favourites || user.favourites.length === 0)
+  ) {
+    return <NoFavourites />;
+  }
 
   return (
     <div className="menu-list-container">

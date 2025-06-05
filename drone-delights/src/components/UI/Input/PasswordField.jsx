@@ -47,7 +47,7 @@ function PasswordField({
             onClick={() => setShowPassword(!showPassword)}
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
-            <div className="icon-wrapper">
+            <div className="icon-wrapper hl-icon">
               <i
                 className={`fa-solid ${
                   showPassword ? "fa-eye" : "fa-eye-slash"

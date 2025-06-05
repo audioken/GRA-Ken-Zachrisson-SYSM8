@@ -36,7 +36,6 @@ function InputFieldEdit({
     ? "input-success"
     : "";
 
-  // Visa penna/check/cancel beroende på mode
   return (
     <div
       className="form-group"
@@ -79,7 +78,7 @@ function InputFieldEdit({
         {/* Ikoner till höger */}
         {!editMode && (
           <div
-            className=" icon-pen icon-wrapper"
+            className=" icon-pen icon-wrapper hl-icon"
             onClick={() => setEditMode(true)}
             tabIndex={0}
             aria-label={`Edit ${name}`}
@@ -92,7 +91,7 @@ function InputFieldEdit({
           <>
             {/* Spara/checkmark */}
             <div
-              className="icon-save icon-wrapper"
+              className="icon-save icon-wrapper hl-icon"
               onClick={() => {
                 // Tillåt spara om det är nytt värde eller samma som original
                 if (
@@ -110,7 +109,7 @@ function InputFieldEdit({
             </div>
             {/* Avbryt/kryss */}
             <div
-              className="icon-cancel icon-wrapper"
+              className="icon-cancel icon-wrapper hl-icon"
               onClick={() => {
                 setTempValue(value);
                 setEditMode(false);

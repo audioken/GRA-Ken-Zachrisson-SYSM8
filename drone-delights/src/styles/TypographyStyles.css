@@ -68,7 +68,7 @@
 }
 
 .xxl{
-  font-size: clamp(3rem, 20vw, 6rem);
+  font-size: clamp(3rem, 15vw, 6rem);
 }
 
 .smiley{
@@ -140,3 +140,4 @@
   font-family: var(--f1);
   font-size: clamp(0.6rem, 2vw, 1rem);
 }
+

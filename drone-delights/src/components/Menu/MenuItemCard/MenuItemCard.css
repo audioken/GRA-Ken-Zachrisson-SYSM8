@@ -6,6 +6,7 @@
   border-radius: 25px;
   overflow: visible;
   user-select: none;
+  transition: transform 0.2s ease;
 }
 
 .menu-item-img {
@@ -36,6 +37,7 @@
   width: 13.75rem;
   width: auto;
   margin-top: -1.375rem;
+  cursor: pointer;
 }
 
 .menu-item-top-info {
@@ -58,6 +60,7 @@
   background-color: transparent;
   cursor: pointer;
   flex-shrink: 0;
+  z-index: 1;
 }
 
 .fav-icon {

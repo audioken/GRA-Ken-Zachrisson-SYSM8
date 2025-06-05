@@ -69,7 +69,7 @@
   position: relative;
 }
 
-.icon-wrapper {
+.icon-wrapper, .checkmark-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,6 +80,10 @@
   transform: translateY(-50%);
   top: 50%;
   right: 0;
+}
+
+.icon-wrapper {
+  cursor: pointer;
 }
 
 .input-checkmark {

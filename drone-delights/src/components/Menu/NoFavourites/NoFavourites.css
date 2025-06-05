@@ -1,0 +1,24 @@
+.no-fav-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 2rem 0 2rem;
+    margin-top: clamp(3rem, 10vw, 10rem);
+}
+
+.no-fav-text-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.no-fav-text-row span{
+    white-space: nowrap;
+    line-height: 1;
+}

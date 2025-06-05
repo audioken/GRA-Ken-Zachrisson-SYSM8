@@ -75,7 +75,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
 
   const handleEdit = () => {
     setEditMode(true);
-    setOriginalForm(form); // Spara originalvärden för att kunna återställa
+    setOriginalForm(form);
     const { errors, valid } = validateInputs(form);
     setErrors(errors);
     setValid(valid);
@@ -102,13 +102,11 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
 
     if (Object.values(valid).every(Boolean)) {
       if (isLoggedIn) {
-        // Spara till backend
         const res = await axios.patch(
           `${process.env.REACT_APP_API_URL}/users/me`,
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        // Uppdatera user i AuthContext direkt!
         login(token, res.data.user);
       } else {
         setDeliveryInfo(form);
@@ -151,12 +149,11 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
         <h2 className="form-title">Delivery Information</h2>
         {!editMode && (
           <div
-            className="icon-container-for-form icon-pen"
+            className="icon-container-for-form icon-pen hl"
             onClick={(e) => {
               e.stopPropagation();
               if (!isExpanded) {
-                onExpand(); // Expanda panelen först!
-                // Vänta tills panelen är öppen innan du sätter editMode
+                onExpand();
                 setTimeout(() => handleEdit(), 0);
               } else {
                 handleEdit();
@@ -169,13 +166,11 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
           </div>
         )}
         {editMode && (
-          <button
-            className="cancel-button-s"
-            type="button"
+          <Button
+            text={<i className="fas fa-times"></i>}
+            style="cancel-button-s"
             onClick={handleCancel}
-          >
-            <i className="fas fa-times"></i>
-          </button>
+          />
         )}
       </header>
       {isExpanded ? (

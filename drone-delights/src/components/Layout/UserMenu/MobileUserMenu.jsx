@@ -24,7 +24,7 @@ function MobileUserMenu() {
   return (
     <div className="mobile-user-menu-container mobile-only" ref={menuRef}>
       <button
-        className="user-menu-button-container"
+        className="user-menu-button-container hl"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
       >
@@ -43,7 +43,7 @@ function MobileUserMenu() {
           <div className="user-menu-container">
             <Link
               to="/login"
-              className="user-menu-btn"
+              className="user-menu-btn hl"
               onClick={() => setOpen(false)}
             >
               <i className="fa-solid fa-right-to-bracket user-menu-btn-icon"></i>
@@ -51,7 +51,7 @@ function MobileUserMenu() {
             </Link>
             <Link
               to="/register"
-              className="user-menu-btn"
+              className="user-menu-btn hl"
               onClick={() => setOpen(false)}
             >
               <i className="fa-solid fa-user-plus user-menu-btn-icon"></i>

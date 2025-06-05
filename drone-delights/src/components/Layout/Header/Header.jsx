@@ -66,7 +66,7 @@ function Header() {
           )}
 
           {/* KUNDVAGN IKONEN – visa alltid */}
-          <Link to="/cart" className="basket-btn">
+          <Link to="/cart" className="basket-btn hl">
             <div
               className={`basket-counter-container ${
                 cartQuantity === 0 ? "hide" : ""

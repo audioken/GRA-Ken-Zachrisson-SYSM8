@@ -10,7 +10,7 @@ function MenuFilter() {
     return `category-btn ${
       selectedCategory === category && selectedCategory !== "Favorites"
         ? "selected"
-        : ""
+        : "hl-filter"
     }`;
   }
 
@@ -27,7 +27,7 @@ function MenuFilter() {
       {categories.map((category) => (
         <button
           key={category}
-          className={getButtonClass(category, selectedCategory)}
+          className={`${getButtonClass(category, selectedCategory)}`}
           onClick={() => setSelectedCategory(category)}
         >
           {category === "Favorites" ? (

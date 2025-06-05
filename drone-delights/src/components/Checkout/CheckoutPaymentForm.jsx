@@ -120,8 +120,6 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
         return;
       }
 
-      console.log({ paymentInfo });
-
       setPaymentInfo({
         name: form.name,
         number: form.number,
@@ -129,9 +127,6 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
         cvc: form.cvc,
         method: "Mastercard",
       });
-
-      console.log({ paymentInfo });
-      console.log({ form });
 
       // Spara nytt kort till backend om inloggad och nytt kort
       if (
@@ -184,15 +179,13 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
   };
 
   return (
-    <section
-      className={`form-container payment-method-form-container ${className}`}
-    >
+    <section className={`form-container ${className}`}>
       <header className="form-header">
         <h2 className="form-title">Payment</h2>
         <div className="payment-options-container">
           <button
             className={`payment-btn ${
-              selected === "swish" ? "selected-btn" : ""
+              selected === "swish" ? "selected-btn" : "hl"
             }`}
             onClick={() => setSelected("swish")}
             type="button"
@@ -201,7 +194,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
           </button>
           <button
             className={`payment-btn ${
-              selected === "mastercard" ? "selected-btn" : ""
+              selected === "mastercard" ? "selected-btn" : "hl"
             }`}
             onClick={() => setSelected("mastercard")}
             type="button"

@@ -3,7 +3,7 @@ import "../../../styles/TypographyStyles.css";
 
 function UserMenuLink({ user, onClick }) {
   return (
-    <button className="user-menu-button-container" onClick={onClick}>
+    <button className="user-menu-button-container hl" onClick={onClick}>
       <span className="user-icon">
         <i className="fa-solid fa-user"></i>
       </span>

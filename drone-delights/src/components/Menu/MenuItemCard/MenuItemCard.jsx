@@ -24,7 +24,7 @@ function MenuItemCard({ _id, name, image, price, description }) {
   // Hantera klick på hjärtat
   const handleFavouriteClick = async () => {
     if (!token) {
-      navigate("/register");
+      navigate("/login");
       return;
     }
     try {
@@ -50,33 +50,41 @@ function MenuItemCard({ _id, name, image, price, description }) {
   };
 
   return (
-    <article className="menu-item-card" aria-label={`Menu item: ${name}`}>
+    <article
+      className="menu-item-card hl-item-card"
+      aria-label={`Menu item: ${name}`}
+    >
       <div className="img-container">
         {/* IMAGE */}
         <img src={image} alt={name} className="menu-item-img" />
-        {/* PLUS BUTTON ALONE */}
       </div>
       {/* INFO */}
       <div
         className={`menu-item-info-full ${isExpanded ? "bounce-expand" : ""}`}
+        onClick={() => setIsExpanded(!isExpanded)}
       >
         {/* QUANTITY */}
         <div
           className={`quantity-wrapper quantity-wrapper-menu ${
             quantity < 1 ? "hide" : ""
           }`}
+          onClick={(e) => e.stopPropagation()}
         >
           <div>
             {/* TRASH BUTTON */}
             <button
-              className={`quantity-btn ${quantity > 1 ? "hide" : ""}`}
+              className={`quantity-btn hl-quantity ${
+                quantity > 1 ? "hide" : ""
+              }`}
               onClick={() => removeFromCart(_id)}
             >
               <i className="fa-solid fa-trash quantity-icon quantity-trash-icon"></i>
             </button>
             {/* MINUS BUTTON */}
             <button
-              className={`quantity-btn ${quantity < 2 ? "hide" : ""}`}
+              className={`quantity-btn  hl-quantity ${
+                quantity < 2 ? "hide" : ""
+              }`}
               onClick={() => updateQuantity(_id, quantity - 1)}
             >
               <i className="fa-solid fa-minus quantity-icon quantity-minus-icon"></i>
@@ -87,17 +95,19 @@ function MenuItemCard({ _id, name, image, price, description }) {
           </div>
           {/* PLUS BUTTON */}
           <button
-            className="quantity-btn"
+            className="quantity-btn hl-quantity"
             onClick={() => updateQuantity(_id, quantity + 1)}
           >
             <i className="fa-solid fa-plus quantity-icon quantity-plus-icon"></i>
           </button>
         </div>
+        {/* PLUS BUTTON ALONE */}
         <button
-          className={`quantity-plus-btn-alone ${
-            quantity > 0 ? "hide" : ""
-          }`}
-          onClick={() => addToCart({ _id, name, image, price, description }, 1)}
+          className={`quantity-plus-btn-alone hl ${quantity > 0 ? "hide" : ""}`}
+          onClick={(e) => {
+            addToCart({ _id, name, image, price, description }, 1);
+            e.stopPropagation();
+          }}
         >
           <i className="fa-solid fa-plus quantity-icon quantity-plus-icon"></i>
         </button>
@@ -112,8 +122,11 @@ function MenuItemCard({ _id, name, image, price, description }) {
           </h3>
           {/* FAVORITE BUTTON */}
           <button
-            className="add-to-favourites-btn"
-            onClick={handleFavouriteClick}
+            className="add-to-favourites-btn hl"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleFavouriteClick();
+            }}
             aria-label={
               isFavourite ? "Remove from favorites" : "Add to favorites"
             }
@@ -125,10 +138,7 @@ function MenuItemCard({ _id, name, image, price, description }) {
             ></i>
           </button>
         </div>
-        <div
-          className="menu-item-middle-bottom-container"
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
+        <div className="menu-item-middle-bottom-container">
           <div className="menu-item-middle-info">
             {/* PRICE */}
             <span className="price">${price}</span>

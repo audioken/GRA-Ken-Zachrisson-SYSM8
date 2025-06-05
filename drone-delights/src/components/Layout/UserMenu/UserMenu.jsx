@@ -24,11 +24,11 @@ function UserMenu({ closeMenu }) {
 
   return (
     <div className="user-menu-container">
-      <Link to="/user" className="user-menu-btn" onClick={handleNavigate}>
+      <Link to="/user" className="user-menu-btn hl" onClick={handleNavigate}>
         <i className="fa-solid fa-cog user-menu-btn-icon"></i>
         <span className="user-menu-btn-text">User Settings</span>
       </Link>
-      <button className="user-menu-btn" onClick={handleLogout}>
+      <button className="user-menu-btn hl" onClick={handleLogout}>
         <i className="fa-solid fa-right-from-bracket user-menu-btn-icon"></i>
         <span className="user-menu-btn-text">Logout</span>
       </button>

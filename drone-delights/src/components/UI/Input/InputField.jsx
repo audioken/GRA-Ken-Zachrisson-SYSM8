@@ -67,7 +67,7 @@ function InputField({
 
         {showClear && (
           <button
-            className="clear-button icon-wrapper"
+            className="clear-button icon-wrapper hl-icon"
             onClick={onClear}
             tabIndex={0}
             aria-label={`Clear ${name}`}
@@ -77,7 +77,7 @@ function InputField({
         )}
 
         {showCheck && (
-          <span className="input-checkmark icon-wrapper">
+          <span className="input-checkmark checkmark-wrapper">
             <i className="fa-solid fa-check"></i>
           </span>
         )}

@@ -60,6 +60,7 @@
   background-color: transparent;
   color: transparent;
   cursor: pointer;
+  scale: 1;
 }
 
 .primary-hovered {
