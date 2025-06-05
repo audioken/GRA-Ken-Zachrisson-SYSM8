@@ -2,9 +2,6 @@
   position: relative;
 }
 
-.form-group input {
-}
-
 .form-input {
   padding-right: 3.125rem;
   height: clamp(2rem, 8vw, 3.5rem);

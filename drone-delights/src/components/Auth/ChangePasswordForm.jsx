@@ -7,24 +7,41 @@ import PasswordField from "../UI/Input/PasswordField";
 import Button from "../UI/Button/Button";
 
 function ChangePasswordForm({ onCancel, onSuccess }) {
+  // Context
+  const { token } = useAuth();
+
+  // Formulärdata
+  const [form, setForm] = useState({
+    current: "",
+    new: "",
+    confirm: "",
+  });
+
+  // Visar eller döljer lösenord
   const [showPassword, setShowPassword] = useState({
     current: false,
     new: false,
     confirm: false,
   });
 
+  // Hover-status för ikoner
   const [hovered, setHovered] = useState({
     current: false,
     new: false,
     confirm: false,
   });
 
+  // Felmeddelanden och valideringsstatus
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState({});
+
+  // Statusmeddelande vid lyckad uppdatering
   const [success, setSuccess] = useState("");
-  const { user, token } = useAuth();
+
+  // Om alla fält är korrekt ifyllda
   const [formComplete, setFormComplete] = useState(false);
 
+  // Kolla om formuläret är komplett (triggeras vid ändring av errors eller valid)
   useEffect(() => {
     const requiredFields = ["current", "new", "confirm"];
     const allValid =
@@ -33,33 +50,25 @@ function ChangePasswordForm({ onCancel, onSuccess }) {
     setFormComplete(allValid);
   }, [valid, errors]);
 
-  const [form, setForm] = useState({
-    current: "",
-    new: "",
-    confirm: "",
-  });
-
-  // Live-validering och username-check i realtid
+  // Hanterar input och live-validerar
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
     const updatedForm = { ...form, [name]: value };
     setForm(updatedForm);
 
-    // Validera alla fält
     const { errors, valid } = validateInputs(updatedForm);
     setErrors(errors);
     setValid(valid);
     setSuccess("");
   };
 
-  // Submit-funktion
+  // Skickar formuläret
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { errors, valid } = validateInputs(form);
     setErrors(errors);
     setValid(valid);
 
-    // Kolla att allt är godkänt
     if (!valid.current || !valid.new || !valid.confirm) return;
 
     try {
@@ -89,7 +98,7 @@ function ChangePasswordForm({ onCancel, onSuccess }) {
     }
   };
 
-  // Cancel-funktion
+  // Återställer formuläret
   const handleCancel = () => {
     setForm({ current: "", new: "", confirm: "" });
     setErrors({});

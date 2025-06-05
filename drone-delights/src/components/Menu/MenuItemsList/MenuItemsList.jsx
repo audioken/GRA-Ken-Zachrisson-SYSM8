@@ -9,13 +9,15 @@ import ItemCard from "../MenuItemCard/MenuItemCard";
 import NoFavourites from "../NoFavourites/NoFavourites";
 
 function MenuItemsList() {
+  const navigate = useNavigate();
+  const { selectedCategory } = useContext(CategoryContext);
+  const { user, token } = useAuth();
+
   const { data, loading, error } = useFetch(
     `${process.env.REACT_APP_API_URL}/items`
   );
-  const { selectedCategory } = useContext(CategoryContext);
-  const { user, token } = useAuth();
-  const navigate = useNavigate();
 
+  // Om användaren inte är inloggad men har valt "Favorites" → skicka till login
   useEffect(() => {
     if (selectedCategory === "Favorites" && !token) {
       navigate("/login");
@@ -26,17 +28,27 @@ function MenuItemsList() {
   if (error) return <p>Error loading items.</p>;
   if (!data) return null;
 
-  const filteredItems = data?.filter((item) => {
+  // Filtrera utifrån kategori eller favoriter
+  const filteredItems = data.filter((item) => {
     if (selectedCategory === "Favorites") {
       return user?.favourites?.includes(item._id);
-    } else {
-      return (
-        item.category === selectedCategory.toLowerCase() ||
-        selectedCategory === "All"
-      );
     }
+
+    return (
+      selectedCategory === "All" ||
+      item.category === selectedCategory.toLowerCase()
+    );
   });
 
+  // Visa ett specialmeddelande om inga favoriter finns
+  if (
+    selectedCategory === "Favorites" &&
+    (!user?.favourites || user.favourites.length === 0)
+  ) {
+    return <NoFavourites />;
+  }
+
+  // Responsiva kolumner beroende på antal objekt
   const getBreakpointCols = () => {
     const count = filteredItems.length;
     if (count >= 4) return { default: 4, 1100: 3, 850: 2, 500: 1 };
@@ -44,13 +56,6 @@ function MenuItemsList() {
     if (count === 2) return { default: 2, 500: 1 };
     return { default: 1 };
   };
-
-  if (
-    selectedCategory === "Favorites" &&
-    (!user?.favourites || user.favourites.length === 0)
-  ) {
-    return <NoFavourites />;
-  }
 
   return (
     <div className="menu-list-container">
@@ -68,3 +73,4 @@ function MenuItemsList() {
 }
 
 export default MenuItemsList;
+

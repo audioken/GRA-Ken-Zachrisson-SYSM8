@@ -7,31 +7,32 @@ import InputFieldEdit from "../UI/Input/InputFieldEdit";
 import Button from "../UI/Button/Button";
 
 function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
-  const [usernameAvailable, setUsernameAvailable] = useState(null);
-  const [emailAvailable, setEmailAvailable] = useState(null);
-  const [usernameHovered, setUsernameHovered] = useState(false);
-  const [emailHovered, setEmailHovered] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [valid, setValid] = useState({});
   const { user, login } = useAuth();
 
+  // Form och tillstånd
   const [form, setForm] = useState({
     username: user?.username || "",
     email: user?.email || "",
   });
 
-  // Live-validering och tillgänglighetskontroll
+  const [errors, setErrors] = useState({});
+  const [valid, setValid] = useState({});
+  const [usernameAvailable, setUsernameAvailable] = useState(null);
+  const [emailAvailable, setEmailAvailable] = useState(null);
+  const [usernameHovered, setUsernameHovered] = useState(false);
+  const [emailHovered, setEmailHovered] = useState(false);
+
+  // Input-hanterare: validering + tillgänglighetskoll
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
     const updatedForm = { ...form, [name]: value };
     setForm(updatedForm);
 
-    // Validera
     const { errors, valid } = validateInputs(updatedForm);
     setErrors(errors);
     setValid(valid);
 
-    // Kolla tillgänglighet
+    // Tillgänglighetskontroll för username
     if (name === "username") {
       if (value.length >= 3) {
         try {
@@ -46,6 +47,8 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
         setUsernameAvailable(null);
       }
     }
+
+    // Tillgänglighetskontroll för email
     if (name === "email") {
       if (value.length > 5 && /^[^@]+@[^@]+\.[^@]+$/.test(value)) {
         try {
@@ -62,7 +65,7 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
     }
   };
 
-  // Spara username
+  // Uppdatera username i backend
   const handleSaveUsername = async (field, newValue) => {
     try {
       const res = await axios.patch(
@@ -73,7 +76,6 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
         }
       );
       setForm((prev) => ({ ...prev, username: res.data.user.username }));
-      // Uppdatera user i context/localStorage om du vill:
       login(localStorage.getItem("token"), res.data.user);
     } catch (err) {
       setErrors((prev) => ({
@@ -83,7 +85,7 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
     }
   };
 
-  // Spara email
+  // Uppdatera email i backend
   const handleSaveEmail = async (field, newValue) => {
     try {
       const res = await axios.patch(
@@ -103,6 +105,7 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
     }
   };
 
+  // Återställ formulär om det kollapsas
   useEffect(() => {
     if (!isExpanded) {
       setErrors({});
@@ -130,7 +133,8 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
       <header className="form-header">
         <h2 className="form-title">Account Settings</h2>
       </header>
-      {isExpanded ? (
+
+      {isExpanded && (
         <div className="form">
           <div className="form-inputs-container">
             <InputFieldEdit
@@ -173,7 +177,7 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
             onClick={onChangePasswordClick}
           />
         </div>
-      ) : null}
+      )}
     </section>
   );
 }

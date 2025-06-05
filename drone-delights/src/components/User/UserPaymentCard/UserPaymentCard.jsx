@@ -7,15 +7,22 @@ import Button from "../../UI/Button/Button";
 import axios from "axios";
 
 function UserPaymentCard({ id, number, isPrimary }) {
-  const [lastFourDigits] = useState(number.slice(-4));
-  const [hovered, setHovered] = useState(false);
   const { token, user, updateUser } = useAuth();
 
+  // Sista 4 siffrorna på kortet för visning
+  const [lastFourDigits] = useState(number.slice(-4));
+
+  // Hover-effekt för att visa extra styling
+  const [hovered, setHovered] = useState(false);
+
+  // Radera betalkort
   const deletePaymentMethod = async () => {
     try {
       const res = await axios.delete(
         `${process.env.REACT_APP_API_URL}/users/payment-methods/${id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
       updateUser({ ...user, paymentMethods: res.data.paymentMethods });
     } catch (error) {
@@ -23,13 +30,18 @@ function UserPaymentCard({ id, number, isPrimary }) {
     }
   };
 
+  // Sätt detta kort som primärt
   const handleSetPrimary = async () => {
     try {
       const res = await axios.patch(
         `${process.env.REACT_APP_API_URL}/users/payment-methods/${id}/set-primary`,
         { isPrimary: true },
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
+
+      // Uppdatera användaren beroende på vad backend skickar tillbaka
       if (res.data.user) {
         updateUser(res.data.user);
       } else if (res.data.paymentMethods) {
@@ -51,23 +63,21 @@ function UserPaymentCard({ id, number, isPrimary }) {
           src={masterCardLogo}
           alt="MasterCard logo"
           className="mastercard-logo"
-        ></img>
+        />
         <div className="payment-cardnumber-container">
           <p>**** **** **** {lastFourDigits}</p>
         </div>
       </div>
 
       <div className="payment-card-btns-container">
-        {isPrimary && (
+        {isPrimary ? (
           <span
             className="payment-method-card-primary-enabled"
             aria-label="Primary payment method"
           >
             PRIMARY
           </span>
-        )}
-
-        {!isPrimary && (
+        ) : (
           <Button
             text="PRIMARY"
             onClick={handleSetPrimary}
@@ -76,6 +86,7 @@ function UserPaymentCard({ id, number, isPrimary }) {
             }`}
           />
         )}
+
         <Button
           text={<i className="fas fa-times"></i>}
           style="cancel-button-s"
@@ -87,3 +98,4 @@ function UserPaymentCard({ id, number, isPrimary }) {
 }
 
 export default UserPaymentCard;
+

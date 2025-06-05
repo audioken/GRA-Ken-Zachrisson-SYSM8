@@ -15,10 +15,11 @@ import InputField from "../UI/Input/InputField";
 function CheckoutPaymentForm({ onSuccess, className = "" }) {
   const { paymentInfo, setPaymentInfo } = useContext(PaymentContext);
   const { user, token, updateUser } = useAuth();
+  const isMobile = useIsMobile(768);
+  const navigate = useNavigate();
+
   const [selected, setSelected] = useState("mastercard");
   const [saveCard, setSaveCard] = useState(false);
-  const navigate = useNavigate();
-  const isMobile = useIsMobile(768);
 
   const [form, setForm] = useState({
     name: "",
@@ -40,9 +41,9 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
   const [valid, setValid] = useState({});
   const [formComplete, setFormComplete] = useState(false);
 
-  // Fyll i primary payment method om användaren är inloggad
+  // Fyll formuläret med användarens primära betalkort om inloggad
   useEffect(() => {
-    if (user && user.paymentMethods && user.paymentMethods.length > 0) {
+    if (user?.paymentMethods?.length > 0) {
       const primary = user.paymentMethods.find((pm) => pm.isPrimary);
       if (primary) {
         const newForm = {
@@ -59,7 +60,8 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
         return;
       }
     }
-    // Om gäst eller inget primary: töm fälten
+
+    // Gäst eller ingen primär metod
     setForm({
       name: "",
       number: "",
@@ -69,26 +71,42 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
     });
   }, [user]);
 
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    let newValue = type === "checkbox" ? checked : value;
+
+    // Lägg till "/" automatiskt i expiry
+    if (name === "expiry") {
+      // Ta bort allt utom siffror
+      const digits = newValue.replace(/\D/g, "");
+      if (digits.length <= 2) {
+        newValue = digits;
+      } else {
+        newValue = digits.slice(0, 2) + "/" + digits.slice(2, 4);
+      }
+    }
+
+    const updatedForm = {
+      ...form,
+      [name]: newValue,
+    };
+    setForm(updatedForm);
+
+    const { errors, valid } = validateInputs(updatedForm);
+    setErrors(errors);
+    setValid(valid);
+  };
+
   const handleClear = (field) => {
     const updatedForm = { ...form, [field]: "" };
     setForm(updatedForm);
+
     const { errors, valid } = validateInputs(updatedForm);
     setErrors(errors);
     setValid(valid);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const updatedForm = {
-      ...form,
-      [name]: type === "checkbox" ? checked : value,
-    };
-    setForm(updatedForm);
-    const { errors, valid } = validateInputs(updatedForm);
-    setErrors(errors);
-    setValid(valid);
-  };
-
+  // Uppdatera formComplete när validering förändras
   useEffect(() => {
     const relevantFields =
       selected === "mastercard"
@@ -105,7 +123,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validera igen innan submit
+    // Slutlig validering
     const { errors: newErrors, valid: newValid } = validateInputs(form);
     setErrors(newErrors);
     setValid(newValid);
@@ -116,9 +134,8 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
         !newValid.number ||
         !newValid.expiry ||
         !newValid.cvc
-      ) {
+      )
         return;
-      }
 
       setPaymentInfo({
         name: form.name,
@@ -128,14 +145,13 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
         method: "Mastercard",
       });
 
-      // Spara nytt kort till backend om inloggad och nytt kort
+      // Spara nytt kort om inloggad och kortet inte redan finns
       if (
         user &&
         saveCard &&
-        (!user.paymentMethods ||
-          !user.paymentMethods.some(
-            (pm) => pm.number === form.number && pm.expiry === form.expiry
-          ))
+        !user.paymentMethods?.some(
+          (pm) => pm.number === form.number && pm.expiry === form.expiry
+        )
       ) {
         try {
           const res = await fetch(
@@ -156,18 +172,15 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
             }
           );
           const data = await res.json();
-          if (data.user) {
-            updateUser(data.user);
-          }
+          if (data.user) updateUser(data.user);
         } catch (error) {
           console.error("Error saving payment method:", error);
           return;
         }
       }
     } else if (selected === "swish") {
-      if (!newValid.phone) {
-        return;
-      }
+      if (!newValid.phone) return;
+
       setPaymentInfo({
         phone: form.phone,
         method: "Swish",
@@ -273,6 +286,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
               )}
             </div>
           </div>
+
           {isMobile && (
             <Button
               className={`${!formComplete ? "disabled" : ""}`}
@@ -282,6 +296,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
               disabled={!formComplete}
             />
           )}
+
           {user && selected === "mastercard" && (
             <div className="checkbox-container">
               <input
@@ -307,7 +322,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
                 label="Phone"
                 name="phone"
                 type="text"
-                value={form.phone || ""}
+                value={form.phone}
                 onChange={handleInputChange}
                 onClear={() => handleClear("phone")}
                 error={errors.phone}

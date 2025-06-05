@@ -4,6 +4,7 @@ import useFetch from "../../../hooks/useFetch";
 import Masonry from "react-masonry-css";
 
 function MostOrderedItemsList() {
+  // Anpassad hook för att hämta data från API:et
   const { data, loading, error } = useFetch(
     `${process.env.REACT_APP_API_URL}/items`
   );
@@ -12,6 +13,7 @@ function MostOrderedItemsList() {
   if (error) return <p>Error loading items.</p>;
   if (!data) return null;
 
+  // Filtrera de mest beställda varorna (hårdkodat för tillfället)
   const mostOrderedItems = data.filter((item) => item.isMostOrdered === true);
 
   return (

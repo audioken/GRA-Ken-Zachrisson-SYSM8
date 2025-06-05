@@ -4,7 +4,7 @@ import { CartProvider } from "./context/CartContext";
 import { DeliveryProvider } from "./context/DeliveryContext";
 import { PaymentProvider } from "./context/PaymentContext";
 import { AuthProvider } from "./context/AuthContext";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import Header from "./components/Layout/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";

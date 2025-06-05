@@ -8,10 +8,11 @@ import UserPaymentSection from "../../components/User/UserPaymentSection";
 import UserPaymentForm from "../../components/User/UserPaymentForm";
 
 function UserPage() {
-  const [expanded, setExpanded] = useState("account"); // "account", "password", null
+  const [expanded, setExpanded] = useState("account"); // Standard expandad sektion
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [showPaymentMethodForm, setShowPaymentMethodForm] = useState(false);
 
+  // Hanterar expand/collapse av sektioner
   const handleExpand = (panel) => {
     if (expanded === panel) {
       setExpanded(null);

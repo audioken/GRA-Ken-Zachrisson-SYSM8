@@ -34,7 +34,7 @@ function OrderConfirmation() {
       .then((response) => response.json())
       .then((data) => {
         setOrderData(data);
-        setCartItems([]); // Rensa kundvagn
+        setCartItems([]); // Rensa kundvagn efter lyckad order
         sessionStorage.setItem("lastOrder", JSON.stringify(data));
         sessionStorage.setItem("orderSent", "true");
       })

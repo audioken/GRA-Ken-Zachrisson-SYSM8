@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       return null;
     }
   });
-  
+
   const logoutTimer = useRef();
 
   // Funktion för att uppdatera användarinformation

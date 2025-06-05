@@ -6,6 +6,7 @@ function MenuFilter() {
   const { categories, selectedCategory, setSelectedCategory } =
     useContext(CategoryContext);
 
+  // Hanterar klassen för knapparna baserat på vald kategori
   function getButtonClass(category, selectedCategory) {
     return `category-btn ${
       selectedCategory === category && selectedCategory !== "Favorites"
@@ -14,6 +15,7 @@ function MenuFilter() {
     }`;
   }
 
+  // Hanterar ikonen för "Favorites" baserat på vald kategori
   function getIconClass(category, selectedCategory) {
     return `fa-heart ${
       selectedCategory === category

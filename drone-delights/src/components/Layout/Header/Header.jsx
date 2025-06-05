@@ -3,7 +3,7 @@ import "../../../styles/TypographyStyles.css";
 import logo from "../../../assets/images/drone-delights-logo.png";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../../context/CartContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import useIsMobile from "../../../hooks/useIsMobile";
 import ButtonLink from "../../UI/Button/ButtonLink";
@@ -13,14 +13,15 @@ import MobileUserMenu from "../UserMenu/MobileUserMenu";
 function Header() {
   const { cartQuantity } = useContext(CartContext);
   const { token, user } = useAuth();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [setMenuOpen] = useState(false); // Kontrollera menyöppning i mobilvy
 
+  // Använd en anpassad hook för att avgöra om det är mobilvy
   const isMobile = useIsMobile(900);
 
   return (
     <header className="header-container">
       <nav className="header-nav" aria-label="Main Navigation">
-        {/* LOGO + COMPANY NAME */}
+        {/* LOGO + FÖRETAGSNAMN */}
         <div className="full-logo-container">
           <Link to="/" className="logo-link">
             <img

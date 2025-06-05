@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "../../styles/FormStyles.css";
 import "../../styles/PaymentStyles.css";
 import PaymentsCardsList from "./PaymentsCardsList/PaymentsCardsList";

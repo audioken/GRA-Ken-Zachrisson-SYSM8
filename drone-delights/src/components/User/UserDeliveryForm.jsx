@@ -1,21 +1,25 @@
 import "../../styles/TypographyStyles.css";
 import "../../styles/FormStyles.css";
 import "../../styles/DeliveryStyles.css";
+
 import { useContext, useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { DeliveryContext } from "../../context/DeliveryContext";
 import { validateInputs } from "../../utils/validateInputs";
 import useIsMobile from "../../hooks/useIsMobile";
+
 import axios from "axios";
 import InputField from "../UI/Input/InputField";
 import Button from "../UI/Button/Button";
 
 function UserDeliveryForm({ isExpanded, onExpand }) {
   const { deliveryInfo, setDeliveryInfo } = useContext(DeliveryContext);
-  const [editMode, setEditMode] = useState(false);
   const { user, token, login } = useAuth();
   const isMobile = useIsMobile(768);
 
+  const isLoggedIn = !!user;
+
+  // Formtillstånd
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -27,6 +31,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
   const [originalForm, setOriginalForm] = useState(form);
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState({});
+  const [editMode, setEditMode] = useState(false);
 
   const [hovered, setHovered] = useState({
     name: false,
@@ -36,30 +41,22 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
     city: false,
   });
 
-  const isLoggedIn = !!user;
-
+  // Fyll i formulärdata beroende på om användaren är inloggad
   useEffect(() => {
     if (!isExpanded) {
       setEditMode(false);
       setErrors({});
       setValid({});
-      if (isLoggedIn) {
-        setForm({
-          name: user.name || "",
-          phone: user.phone || "",
-          address: user.address || "",
-          postalCode: user.postalCode || "",
-          city: user.city || "",
-        });
-      } else {
-        setForm({
-          name: deliveryInfo.name || "",
-          phone: deliveryInfo.phone || "",
-          address: deliveryInfo.address || "",
-          postalCode: deliveryInfo.postalCode || "",
-          city: deliveryInfo.city || "",
-        });
-      }
+
+      const data = isLoggedIn ? user : deliveryInfo;
+
+      setForm({
+        name: data.name || "",
+        phone: data.phone || "",
+        address: data.address || "",
+        postalCode: data.postalCode || "",
+        city: data.city || "",
+      });
     }
   }, [isExpanded, isLoggedIn, user, deliveryInfo]);
 
@@ -81,10 +78,6 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
     setValid(valid);
   };
 
-  const isFormChanged = () => {
-    return Object.keys(form).some((key) => form[key] !== originalForm[key]);
-  };
-
   const handleClear = (field) => {
     const updatedForm = { ...form, [field]: "" };
     setForm(updatedForm);
@@ -94,45 +87,44 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
     setValid(valid);
   };
 
+  const isFormChanged = () =>
+    Object.keys(form).some((key) => form[key] !== originalForm[key]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { errors, valid } = validateInputs(form);
     setErrors(errors);
     setValid(valid);
 
-    if (Object.values(valid).every(Boolean)) {
-      if (isLoggedIn) {
-        const res = await axios.patch(
-          `${process.env.REACT_APP_API_URL}/users/me`,
-          form,
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-        login(token, res.data.user);
-      } else {
-        setDeliveryInfo(form);
-      }
-      setEditMode(false);
+    const allValid = Object.values(valid).every(Boolean);
+    if (!allValid) return;
+
+    if (isLoggedIn) {
+      const res = await axios.patch(
+        `${process.env.REACT_APP_API_URL}/users/me`,
+        form,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      login(token, res.data.user);
+    } else {
+      setDeliveryInfo(form);
     }
+
+    setEditMode(false);
   };
 
   const handleCancel = () => {
-    if (isLoggedIn) {
-      setForm({
-        name: user.name || "",
-        phone: user.phone || "",
-        address: user.address || "",
-        postalCode: user.postalCode || "",
-        city: user.city || "",
-      });
-    } else {
-      setForm({
-        name: deliveryInfo.name || "",
-        phone: deliveryInfo.phone || "",
-        address: deliveryInfo.address || "",
-        postalCode: deliveryInfo.postalCode || "",
-        city: deliveryInfo.city || "",
-      });
-    }
+    const data = isLoggedIn ? user : deliveryInfo;
+
+    setForm({
+      name: data.name || "",
+      phone: data.phone || "",
+      address: data.address || "",
+      postalCode: data.postalCode || "",
+      city: data.city || "",
+    });
+
     setErrors({});
     setValid({});
     setEditMode(false);
@@ -140,18 +132,21 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
 
   return (
     <section className="form-container">
+      {/* Överlagring för att expandera/komprimera */}
       <div
         className="form-header-overlay"
         onClick={onExpand}
         aria-label={isExpanded ? "Collapse" : "Expand"}
       />
+
       <header className="form-header">
         <h2 className="form-title">Delivery Information</h2>
-        {!editMode && (
+
+        {!editMode ? (
           <div
             className="icon-container-for-form icon-pen hl"
             onClick={(e) => {
-              e.stopPropagation();
+              e.stopPropagation(); // Gör så att klicket inte stänger ner formuläret
               if (!isExpanded) {
                 onExpand();
                 setTimeout(() => handleEdit(), 0);
@@ -164,8 +159,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
           >
             <i className="fa-solid fa-pen"></i>
           </div>
-        )}
-        {editMode && (
+        ) : (
           <Button
             text={<i className="fas fa-times"></i>}
             style="cancel-button-s"
@@ -173,7 +167,8 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
           />
         )}
       </header>
-      {isExpanded ? (
+
+      {isExpanded && (
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-inputs-container">
             <div className="form-inputs-row-container">
@@ -206,6 +201,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
                 }
               />
             </div>
+
             <InputField
               label="Address"
               name="address"
@@ -221,6 +217,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
                 setHovered((prev) => ({ ...prev, address: v }))
               }
             />
+
             <div className="form-inputs-row-container">
               <InputField
                 label="Zip Code"
@@ -250,6 +247,8 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
                 hovered={hovered.city}
                 setHovered={(v) => setHovered((prev) => ({ ...prev, city: v }))}
               />
+
+              {/* Desktop-knapp */}
               {!isMobile && (
                 <Button
                   className={`${
@@ -271,6 +270,8 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
               )}
             </div>
           </div>
+
+          {/* Mobilknapp */}
           {isMobile && (
             <Button
               className={`${
@@ -282,16 +283,16 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
               }`}
               type="submit"
               text="Save Changes"
+              style="full-green"
               disabled={
                 !editMode ||
                 !isFormChanged() ||
                 !Object.values(valid).every(Boolean)
               }
-              style="full-green"
             />
           )}
         </form>
-      ) : null}
+      )}
     </section>
   );
 }

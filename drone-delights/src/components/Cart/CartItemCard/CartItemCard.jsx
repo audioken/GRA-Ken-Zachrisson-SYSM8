@@ -6,6 +6,8 @@ import { CartContext } from "../../../context/CartContext";
 
 function CartItemCard({ _id, name, image, price, description }) {
   const { cartItems, updateQuantity, removeFromCart } = useContext(CartContext);
+
+  // Hitta aktuell vara i kundvagnen baserat på dess ID
   const cartItem = cartItems.find((item) => item._id === _id);
   const quantity = cartItem ? cartItem.quantity : 1;
 

@@ -16,10 +16,12 @@ function InputField({
   hovered,
   setHovered,
 }) {
+  // Hantera hover state för att visa X-knapp och checkmark
   const isAvailable = available === undefined || available;
   const showClear = !readOnly && hovered && value; // Visa X bara vid redigering och hover
   const showCheck = !hovered && valid && isAvailable; // Visa check om valid + ev. available
 
+  // Bestäm klassen för input baserat på error, valid och available
   const inputClass =
     error || available === false
       ? "input-error"

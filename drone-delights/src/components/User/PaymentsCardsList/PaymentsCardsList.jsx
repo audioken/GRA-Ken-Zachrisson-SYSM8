@@ -4,6 +4,8 @@ import UserPaymentCard from "../UserPaymentCard/UserPaymentCard";
 
 function PaymentsCardsList() {
   const { user } = useAuth();
+
+  // Hämta sparade betalningsmetoder från användarkontext
   const paymentMethods = user?.paymentMethods || [];
 
   return (

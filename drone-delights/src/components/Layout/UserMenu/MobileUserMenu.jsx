@@ -8,8 +8,9 @@ import UserMenu from "./UserMenu";
 function MobileUserMenu() {
   const { token } = useAuth();
   const [open, setOpen] = useState(false);
-  const menuRef = useRef();
+  const menuRef = useRef(); // Referens för att hantera klick utanför menyn
 
+  // Stäng menyn om användaren klickar utanför den
   useEffect(() => {
     function handleClickOutside(e) {
       if (menuRef.current && !menuRef.current.contains(e.target)) {

@@ -12,15 +12,19 @@ export function DeliveryProvider({ children }) {
       return {};
     }
   });
-  
+
+  // Återställ leveransinformationen
   const resetDeliveryInfo = () => setDeliveryInfo({});
 
+  // Spara leveransinformation i localStorage när den ändras
   useEffect(() => {
     localStorage.setItem("deliveryInfo", JSON.stringify(deliveryInfo));
   }, [deliveryInfo]);
 
   return (
-    <DeliveryContext.Provider value={{ deliveryInfo, setDeliveryInfo, resetDeliveryInfo }}>
+    <DeliveryContext.Provider
+      value={{ deliveryInfo, setDeliveryInfo, resetDeliveryInfo }}
+    >
       {children}
     </DeliveryContext.Provider>
   );

@@ -13,7 +13,6 @@ function PasswordField({
   setShowPassword,
 }) {
   const inputClass = error ? "input-error" : valid ? "input-success" : "";
-
   const showCheck = !hovered && valid && value;
 
   return (

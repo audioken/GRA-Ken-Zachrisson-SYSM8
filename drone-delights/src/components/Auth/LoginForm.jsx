@@ -11,21 +11,33 @@ import TextToLink from "../Shared/TextToLink/TextToLink";
 import axios from "axios";
 
 function LoginForm() {
+  // Contexts
   const { login } = useAuth();
   const { setDeliveryInfo } = useContext(DeliveryContext);
   const { setPaymentInfo } = useContext(PaymentContext);
+
+  // Navigering efter inloggning
   const navigate = useNavigate();
 
+  // Formulärdata
   const [form, setForm] = useState({ username: "", password: "" });
+
+  // Visar eller döljer lösenord
   const [showPassword, setShowPassword] = useState({ password: false });
+
+  // Hover-status för lösenordsikonen
   const [hovered, setHovered] = useState({ password: false });
+
+  // Felmeddelande vid inloggning
   const [error, setError] = useState("");
 
+  // Hanterar input-ändringar
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Skickar inloggningsförfrågan
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -33,7 +45,11 @@ function LoginForm() {
         `${process.env.REACT_APP_API_URL}/users/login`,
         form
       );
+
+      // Spara token och användare
       login(response.data.accessToken, response.data.user);
+
+      // Förifyll leveransuppgifter
       setDeliveryInfo({
         name: response.data.user.name,
         phone: response.data.user.phone,
@@ -41,6 +57,8 @@ function LoginForm() {
         postalCode: response.data.user.postalCode,
         city: response.data.user.city,
       });
+
+      // Förifyll betalningsuppgifter (kortfält tomma)
       setPaymentInfo({
         name: response.data.user.name,
         phone: response.data.user.phone,
@@ -48,6 +66,8 @@ function LoginForm() {
         expiry: "",
         cvc: "",
       });
+
+      // Gå vidare till meny
       navigate("/menu");
     } catch (error) {
       setError("Username or Password was wrong");

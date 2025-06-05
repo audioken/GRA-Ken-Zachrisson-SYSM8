@@ -14,7 +14,7 @@ function UserMenu({ closeMenu }) {
   function handleLogout() {
     logout();
     resetDeliveryInfo();
-    closeMenu();
+    closeMenu(); 
     navigate("/");
   }
 

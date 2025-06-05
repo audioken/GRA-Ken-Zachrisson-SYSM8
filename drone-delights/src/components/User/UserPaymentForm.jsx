@@ -9,6 +9,9 @@ import InputField from "../UI/Input/InputField";
 import Button from "../UI/Button/Button";
 
 function UserPaymentForm({ onCancel, onSuccess }) {
+  const { user, updateUser, token } = useAuth();
+  const isMobile = useIsMobile(768);
+
   const [form, setForm] = useState({
     name: "",
     number: "",
@@ -17,6 +20,11 @@ function UserPaymentForm({ onCancel, onSuccess }) {
     isPrimary: false,
   });
 
+  const [errors, setErrors] = useState({});
+  const [valid, setValid] = useState({});
+  const [formComplete, setFormComplete] = useState(false);
+  const [succes, setSuccess] = useState("");
+
   const [hovered, setHovered] = useState({
     name: false,
     number: false,
@@ -24,62 +32,70 @@ function UserPaymentForm({ onCancel, onSuccess }) {
     cvc: false,
   });
 
-  const { user, updateUser, token } = useAuth();
-  const [errors, setErrors] = useState({});
-  const [valid, setValid] = useState({});
-  const [success, setSuccess] = useState("");
-  const [formComplete, setFormComplete] = useState(false);
-  const isMobile = useIsMobile(768);
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    let inputValue = type === "checkbox" ? checked : value;
 
+    // Lägg automatiskt till "/" efter två siffror i expiry
+    if (name === "expiry") {
+      inputValue = inputValue.replace(/\D/g, ""); // Tar bort icke-siffror
+      if (inputValue.length > 2) {
+        inputValue = `${inputValue.slice(0, 2)}/${inputValue.slice(2, 4)}`;
+      }
+    }
+
+    const updatedForm = {
+      ...form,
+      [name]: inputValue,
+    };
+
+    setForm(updatedForm);
+    const { errors, valid } = validateInputs(updatedForm);
+    setErrors(errors);
+    setValid(valid);
+  };
+
+  // Rensa ett fält och kör ny validering
+  const handleClear = (field) => {
+    const updatedForm = { ...form, [field]: "" };
+    setForm(updatedForm);
+    const { errors, valid } = validateInputs(updatedForm);
+    setErrors(errors);
+    setValid(valid);
+  };
+
+  // Återställ formuläret vid avbryt
   const handleCancel = () => {
-    setForm({ name: "", number: "", expiry: "", cvc: "" });
+    setForm({ name: "", number: "", expiry: "", cvc: "", isPrimary: false });
     setErrors({});
     setValid({});
     setSuccess("");
     if (onCancel) onCancel();
   };
 
-  const handleClear = (field) => {
-    const updatedForm = { ...form, [field]: "" };
-    setForm(updatedForm);
-
-    const { errors, valid } = validateInputs(updatedForm);
-    setErrors(errors);
-    setValid(valid);
-  };
-
+  // Skicka formuläret till backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { errors, valid } = validateInputs(form);
     setErrors(errors);
     setValid(valid);
 
-    if (!valid.name || !valid.number || !valid.expiry || !valid.cvc) {
-      console.log("Fälten är inte giltiga, avbryter inskickningen");
-      return;
-    }
+    // Stoppa om något fält är ogiltigt
+    if (!valid.name || !valid.number || !valid.expiry || !valid.cvc) return;
 
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/users/payment-methods`,
         form,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Om backend returnerar { user }
+      // Uppdatera användaren med rätt data beroende på vad backend skickar
       if (res.data.user) {
         updateUser(res.data.user);
-      }
-      // Om backend returnerar { paymentMethods }
-      else if (res.data.paymentMethods) {
+      } else if (res.data.paymentMethods) {
         updateUser({ ...user, paymentMethods: res.data.paymentMethods });
-      }
-      // Fallback om inget returneras (inte rekommenderat)
-      else {
+      } else {
         updateUser({
           ...user,
           paymentMethods: [
@@ -95,9 +111,7 @@ function UserPaymentForm({ onCancel, onSuccess }) {
       }
 
       setSuccess("Payment method added successfully!");
-      setForm({ name: "", number: "", expiry: "", cvc: "" });
-      setErrors({});
-      setValid({});
+      handleCancel();
       if (onSuccess) onSuccess();
     } catch (error) {
       console.error("Error adding payment method:", error);
@@ -106,25 +120,13 @@ function UserPaymentForm({ onCancel, onSuccess }) {
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const updatedForm = {
-      ...form,
-      [name]: type === "checkbox" ? checked : value,
-    };
-    setForm(updatedForm);
-    const { errors, valid } = validateInputs(updatedForm);
-    setErrors(errors);
-    setValid(valid);
-  };
-
+  // Kolla om formuläret är komplett
   useEffect(() => {
-    // Kolla att alla valideringsregler är true och inga errors finns
-    const requiredFields = ["name", "number", "expiry", "cvc"];
-    const allValid =
-      requiredFields.every((field) => valid[field]) &&
-      requiredFields.every((field) => !errors[field]);
-    setFormComplete(allValid);
+    const required = ["name", "number", "expiry", "cvc"];
+    const isComplete =
+      required.every((field) => valid[field]) &&
+      required.every((field) => !errors[field]);
+    setFormComplete(isComplete);
   }, [valid, errors]);
 
   return (
@@ -137,6 +139,7 @@ function UserPaymentForm({ onCancel, onSuccess }) {
           onClick={handleCancel}
         />
       </header>
+
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-inputs-container">
           <InputField
@@ -163,6 +166,7 @@ function UserPaymentForm({ onCancel, onSuccess }) {
             hovered={hovered.number}
             setHovered={(v) => setHovered((prev) => ({ ...prev, number: v }))}
           />
+
           <div className="form-inputs-row-container">
             <InputField
               label="Expiry"
@@ -188,6 +192,7 @@ function UserPaymentForm({ onCancel, onSuccess }) {
               hovered={hovered.cvc}
               setHovered={(v) => setHovered((prev) => ({ ...prev, cvc: v }))}
             />
+
             {!isMobile && (
               <Button
                 className={`add-button-l ${!formComplete ? "disabled" : ""}`}
@@ -198,6 +203,7 @@ function UserPaymentForm({ onCancel, onSuccess }) {
             )}
           </div>
         </div>
+
         {isMobile && (
           <Button
             className={`full-green ${!formComplete ? "disabled" : ""}`}
@@ -206,6 +212,7 @@ function UserPaymentForm({ onCancel, onSuccess }) {
             text="Save New Card"
           />
         )}
+
         <div className="checkbox-container">
           <input
             type="checkbox"
@@ -214,7 +221,6 @@ function UserPaymentForm({ onCancel, onSuccess }) {
             className="form-checkbox"
             checked={form.isPrimary}
             onChange={handleInputChange}
-            onClear={() => handleClear("isPrimary")}
           />
           <label htmlFor="isPrimary" className="form-checkbox-label">
             Set as Primary

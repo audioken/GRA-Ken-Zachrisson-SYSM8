@@ -14,7 +14,7 @@ function InputFieldEdit({
   available,
   type = "text",
   setHovered,
-  originalValue, // det ursprungliga värdet (t.ex. user.username)
+  originalValue,
 }) {
   const [editMode, setEditMode] = useState(false);
   const [tempValue, setTempValue] = useState(value);
@@ -62,8 +62,7 @@ function InputFieldEdit({
             editMode
               ? (e) => {
                   setTempValue(e.target.value);
-                  // Anropa onChange så att realtidssökning och validering sker
-                  onChange && onChange(e);
+                  onChange && onChange(e); // Anropa onChange så att realtidssökning och validering sker
                 }
               : undefined
           }

@@ -1,8 +1,8 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from "react";
 
 export const PaymentContext = createContext();
 
-export function PaymentProvider({ children }) { 
+export function PaymentProvider({ children }) {
   const [paymentInfo, setPaymentInfo] = useState(() => {
     try {
       const stored = localStorage.getItem("paymentInfo");
@@ -12,10 +12,10 @@ export function PaymentProvider({ children }) {
       return {};
     }
   });
-  
 
+  // Återställ betalningsinformationen
   useEffect(() => {
-    localStorage.setItem('paymentInfo', JSON.stringify(paymentInfo));
+    localStorage.setItem("paymentInfo", JSON.stringify(paymentInfo));
   }, [paymentInfo]);
 
   return (

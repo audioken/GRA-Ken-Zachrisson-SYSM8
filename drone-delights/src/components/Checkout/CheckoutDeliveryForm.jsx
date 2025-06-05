@@ -1,4 +1,5 @@
 import "../../styles/DeliveryStyles.css";
+import "../../styles/FormStyles.css";
 import { useContext, useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { DeliveryContext } from "../../context/DeliveryContext";
@@ -13,6 +14,7 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
   const { user, token, login } = useAuth();
   const isMobile = useIsMobile(768);
 
+  // Formulärdata
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -21,10 +23,11 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
     city: "",
   });
 
-  const [saveAddress, setSaveAddress] = useState(false);
+  const [saveAddress, setSaveAddress] = useState(false); // Checkbox för att spara adress
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState({});
 
+  // Fyll formulär med sparade uppgifter från användare eller tidigare leverans
   useEffect(() => {
     if (user) {
       setForm({
@@ -43,36 +46,45 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
         city: deliveryInfo.city || "",
       });
     }
-    setSaveAddress(false);
+    setSaveAddress(false); // Återställ checkbox vid varje laddning
   }, [user, deliveryInfo]);
 
+  // Hantera input-förändringar och validera
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     const updatedForm = { ...form, [name]: value };
     setForm(updatedForm);
+
     const { errors, valid } = validateInputs(updatedForm);
     setErrors(errors);
     setValid(valid);
   };
 
+  // Rensa ett specifikt fält + validera igen
   const handleClear = (field) => {
     const updatedForm = { ...form, [field]: "" };
     setForm(updatedForm);
+
     const { errors, valid } = validateInputs(updatedForm);
     setErrors(errors);
     setValid(valid);
   };
 
+  // Hantera formulärsubmit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { errors, valid } = validateInputs(form);
     setErrors(errors);
     setValid(valid);
 
+    // Om någon input inte är giltig, avbryt
     if (!Object.values(valid).every(Boolean)) return;
 
+    // Uppdatera global delivery-info
     setDeliveryInfo({ ...form, saveAddress });
 
+    // Spara adress till backend om användaren valt det
     if (user && saveAddress) {
       try {
         const res = await axios.patch(
@@ -80,14 +92,14 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        login(token, res.data.user);
-        setDeliveryInfo({ ...form, saveAddress: true });
+        login(token, res.data.user); // Uppdatera user-data i context
+        setDeliveryInfo({ ...form, saveAddress: true }); // Bekräfta sparning
       } catch (err) {
         console.error("Kunde inte spara adress till profil", err);
       }
     }
 
-    if (onSubmit) onSubmit();
+    if (onSubmit) onSubmit(); // Kör vidareflöde
   };
 
   return (
@@ -98,6 +110,7 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-inputs-container">
           <div className="form-inputs-row-container">
+            {/* Namn & telefon */}
             <InputField
               label="Full Name"
               name="name"
@@ -117,6 +130,8 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
               valid={valid.phone}
             />
           </div>
+
+          {/* Adress */}
           <InputField
             label="Address"
             name="address"
@@ -126,7 +141,9 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
             error={errors.address}
             valid={valid.address}
           />
+
           <div className="form-inputs-row-container">
+            {/* Postnummer & stad */}
             <InputField
               label="Zip Code"
               name="postalCode"
@@ -145,6 +162,8 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
               error={errors.city}
               valid={valid.city}
             />
+
+            {/* Desktop-knapp */}
             {!isMobile && (
               <Button
                 className={`${
@@ -157,6 +176,8 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
             )}
           </div>
         </div>
+
+        {/* Mobilknapp */}
         {isMobile && (
           <Button
             className={`${
@@ -167,6 +188,8 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
             style="full-green"
           />
         )}
+
+        {/* Checkbox: spara adress */}
         {user && (
           <div className="save-address-checkbox">
             <input
@@ -185,3 +208,4 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
 }
 
 export default CheckoutDeliveryForm;
+

@@ -53,18 +53,3 @@ input {
   font-size: 1.875rem;
   color: var(--c5);
 }
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.name-and-phone-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.postal-code-and-city-container {
-  display: flex;
-  justify-content: space-between;
-}

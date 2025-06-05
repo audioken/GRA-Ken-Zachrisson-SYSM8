@@ -4,7 +4,7 @@ import UserMenu from "./UserMenu";
 
 function UserMenuContainer({ user }) {
   const [open, setOpen] = useState(false);
-  const menuRef = useRef();
+  const menuRef = useRef(); // Referens för att hantera klick utanför menyn
 
   // Stäng menyn om man klickar utanför
   useEffect(() => {
