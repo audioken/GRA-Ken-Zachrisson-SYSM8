@@ -22,25 +22,25 @@
 
 .confirmed {
   font-size: clamp(4rem, 15vw, 6.25rem);
-  color: #17c3b2;
+  color: var(--c3);
 }
 
 .order-confirmation-title {
   display: flex;
   flex-direction: column;
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
   font-size: 2rem;
   text-align: center;
 }
 
 .your-order-is {
-  color: #227c9d;
+  color: var(--c1);
   font-size: clamp(1rem, 5vw, 2rem);
 }
 
 .on-the-way {
-  color: #fe6d73;
+  color: var(--c2);
   font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
 
@@ -90,7 +90,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
+  background-color: var(--c5);
   border-bottom: 1px solid #bfbfbf;
   border-radius: 12.5px 0 0 12.5px;
   width: 100%;
@@ -101,10 +101,10 @@
 }
 
 .order-item-title {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
   font-size: 1.125rem;
-  color: #227c9d;
+  color: var(--c1);
 }
 
 .ordet-item-price-and-quantity-container {
@@ -116,9 +116,9 @@
 }
 
 .order-item-price {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-size: 1rem;
-  color: #17c3b2;
+  color: var(--c3);
 }
 
 .order-item-quantity-container {
@@ -129,15 +129,15 @@
 }
 
 .order-item-quantity-text {
-  font-family: "Hachi Maru Pop", cursive;
+  font-family: var(--f2);
   font-size: 0.75rem;
-  color: #404040;
+  color: var(--c6);
 }
 
 .order-item-quantity {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-size: 1rem;
-  color: #404040;
+  color: var(--c6);
 }
 
 .order-total-cost-container,
@@ -147,7 +147,7 @@
   align-items: center;
   width: 100%;
   padding: 1.25rem;
-  background-color: white;
+  background-color: var(--c5);
   border-radius: 12.5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-top: 1px solid #bfbfbf;
@@ -155,23 +155,22 @@
   border-right: 1px solid #bfbfbf;
 }
 
-.order-header{
+.order-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.home-btn{
+.home-btn {
   font-size: 2.5rem;
 }
 
-.order-number-container{
+.order-number-container {
   box-shadow: none;
   border: none;
   background-color: transparent;
 }
-
 
 .total-cost-row,
 .order-number-row {
@@ -181,28 +180,27 @@
   width: 100%;
 }
 
-.order-number-row{
+.order-number-row {
   justify-content: center;
-  /* gap: 0.625rem; */
 }
 
 .total-cost-text,
 .order-number-text {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
   font-size: 1.25rem;
-  color: #404040;
+  color: var(--c6);
 }
 
 .total-cost-price,
 .order-number-id {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-size: 1.5rem;
-  color: #17c3b2;
+  color: var(--c3);
 }
 
-.order-number-id{
-  color: #227C9D;
+.order-number-id {
+  color: var(--c1);
 }
 
 .order-delivery-and-payment-container {
@@ -210,7 +208,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  background-color: white;
+  background-color: var(--c5);
   border-radius: 12.5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 1.25rem;
@@ -228,16 +226,16 @@
 }
 
 .payment-method-title {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
   font-size: 1rem;
-  color: #404040;
+  color: var(--c6);
 }
 
 .payment-method-text {
-  font-family: "Roboto", system-ui;
+  font-family: var(--f3);
   font-size: 1rem;
-  color: #404040;
+  color: var(--c6);
 }
 
 .order-delivery-address-container {
@@ -248,15 +246,15 @@
 }
 
 .delivery-address-title {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
   font-size: 1rem;
-  color: #404040;
+  color: var(--c6);
 }
 
 .thank-you-text {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
   font-size: 2rem;
-  color: #227c9d;
+  color: var(--c1);
 }

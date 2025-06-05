@@ -3,3 +3,7 @@
     flex-direction: column;
     gap: clamp(0.8rem, 3vw, 1.5rem);
 }
+
+li{
+    list-style: none;
+}

@@ -121,15 +121,15 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
   }, [isExpanded, user]);
 
   return (
-    <div className="form-container">
+    <section className="form-container">
       <div
         className="form-header-overlay"
         onClick={onExpand}
         aria-label={isExpanded ? "Collapse" : "Expand"}
       />
-      <div className="form-header">
+      <header className="form-header">
         <h2 className="form-title">Account Settings</h2>
-      </div>
+      </header>
       {isExpanded ? (
         <div className="form">
           <div className="form-inputs-container">
@@ -174,7 +174,7 @@ function UserSettingsForm({ isExpanded, onExpand, onChangePasswordClick }) {
           />
         </div>
       ) : null}
-    </div>
+    </section>
   );
 }
 

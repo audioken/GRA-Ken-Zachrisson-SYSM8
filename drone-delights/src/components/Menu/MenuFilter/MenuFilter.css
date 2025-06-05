@@ -9,9 +9,9 @@
 }
 
 .category-btn {
-  font-family: "Hachi Maru Pop", cursive;
+  font-family: var(--f2);
   font-size: clamp(1rem, 4vw, 2rem);
-  height: 75px;
+  height: 4.688rem;
   width: auto;
   border: none;
   background-color: transparent;
@@ -20,7 +20,7 @@
 }
 
 .selected{
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   width: auto;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -28,6 +28,6 @@
 }
 
 .fav-filter-selected{
-  color:#FE6D73;
+  color: var(--c2);
   scale: 1.5;
 }

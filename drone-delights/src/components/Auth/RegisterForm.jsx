@@ -1,5 +1,5 @@
 import "../../styles/FormStyles.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { validateInputs } from "../../utils/validateInputs";
 import InputField from "../UI/Input/InputField";
@@ -17,6 +17,16 @@ function RegisterForm() {
   const [emailHovered, setEmailHovered] = useState(false);
   const [errors, setErrors] = useState({});
   const [valid, setValid] = useState({});
+
+  const [formComplete, setFormComplete] = useState(false);
+  useEffect(() => {
+    const requiredFields = ["username", "email", "password"];
+    const allValid =
+      requiredFields.every((field) => valid[field]) &&
+      requiredFields.every((field) => !errors[field]);
+    setFormComplete(allValid);
+  }, [valid, errors]);
+
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -146,7 +156,12 @@ function RegisterForm() {
             setShowPassword={setShowPassword}
           />
         </div>
-        <Button type="submit" text="Register" style="full-green" onClick={handleSubmit} />
+        <Button
+          type="submit"
+          style={`full-green ${!formComplete ? "disabled" : ""}`}
+          text="Register"
+          disabled={!formComplete}
+        />
       </form>
       <TextToLink
         message="Have an account?"

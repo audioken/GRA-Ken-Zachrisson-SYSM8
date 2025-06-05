@@ -1,5 +1,5 @@
-import "./FieldStyles.css"; // Importera CSS för fältet
-import "../../../styles/ButtonStyles.css"; // Importera gemensamma knappar
+import "./FieldStyles.css";
+import "../../../styles/ButtonStyles.css";
 
 function InputField({
   label,
@@ -11,20 +11,19 @@ function InputField({
   valid,
   readOnly,
   disabled,
-  available, // t.ex. usernameAvailable
+  available,
   type = "text",
   hovered,
   setHovered,
 }) {
-  // const showClear = value && (!valid || hovered);
+  const isAvailable = available === undefined || available;
   const showClear = !readOnly && hovered && value; // Visa X bara vid redigering och hover
-
-  const showCheck = !hovered && valid && (available === undefined || available); // Visa check om valid + ev. available
+  const showCheck = !hovered && valid && isAvailable; // Visa check om valid + ev. available
 
   const inputClass =
     error || available === false
       ? "input-error"
-      : valid && (available === undefined || available)
+      : valid && isAvailable
       ? "input-success"
       : "";
 
@@ -38,8 +37,16 @@ function InputField({
         <label className="label-title" htmlFor={name}>
           {label}
         </label>
-        {error && <span className="error">{error}</span>}
-        {available === false && <span className="error">{label} occupied</span>}
+        {error && (
+          <span className="error" role="alert">
+            {error}
+          </span>
+        )}
+        {available === false && (
+          <span className="error" role="alert">
+            {label} occupied
+          </span>
+        )}
       </div>
 
       <div className="input-wrapper">
@@ -59,14 +66,14 @@ function InputField({
         />
 
         {showClear && (
-          <span
+          <button
             className="clear-button icon-wrapper"
             onClick={onClear}
             tabIndex={0}
             aria-label={`Clear ${name}`}
           >
             <i className="fa-solid fa-xmark"></i>
-          </span>
+          </button>
         )}
 
         {showCheck && (

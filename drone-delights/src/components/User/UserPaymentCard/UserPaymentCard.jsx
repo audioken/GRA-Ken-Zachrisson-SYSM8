@@ -4,14 +4,12 @@ import masterCardLogo from "../../../assets/images/mastercard.svg";
 import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import Button from "../../UI/Button/Button";
-import useIsMobile from "../../../hooks/useIsMobile";
 import axios from "axios";
 
 function UserPaymentCard({ id, number, isPrimary }) {
   const [lastFourDigits] = useState(number.slice(-4));
   const [hovered, setHovered] = useState(false);
   const { token, user, updateUser } = useAuth();
-  const isMobile = useIsMobile(500);
 
   const deletePaymentMethod = async () => {
     try {
@@ -43,7 +41,7 @@ function UserPaymentCard({ id, number, isPrimary }) {
   };
 
   return (
-    <div
+    <article
       className="user-payment-card-container"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -61,17 +59,21 @@ function UserPaymentCard({ id, number, isPrimary }) {
 
       <div className="payment-card-btns-container">
         {isPrimary && (
-          <div className="payment-method-card-primary-enabled">
-            <p className="payment-method-card-primary-text">PRIMARY</p>
-          </div>
+          <span
+            className="payment-method-card-primary-enabled"
+            aria-label="Primary payment method"
+          >
+            PRIMARY
+          </span>
         )}
 
         {!isPrimary && (
-          
           <Button
             text="PRIMARY"
             onClick={handleSetPrimary}
-            className={`payment-method-card-primary-disabled ${hovered ? "primary-hovered" : ""}`}
+            className={`payment-method-card-primary-disabled ${
+              hovered ? "primary-hovered" : ""
+            }`}
           />
         )}
         <Button
@@ -80,7 +82,7 @@ function UserPaymentCard({ id, number, isPrimary }) {
           onClick={deletePaymentMethod}
         />
       </div>
-    </div>
+    </article>
   );
 }
 

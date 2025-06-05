@@ -1,10 +1,10 @@
 import "./TitleHeader.css";
-import "../../../styles/TypographyStyles.css"
+import "../../../styles/TypographyStyles.css";
 import waveyBackground from "../../../assets/images/wavey-background-pages.svg";
 
 function TitleHeader({ pageTitleBlue, pageTitleRed }) {
   return (
-    <div className="title-header-container">
+    <header className="title-header-container">
       <div className="title-header-content">
         <h1 className="title-header-text">
           <span className="title-header-blue">{pageTitleBlue}</span>
@@ -14,9 +14,10 @@ function TitleHeader({ pageTitleBlue, pageTitleRed }) {
       <img
         src={waveyBackground}
         alt="Wavey Background"
+        aria-hidden="true"
         className="title-header-background"
       />
-    </div>
+    </header>
   );
 }
 

@@ -91,10 +91,10 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
   };
 
   return (
-    <div className={`form-container ${className}`}>
-      <div className="form-header">
+    <section className={`form-container ${className}`}>
+      <header className="form-header">
         <h2 className="form-title">Delivery Info</h2>
-      </div>
+      </header>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-inputs-container">
           <div className="form-inputs-row-container">
@@ -180,7 +180,7 @@ function CheckoutDeliveryForm({ className = "", onSubmit }) {
           </div>
         )}
       </form>
-    </div>
+    </section>
   );
 }
 

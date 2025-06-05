@@ -40,6 +40,10 @@ export function CartProvider({ children }) {
     setCartItems((prev) => prev.filter((i) => i._id !== itemId));
   }
 
+  function emptyCart() {
+    setCartItems([]);
+  }  
+
   return (
     <CartContext.Provider
       value={{
@@ -48,6 +52,7 @@ export function CartProvider({ children }) {
         addToCart,
         updateQuantity,
         removeFromCart,
+        emptyCart,
         cartQuantity,
         totalPrice,
       }}

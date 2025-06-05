@@ -2,8 +2,6 @@
   position: relative;
   width: 13.75rem;
   width: clamp(10rem, 30vw, 13.75rem);
-  /* min-height: 15.625rem; */
-  /* min-height: clamp(12rem, 30vw, 15.625rem); */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
   overflow: visible;
@@ -18,81 +16,21 @@
   border-radius: 25px 25px 0 0;
 }
 
-.full-quantity-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.quantity-wrapper-menu {
   position: absolute;
   top: -2.5rem;
   right: 0.3rem;
-  width: 6.375rem;
-  height: 2.125rem;
-  background-color: white;
-  border-radius: 25px;
-  border: 1px solid #cccccc;
-}
-
-.quantity-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.125rem;
-  height: 2.125rem;
-  border: none;
-  background-color: transparent;
-  border-radius: 25px;
-  cursor: pointer;
 }
 
 .hide {
   display: none;
 }
 
-.quantity-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.125rem;
-  height: 2.125rem;
-}
-
-.plus-btn {
-}
-
-.plus-btn-alone {
-  background-color: white;
-  border: 1px solid #cccccc;
-  position: absolute;
-  top: -2.5rem;
-  right: 0.3rem;
-}
-
-.quantity-icon {
-  font-size: 1rem;
-}
-
-.trash-icon {
-  color: #fe6d73;
-}
-
-.minus-icon {
-  color: #fe6d73;
-}
-
-.plus-icon {
-  color: #17c3b2;
-}
-
-.quantity {
-  font-family: "Roboto", system-ui;
-}
-
 .menu-item-info-full {
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: white;
-  /* gap: 0.3rem; */
+  background-color: var(--c5);
   padding: 0.3rem 0.3rem 1rem 1.25rem;
   border-radius: 25px;
   width: 13.75rem;
@@ -124,7 +62,7 @@
 
 .fav-icon {
   font-size: 1.25rem;
-  color: #7f7f7f;
+  color: var(--c7);
   animation: unpop 0.3s ease;
 }
 
@@ -144,7 +82,7 @@
 }
 
 .fav-selected {
-  color: #fe6d73;
+  color: var(--c2);
   scale: 1.25;
   animation: pop-rotate 0.4s ease;
 }
@@ -162,7 +100,7 @@
 }
 
 .fav-icon:hover {
-  color: #fe6d73;
+  color: var(--c2);
   scale: 1.25;
 }
 
@@ -172,14 +110,10 @@
   cursor: pointer;
 }
 
-.menu-item-middle-info {
-  margin-bottom: 2px;
-}
-
 .price {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-size: clamp(0.8rem, 2vw, 1rem);
-  color: #17c3b2;
+  color: var(--c3);
   user-select: none;
 }
 
@@ -191,9 +125,9 @@
 }
 
 .menu-item-description {
-  font-family: "Roboto", system-ui;
+  font-family: var(--f3);
   font-size: clamp(0.7rem, 2vw, 1rem);
-  color: #7f7f7f;
+  color: var(--c7);
   user-select: none;
   cursor: pointer;
   width: clamp(7rem, 15vw, 10rem);
@@ -223,7 +157,7 @@
 }
 
 .expand-icon {
-  color: #227c9d;
+  color: var(--c1);
 }
 
 .bounce-expand {

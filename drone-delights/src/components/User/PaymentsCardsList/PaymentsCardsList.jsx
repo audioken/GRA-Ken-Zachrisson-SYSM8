@@ -6,24 +6,25 @@ function PaymentsCardsList() {
   const { user } = useAuth();
   const paymentMethods = user?.paymentMethods || [];
 
-  console.log("PaymentMethods: ", paymentMethods);
-  console.log("User: ", user);
-
   return (
-    <div className="payment-cards-list-container">
+    <ul
+      className="payment-cards-list-container"
+      aria-label="Saved payment methods"
+    >
       {paymentMethods.length > 0 ? (
         paymentMethods.map((method) => (
-          <UserPaymentCard
-            key={method._id}
-            id={method._id}
-            number={method.number}
-            isPrimary={method.isPrimary}
-          />
+          <li key={method._id}>
+            <UserPaymentCard
+              id={method._id}
+              number={method.number}
+              isPrimary={method.isPrimary}
+            />
+          </li>
         ))
       ) : (
         <p>No payment methods available.</p>
       )}
-    </div>
+    </ul>
   );
 }
 

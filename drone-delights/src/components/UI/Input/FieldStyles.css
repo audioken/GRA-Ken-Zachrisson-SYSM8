@@ -5,7 +5,7 @@
 .form-group input {
 }
 
-.form-input{
+.form-input {
   padding-right: 3.125rem;
   height: clamp(2rem, 8vw, 3.5rem);
   font-size: clamp(0.8rem, 2.5vw, 1rem);
@@ -13,7 +13,7 @@
   width: 100%;
 }
 
-.form-input-edit{
+.form-input-edit {
   padding-right: 6.25rem;
 }
 
@@ -28,23 +28,29 @@
   z-index: 2;
 }
 
-.save-input { right: 36px; color: #27ae60; }
-.cancel-input { right: 12px; color: #e74c3c; }
+.save-input {
+  right: 36px;
+  color: #27ae60;
+}
+.cancel-input {
+  right: 12px;
+  color: #e74c3c;
+}
 
 /* ERRORS / SUCCESS */
 .error,
 .success {
-  font-family: "Roboto", system-ui;
+  font-family: var(--f3);
   font-weight: 400;
   font-size: clamp(0.6rem, 2.5vw, 1rem);
 }
 
 .error {
-  color: #fe6d73;
+  color: var(--cBad);
 }
 
 .success {
-  color: #17c3b2;
+  color: var(--cGood);
 }
 
 .input-success {
@@ -53,17 +59,17 @@
 }
 
 .input-error {
-  border: 2px solid #fe6d73;
+  border: 2px solid var(--cBad);
   background: #fff0f0;
 }
 
 /* ICONS */
-.input-wrapper{
+.input-wrapper {
   width: 100%;
   position: relative;
 }
 
-.icon-wrapper{
+.icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +96,7 @@
   user-select: none;
 }
 
-.label-title{
+.label-title {
   font-size: clamp(0.6rem, 2.5vw, 1rem);
 }
 
@@ -104,27 +110,24 @@
   z-index: 2;
 }
 
-.icon-pen{
-  color: #227C9D;
+.icon-pen {
+  color: var(--c1);
   font-size: 20px;
 }
 
-.icon-save{
+.icon-save {
   right: 50px;
-  color: #17C3B2;
+  color: var(--c3);
   font-size: 20px;
 }
 
-.icon-cancel{
-  color: #FE6D73;
+.icon-cancel {
+  color: var(--c2);
   font-size: 20px;
-
 }
 
 .password-toggle {
-  color: #7f7f7f;
+  color: var(--c7);
   cursor: pointer;
   font-size: 1.2rem;
 }
-
-

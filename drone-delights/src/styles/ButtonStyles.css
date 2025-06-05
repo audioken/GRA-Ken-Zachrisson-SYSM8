@@ -122,18 +122,20 @@
 }
 
 /* BUTTONLINK */
-.button-link {
+/* .button-link {
   font-family: var(--f1);
   font-size: 1.375rem;
   padding: 0.625rem 1.25rem;
   color: var(--c2);
   border: none;
-}
+} */
 
 .full,
 .full-green,
 .full-blue,
-.full-green-pay {
+.full-green-pay,
+.return,
+.clear-all {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,6 +150,10 @@
   text-decoration: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+}
+
+.full{
+  color: var(--c2);
 }
 
 .full-green,
@@ -165,7 +171,7 @@
   opacity: 0.5;
   pointer-events: none;
   background-color: #bdbdbd;
-  color: var(---c5);
+  color: var(--c5);
   cursor: not-allowed;
 }
 
@@ -192,8 +198,32 @@
 .lite {
   text-decoration: none;
   background-color: transparent;
+  color: var(--c2);
 }
 
 .return {
   background-color: transparent;
+  box-shadow: none;
+  color: var(--c2);
+  justify-content: flex-start;
+}
+
+.clear-all{
+  font-size: 0.8rem;
+  font-family: var(--f2);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* ITEM CARDS */
+.menu-item-quantity-btn, .cart-item-quantity-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  border: none;
+  background-color: transparent;
+  border-radius: 25px;
+  cursor: pointer;
 }

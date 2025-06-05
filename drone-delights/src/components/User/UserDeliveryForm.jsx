@@ -141,13 +141,13 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
   };
 
   return (
-    <div className="form-container">
+    <section className="form-container">
       <div
         className="form-header-overlay"
         onClick={onExpand}
         aria-label={isExpanded ? "Collapse" : "Expand"}
       />
-      <div className="form-header">
+      <header className="form-header">
         <h2 className="form-title">Delivery Information</h2>
         {!editMode && (
           <div
@@ -177,7 +177,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
             <i className="fas fa-times"></i>
           </button>
         )}
-      </div>
+      </header>
       {isExpanded ? (
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-inputs-container">
@@ -297,7 +297,7 @@ function UserDeliveryForm({ isExpanded, onExpand }) {
           )}
         </form>
       ) : null}
-    </div>
+    </section>
   );
 }
 

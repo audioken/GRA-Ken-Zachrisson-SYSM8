@@ -1,15 +1,3 @@
-.font1 {
-  font-family: "Knewave", system-ui;
-}
-
-.font2 {
-  font-family: "Hachi Maru Pop", cursive;
-}
-
-.font3 {
-  font-family: "Roboto", sans-serif;
-}
-
 /* COMPANY NAME */
 .company-name-blue, .company-name-red {
   font-family: "Knewave", system-ui;
@@ -18,60 +6,60 @@
 }
 
 .company-name-blue {
-  color: #227c9d;
+  color: var(--c1);
 }
 
 .company-name-red {
-  color: #fe6d73;
+  color: var(--c2);
 }
 
 /* USERMENU DROPDOWN */
 .user-menu-text-hi, .user-menu-text-username{
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
 }
 
 .user-menu-text-hi{
   font-size: 1.5rem;
-  color: #227c9d;
+  color: var(--c1);
 }
 
 .user-menu-text-username{
   font-size: 1.75rem;
-  color: #fe6d73;
+  color: var(--c2);
 }
 
 /* TITLEHEADER */
 .title-header-blue,
 .title-header-red {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
 }
 
 .title-header-blue {
   font-size: clamp(1rem, 5vw, 3rem);
-  color: #227c9d;
+  color: var(--c1);
 }
 
 .title-header-red {
   font-size: clamp(1.25rem, 6vw, 4rem);
-  color: #fe6d73;
+  color: var(--c2);
 }
 
 .empty-cart-text-blue,
 .empty-cart-text-red {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-weight: 400;
 }
 
 .empty-cart-text-blue {
   font-size: clamp(1rem, 5vw, 2rem);
-  color: #227c9d;
+  color: var(--c1);
 }
 
 .empty-cart-text-red {
   font-size: clamp(1.25rem, 6vw, 3rem);
-  color: #fe6d73;
+  color: var(--c2);
 }
 
 /* NOT FOUND */
@@ -84,22 +72,22 @@
 }
 
 .smiley{
-  font-family: "Knewave", system-ui;
-  color: #404040;
+  font-family: var(--f1);
+  color: var(--c6);
 }
 
 /* MENU TEASER */
 .menu-teaser-text {
-  font-family: "Hachi Maru Pop", cursive;
+  font-family: var(--f2);
   font-weight: 400;
   font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 /* ITEM CARDS */
 .menu-item-card-title {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-size: clamp(1rem, 3vw, 1.25rem);
-  color: #227c9d;
+  color: var(--c1);
 }
 
 .menu-item-card-price {
@@ -109,27 +97,28 @@
 }
 
 .cart-item-card-title{
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: #227c9d;
+  color: var(--c1);
 }
 
 .cart-item-card-price{
-  font-family: "Knewave", system-ui;
-  color: #17c3b2;
+  font-family: var(--f1);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--c3);
 }
 
 .cart-item-card-description{
-  font-family: "Roboto", system-ui;
+  font-family: var(--f3);
   font-size: clamp(0.7rem, 1.5vw, 1rem);
-  color: #7f7f7f;
+  color: var(--c7);
 }
 
 /* TOTAL PRICE */
 .total-price-title,
 .total-price-inc-text {
-  font-family: "Knewave", system-ui;
-  color: #404040;
+  font-family: var(--f1);
+  color: var(--c6);
 }
 
 .total-price-title {
@@ -141,19 +130,19 @@
 }
 
 .total-price {
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-size: clamp(1.25rem, 4vw, 2rem);
-  color: #17c3b2;
+  color: var(--c3);
 }
 
 /* FOOTER */
 .footer-text {
-  font-family: "Hachi Maru Pop";
+  font-family: var(--f2);
   font-size: clamp(0.5rem, 2vw, 0.8rem);
-  color: #404040;
+  color: var(--c6);
 }
 
 .footer-company-name{
-  font-family: "Knewave", system-ui;
+  font-family: var(--f1);
   font-size: clamp(0.6rem, 2vw, 1rem);
 }

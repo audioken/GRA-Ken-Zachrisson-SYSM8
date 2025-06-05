@@ -13,7 +13,6 @@ function InputFieldEdit({
   valid,
   available,
   type = "text",
-  hovered,
   setHovered,
   originalValue, // det ursprungliga värdet (t.ex. user.username)
 }) {
@@ -64,7 +63,7 @@ function InputFieldEdit({
             editMode
               ? (e) => {
                   setTempValue(e.target.value);
-                  // Anropa onChange så att realtidssökning och validering sker!
+                  // Anropa onChange så att realtidssökning och validering sker
                   onChange && onChange(e);
                 }
               : undefined

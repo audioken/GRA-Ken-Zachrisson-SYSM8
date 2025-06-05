@@ -17,8 +17,10 @@ function CartTotal() {
       <ButtonBar
         leftPath={"/menu"}
         leftText={"Continue shopping"}
+        leftStyle={"return"}
         rightPath={"/checkout"}
         rightText={"Checkout"}
+        rightStyle={"full"}
       />
     </div>
   );

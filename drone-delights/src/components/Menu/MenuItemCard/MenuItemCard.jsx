@@ -1,5 +1,6 @@
 import "./MenuItemCard.css";
 import "../../../styles/TypographyStyles.css";
+import "../../../styles/ItemCardStyles.css";
 import { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { useAuth } from "../../../context/AuthContext";
@@ -61,44 +62,44 @@ function MenuItemCard({ _id, name, image, price, description }) {
       >
         {/* QUANTITY */}
         <div
-          className={`full-quantity-container ${quantity < 1 ? "hide" : ""}`}
+          className={`quantity-wrapper quantity-wrapper-menu ${
+            quantity < 1 ? "hide" : ""
+          }`}
         >
-          <div className="trash-minus-container">
+          <div>
             {/* TRASH BUTTON */}
             <button
-              className={`trash-btn quantity-btn ${quantity > 1 ? "hide" : ""}`}
+              className={`quantity-btn ${quantity > 1 ? "hide" : ""}`}
               onClick={() => removeFromCart(_id)}
             >
-              <i className="fa-solid fa-trash quantity-icon trash-icon"></i>
+              <i className="fa-solid fa-trash quantity-icon quantity-trash-icon"></i>
             </button>
             {/* MINUS BUTTON */}
             <button
-              className={`minus-btn quantity-btn ${quantity < 2 ? "hide" : ""}`}
+              className={`quantity-btn ${quantity < 2 ? "hide" : ""}`}
               onClick={() => updateQuantity(_id, quantity - 1)}
             >
-              <i className="fa-solid fa-minus quantity-icon minus-icon"></i>
+              <i className="fa-solid fa-minus quantity-icon quantity-minus-icon"></i>
             </button>
           </div>
-          <div className="quantity-container">
-            <span className="quantity">{quantity}</span>
+          <div className="quantity-counter-container">
+            <span className="quantity-counter">{quantity}</span>
           </div>
-          <div className="plus-btns-container">
-            {/* PLUS BUTTON */}
-            <button
-              className="plus-btn quantity-btn"
-              onClick={() => updateQuantity(_id, quantity + 1)}
-            >
-              <i className="fa-solid fa-plus quantity-icon plus-icon"></i>
-            </button>
-          </div>
+          {/* PLUS BUTTON */}
+          <button
+            className="quantity-btn"
+            onClick={() => updateQuantity(_id, quantity + 1)}
+          >
+            <i className="fa-solid fa-plus quantity-icon quantity-plus-icon"></i>
+          </button>
         </div>
         <button
-          className={`plus-btn-alone quantity-btn ${
+          className={`quantity-plus-btn-alone ${
             quantity > 0 ? "hide" : ""
           }`}
           onClick={() => addToCart({ _id, name, image, price, description }, 1)}
         >
-          <i className="fa-solid fa-plus quantity-icon plus-icon"></i>
+          <i className="fa-solid fa-plus quantity-icon quantity-plus-icon"></i>
         </button>
         <div className="menu-item-top-info">
           {/* NAME */}

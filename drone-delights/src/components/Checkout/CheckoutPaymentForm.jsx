@@ -184,14 +184,14 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
   };
 
   return (
-    <div
+    <section
       className={`form-container payment-method-form-container ${className}`}
     >
-      <div className="form-header">
+      <header className="form-header">
         <h2 className="form-title">Payment</h2>
         <div className="payment-options-container">
           <button
-            className={`swish-btn payment-btn ${
+            className={`payment-btn ${
               selected === "swish" ? "selected-btn" : ""
             }`}
             onClick={() => setSelected("swish")}
@@ -200,7 +200,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
             <img src={swish} alt="Swish" className="swish-logo" />
           </button>
           <button
-            className={`mastercard-btn payment-btn ${
+            className={`payment-btn ${
               selected === "mastercard" ? "selected-btn" : ""
             }`}
             onClick={() => setSelected("mastercard")}
@@ -213,7 +213,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
             />
           </button>
         </div>
-      </div>
+      </header>
 
       {selected === "mastercard" && (
         <form className="form" onSubmit={handleSubmit}>
@@ -335,7 +335,7 @@ function CheckoutPaymentForm({ onSuccess, className = "" }) {
           </div>
         </form>
       )}
-    </div>
+    </section>
   );
 }
 

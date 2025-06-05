@@ -128,15 +128,15 @@ function UserPaymentForm({ onCancel, onSuccess }) {
   }, [valid, errors]);
 
   return (
-    <div className="form-container">
-      <div className="form-header">
+    <section className="form-container">
+      <header className="form-header">
         <h2 className="form-title">Add Payment Method</h2>
         <Button
           text={<i className="fas fa-times"></i>}
           style="cancel-button-s"
           onClick={handleCancel}
         />
-      </div>
+      </header>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-inputs-container">
           <InputField
@@ -221,7 +221,7 @@ function UserPaymentForm({ onCancel, onSuccess }) {
           </label>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 

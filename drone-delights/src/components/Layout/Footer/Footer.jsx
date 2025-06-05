@@ -3,23 +3,23 @@ import footerBackground from "../../../assets/images/footer.svg";
 
 function Footer() {
   return (
-    <div className="footer-container">
+    <footer className="footer-container">
       <div className="footer-content">
         <p className="footer-text">
           <span>@2025</span>
           {"|"}
-          <span className="footer-company-name">Drone</span>
-          <span className="footer-company-name">Delights</span>
+          <strong className="footer-company-name">Drone Delights</strong>
           {"|"}
           <span>All Rights Reserved</span>
         </p>
       </div>
       <img
         src={footerBackground}
-        alt="Footer Background"
+        alt=""
+        aria-hidden="true"
         className="footer-background"
       />
-    </div>
+    </footer>
   );
 }
 

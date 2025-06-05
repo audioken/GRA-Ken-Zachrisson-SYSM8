@@ -1,5 +1,6 @@
 import "./CartItemCard.css";
 import "../../../styles/TypographyStyles.css";
+import "../../../styles/ItemCardStyles.css";
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 
@@ -30,43 +31,33 @@ function CartItemCard({ _id, name, image, price, description }) {
 
           <div className="cart-item-right-info">
             {/* QUANTITY */}
-            <div
-              className={`cart-item-full-quantity-container ${
-                quantity < 1 ? "hide" : ""
-              }`}
-            >
-              <div className="cart-item-trash-minus-container">
+            <div className={`quantity-wrapper ${quantity < 1 ? "hide" : ""}`}>
+              <div>
                 {/* TRASH BUTTON */}
                 <button
-                  className={`cart-item-trash-btn cart-item-quantity-btn ${
-                    quantity > 1 ? "hide" : ""
-                  }`}
+                  className={`quantity-btn ${quantity > 1 ? "hide" : ""}`}
                   onClick={() => removeFromCart(_id)}
                 >
-                  <i className="fa-solid fa-trash cart-item-quantity-icon cart-item-trash-icon"></i>
+                  <i className="fa-solid fa-trash quantity-icon quantity-trash-icon"></i>
                 </button>
                 {/* MINUS BUTTON */}
                 <button
-                  className={`cart-item-minus-btn cart-item-quantity-btn ${
-                    quantity < 2 ? "hide" : ""
-                  }`}
+                  className={`quantity-btn ${quantity < 2 ? "hide" : ""}`}
                   onClick={() => updateQuantity(_id, quantity - 1)}
                 >
-                  <i className="fa-solid fa-minus cart-item-quantity-icon cart-item-minus-icon"></i>
+                  <i className="fa-solid fa-minus quantity-icon quantity-minus-icon"></i>
                 </button>
               </div>
-              <div className="cart-item-quantity-container">
-                <span className="cart-item-quantity">{quantity}</span>
+              <div className="quantity-counter-container">
+                <span className="quantity-counter">{quantity}</span>
               </div>
-              <div className="cart-item-plus-btns-container">
-                {/* PLUS BUTTON */}
-                <button
-                  className="cart-item-plus-btn quantity-btn"
-                  onClick={() => updateQuantity(_id, quantity + 1)}
-                >
-                  <i className="fa-solid fa-plus cart-item-quantity-icon cart-item-plus-icon"></i>
-                </button>
-              </div>
+              {/* PLUS BUTTON */}
+              <button
+                className="cart-item-plus-btn quantity-btn"
+                onClick={() => updateQuantity(_id, quantity + 1)}
+              >
+                <i className="fa-solid fa-plus quantity-icon quantity-plus-icon"></i>
+              </button>
             </div>
           </div>
         </div>
