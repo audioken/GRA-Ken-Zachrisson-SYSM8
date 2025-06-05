@@ -44,7 +44,7 @@
   border: none;
   font-family: var(--f3);
   font-weight: bold;
-  font-size: clamp(0.6rem, 2vw, 1rem);
+  font-size: clamp(0.6rem, 3vw, 1rem);
   padding: 0.5rem 0.5rem;
   border-radius: 12.5px;
   background-color: #00d82f;
@@ -53,7 +53,6 @@
 
 .payment-method-card-primary-enabled {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: clamp(0.6rem, 3vw, 1rem);
 }
 
 .payment-method-card-primary-disabled {

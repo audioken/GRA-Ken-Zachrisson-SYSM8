@@ -98,4 +98,3 @@ function UserPaymentCard({ id, number, isPrimary }) {
 }
 
 export default UserPaymentCard;
-
