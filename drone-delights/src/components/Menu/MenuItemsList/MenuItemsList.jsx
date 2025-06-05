@@ -18,7 +18,7 @@ function MenuItemsList() {
 
   useEffect(() => {
     if (selectedCategory === "Favorites" && !token) {
-      navigate("/register");
+      navigate("/login");
     }
   }, [selectedCategory, token, navigate]);
 

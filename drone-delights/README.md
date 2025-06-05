@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Projektanalys – Drone Delights
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Målet med projektet var att skapa **Drone Delights** – en responsiv enkel webbutik med JWT-autentisering, en backend i Node.js och stöd för både desktop och mobil. Jag ville bygga en komplett fullstack-applikation som visar att jag behärskar hela utvecklingsprocessen – från design till implementation.
 
-## Available Scripts
+## Design och förarbete
 
-In the project directory, you can run:
+Jag började med att skissa applikationen i **Figma**, där jag designade samtliga fönster för desktopversionen. För att förenkla övergången till kod tänkte jag i komponenter redan från början. Komponenterna hölls stilmässigt "smala", vilket underlättade mobilanpassning via media queries.
 
-### `npm start`
+Det var tydligt hur stor skillnad det gjorde att ha designen klar innan jag började koda – jag kunde överföra mått och färger direkt från Figma till HTML, vilket sparade tid och gjorde utvecklingen mer effektiv.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Jag designade även logotypen med hjälp av ChatGPT, vilket sparade massor av tid i designfasen.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Implementation och teknikval
 
-### `npm test`
+Jag arbetade stegvis, sida för sida, och fokuserade på att logiken i koden skulle fungera korrekt. När grunden var satt, stylade jag med CSS för att skapa ett mer visuellt tilltalande gränssnitt.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Inledningsvis använde jag **JSON Server** för att snabbt simulera en databas. Jag bytte sedan till en egen **Node.js-backend** med **JWT-autentisering**, vilket gjorde autentisering möjlig på riktigt och gav värdefull erfarenhet med tokens och middleware. Det gav större kontroll och en mer realistisk lösning.
 
-### `npm run build`
+För att minska upprepad kod och förenkla datainhämtning skapade jag ett eget custom hook – **useFetch**. Det förenklade hanteringen av asynkrona anrop och gav en mer kompakt och lättläst kodbas.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Jag skapade också flera contexts (bl.a. **CartContext**, **CategoryContext**, **AuthContext**) för att kunna nå variabler och funktioner globalt i projektet. Detta ökade flexibiliteten, minskade behovet av props-drilling och resulterade i mindre och renare kod.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+För att skydda specifika vyer byggde jag en **ProtectedRoute-komponent** som används på **/user-sidan**. Eftersom jag ville att man skulle kunna genomföra ett köp utan att vara inloggad, var endast denna vy skyddad. Jag insåg dock sent att det hade varit smart att kräva e-postadress även vid gästköp, så att kvitto kunde skickas automatiskt.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Tekniska val:
 
-### `npm run eject`
+- **Figma** – design av gränssnittet  
+- **HTML/CSS** – struktur och styling  
+- **JavaScript (Node.js)** – backend  
+- **JWT** – autentisering  
+- **JSON Server** – tidig datasimulering  
+- **Masonry-layout** – flexibel visning av produktkort  
+- **FontAwesome** – ikoner  
+- **CSS-variabler** – hantering av färger och fonter i `:root`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Jag använde **Masonry-layout** för att visa produktkort på ett flexibelt sätt. Det möjliggjorde utökad information i varje kort utan att bryta layouten.  
+För ikoner använde jag **FontAwesome**, vilket gjorde det enkelt att styla dem direkt i HTML.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Alla färger och fonter lades som CSS-variabler i `:root`, vilket gjorde det smidigt att ändra teman och hålla styling konsekvent.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Utmaningar och lösningar
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Backend och datalagring
 
-## Learn More
+Att strukturera backend-logiken var en av de största utmaningarna. Jag tog inspiration från en skoluppgift i Node.js men anpassade mycket för att passa projektets behov. En viktig förändring var hur jag hanterade favoriter:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Jag gick från att använda en `isFavourite`-flagga i varje produkt till att istället spara favoriter som en lista i användarens data.  
+  Det blev en mer flexibel och tydligare backend-lösning.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Validering
 
-### Code Splitting
+Jag skapade en separat `validateInputs`-funktion i mappen `utils`, där jag samlade logik för live-validering av fält som användarnamn och lösenord. Det gav bättre användarupplevelse med tydliga färgindikationer och felmeddelanden.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Designmissar
 
-### Analyzing the Bundle Size
+Ett tydligt hinder uppstod när jag skulle bygga **orderbekräftelsesidan** – en vy jag glömt att designa i Figma. Det blev tydligt hur mycket tid det kostar att designa direkt i kod jämfört med att följa en färdig plan.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Växande kodbas
 
-### Making a Progressive Web App
+I takt med att projektet växte blev det svårare att hålla struktur. Jag märkte hur viktig **konsekvent namngivning** är – jag fick byta många klassnamn i efterhand vilket tog tid. Samtidigt lyckades jag dela upp mycket av koden i återanvändbara komponenter, t.ex. knappar, vilket gjorde det enklare att underhålla och vidareutveckla.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Under utvecklingen utvecklade min mappstruktur sig till en hybrid mellan featurebaserad och typebaserad organisering, något jag lärde mig mycket av, och i nästa projekt planerar jag att välja en tydlig strategi för att hålla strukturen konsekvent och lättnavigerad.
 
-### Advanced Configuration
+## Reflektion och framtida förbättringar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Det här projektet har stärkt mitt självförtroende som systemutvecklare. Jag har fått större förståelse för vad som krävs i ett fullstack-projekt och hur viktigt det är att planera både kod och design i förväg.  
 
-### Deployment
+Jag känner att jag ibland skriver kod på ett ganska "klumpigt" sätt. Vissa komponenter blev onödigt stora i början, men genom att refaktorisera och bryta ut mindre komponenter lärde jag mig vikten av tydligt ansvar. Jag har blivit bättre på att reflektera, felsöka och anpassa lösningar.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Till nästa projekt vill jag:
 
-### `npm run build` fails to minify
+- Använda ett CSS-ramverk som **Tailwind** för bättre struktur  
+- Vara ännu mer noggrann med **klassnamngivning**  
+- Designa **hela gränssnittet i förväg**, inklusive mindre sidor  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Funktioner jag vill lägga till i framtiden:
+
+- Orderhistorik  
+- Adminpanel för hantering av ordrar och användare  
+- Utökad filtrering och sökning  
+- Bättre feedback vid t.ex. "lägg i varukorgen"  
+- Animationer för en mer levande upplevelse  
+
+## Sammanfattning
+
+Jag känner att jag börjar hitta mitt eget sätt att jobba – ett arbetssätt som kombinerar noggrann planering med kreativ problemlösning. Även om inte allt blev klart, har projektet gett mig en stabil grund och viktiga insikter. Jag har lärt mig hur jag vill arbeta i framtiden – med tydligare struktur, bättre planering och mer reflektion kring teknikval. Det här projektet är ett stort steg i min utveckling som systemutvecklare. Det har visat mig hur mycket jag faktiskt kan åstadkomma – och hur mycket mer jag vill lära mig. Överlag är jag väldigt nöjd med applikationen. Jag tycker den blev tilltalande och enkel, vilket var ett av mina mål.
