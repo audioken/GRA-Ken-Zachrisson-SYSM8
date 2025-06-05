@@ -4,10 +4,15 @@ export const PaymentContext = createContext();
 
 export function PaymentProvider({ children }) { 
   const [paymentInfo, setPaymentInfo] = useState(() => {
-    const storedPaymentInfo = localStorage.getItem('paymentInfo');
-    console.log('Stored payment info:', storedPaymentInfo);
-    return storedPaymentInfo ? JSON.parse(storedPaymentInfo) : {};
+    try {
+      const stored = localStorage.getItem("paymentInfo");
+      return stored ? JSON.parse(stored) : {};
+    } catch (e) {
+      console.error("Failed to parse paymentInfo:", e);
+      return {};
+    }
   });
+  
 
   useEffect(() => {
     localStorage.setItem('paymentInfo', JSON.stringify(paymentInfo));

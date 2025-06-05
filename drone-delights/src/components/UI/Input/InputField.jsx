@@ -1,4 +1,4 @@
-import "./FieldStyles.css";
+import "../../../styles/FieldStyles.css";
 import "../../../styles/ButtonStyles.css";
 
 function InputField({

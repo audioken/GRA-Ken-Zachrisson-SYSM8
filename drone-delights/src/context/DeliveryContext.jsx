@@ -4,11 +4,15 @@ export const DeliveryContext = createContext();
 
 export function DeliveryProvider({ children }) {
   const [deliveryInfo, setDeliveryInfo] = useState(() => {
-    const storedDeliveryInfo = localStorage.getItem("deliveryInfo");
-    console.log("Stored delivery info:", storedDeliveryInfo);
-    return storedDeliveryInfo ? JSON.parse(storedDeliveryInfo) : {};
+    try {
+      const stored = localStorage.getItem("deliveryInfo");
+      return stored ? JSON.parse(stored) : {};
+    } catch (e) {
+      console.error("Failed to parse deliveryInfo:", e);
+      return {};
+    }
   });
-
+  
   const resetDeliveryInfo = () => setDeliveryInfo({});
 
   useEffect(() => {

@@ -6,10 +6,15 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [user, setUser] = useState(() => {
-    const stored = localStorage.getItem("user");
-    return stored ? JSON.parse(stored) : null;
+    try {
+      const stored = localStorage.getItem("user");
+      return stored ? JSON.parse(stored) : null;
+    } catch (e) {
+      console.error("Failed to parse user:", e);
+      return null;
+    }
   });
-
+  
   const logoutTimer = useRef();
 
   // Funktion för att uppdatera användarinformation
@@ -20,20 +25,24 @@ export const AuthProvider = ({ children }) => {
 
   // Funktion för att logga in
   const login = (newToken, userData) => {
-    localStorage.setItem("token", newToken); 
-    localStorage.setItem("user", JSON.stringify(userData)); 
-    setUser(userData); 
-    setToken(newToken); 
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("user", JSON.stringify(userData));
+    setUser(userData);
+    setToken(newToken);
   };
 
   // Funktion för att logga ut
   const logout = () => {
-    console.log("Removed token: " + token);
-    localStorage.removeItem("token"); 
-    localStorage.removeItem("user"); 
-    localStorage.removeItem("deliveryInfo"); 
-    setToken(null); 
-    setUser(null); 
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("deliveryInfo");
+    setToken(null);
+    setUser(null);
+
+    if (logoutTimer.current) {
+      clearTimeout(logoutTimer.current);
+      logoutTimer.current = null;
+    }
   };
 
   // Automatisk utloggning när token går ut
@@ -50,7 +59,7 @@ export const AuthProvider = ({ children }) => {
 
     if (!decoded.exp) return;
 
-    const expiresAt = decoded.exp * 1000; 
+    const expiresAt = decoded.exp * 1000;
     const timeout = expiresAt - Date.now();
 
     if (timeout <= 0) {
@@ -70,15 +79,15 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ token, user, login, logout, updateUser }}>
-      {children} 
+      {children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => {
-  const context = useContext(AuthContext); 
+  const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
-  return context; 
+  return context;
 };

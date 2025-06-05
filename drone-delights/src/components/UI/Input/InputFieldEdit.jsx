@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./FieldStyles.css";
+import "../../../styles/FieldStyles.css";
 import "../../../styles/ButtonStyles.css";
 
 function InputFieldEdit({

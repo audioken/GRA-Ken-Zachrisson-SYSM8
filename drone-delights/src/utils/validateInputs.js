@@ -152,19 +152,6 @@ export function validateInputs(fields) {
     }
   }
 
-  // Name on card: minst 2 tecken
-  // if ("nameOnCard" in fields) {
-  //   if (!fields.nameOnCard?.trim()) {
-  //     errors.nameOnCard = "Required";
-  //     valid.nameOnCard = false;
-  //   } else if (fields.nameOnCard.trim().length < 2) {
-  //     errors.nameOnCard = "At least 2 characters";
-  //     valid.nameOnCard = false;
-  //   } else {
-  //     valid.nameOnCard = true;
-  //   }
-  // }
-
   // Card number: exakt 16 siffror
   if ("number" in fields) {
     if (!fields.number?.trim()) {

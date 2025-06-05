@@ -1,4 +1,4 @@
-import "./FieldStyles.css";
+import "../../../styles/FieldStyles.css";
 
 function PasswordField({
   label,

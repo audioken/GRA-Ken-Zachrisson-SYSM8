@@ -4,8 +4,13 @@ export const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState(() => {
-    const storedCart = localStorage.getItem("cartItems");
-    return storedCart ? JSON.parse(storedCart) : [];
+    try {
+      const storedCart = localStorage.getItem("cartItems");
+      return storedCart ? JSON.parse(storedCart) : [];
+    } catch (e) {
+      console.error("Failed to parse cartItems:", e);
+      return [];
+    }
   });
 
   useEffect(() => {
@@ -42,7 +47,7 @@ export function CartProvider({ children }) {
 
   function emptyCart() {
     setCartItems([]);
-  }  
+  }
 
   return (
     <CartContext.Provider
